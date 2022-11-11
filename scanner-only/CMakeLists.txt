@@ -5,7 +5,11 @@ project(Scanner)
 set(CMAKE_CXX_STANDARD 17)
 
 # generate a *.cpp file here for later use
-FLEX_TARGET(LexerCodeGen lexer.l ${Scanner_SOURCE_DIR}/lexer.cpp)
+FLEX_TARGET(
+    LexerCodeGen
+    lexer.l
+    ${Scanner_SOURCE_DIR}/lexer.cpp
+)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
