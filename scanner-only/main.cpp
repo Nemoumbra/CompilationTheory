@@ -20,7 +20,7 @@ int main() {
     while (!ending) {
         int token = scanner.ScanToken();
         std::cout << "Token scanned...\n";
-        if (token = TOKEN_EXIT) {
+        if (token == TOKEN_EXIT) {
             ending = true;
         }
     }
