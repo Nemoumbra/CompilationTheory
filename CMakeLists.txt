@@ -14,3 +14,4 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CompilerTheory_SOURCE_DIR}/bin)
 # recursively run CMake on folders:
 add_subdirectory(scanner-only)
 add_subdirectory(parser)
+add_subdirectory(ast-parser)
