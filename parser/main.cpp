@@ -2,9 +2,11 @@
 
 #include "driver.hh"
 
-int main(int argc, chat** argv) {
+int main(int argc, char** argv) {
     int result; // decompilation flashbacks
     Driver driver;
+    std::cout << "Program started!\n";
+    // std::cout << argc << "\n";
 
     if (argc == 1) {
         std::cout << "Usage: [options] filename\n";
@@ -14,7 +16,7 @@ int main(int argc, chat** argv) {
         std::cout << "-l : test\n";
         result = -1;
     }
-    for (int i = 0; i < argc; ++i) {
+    for (int i = 1; i < argc; ++i) {
         if (argv[i] == std::string("-p")) {
             driver.trace_parsing = true;
         }
@@ -28,7 +30,7 @@ int main(int argc, chat** argv) {
             std::cout << driver.result << "\n";
         }
         else {
-            std::cout << ""
+            std::cout << "driver.parse(" << argv[i] << ") returned true";
         }
     }
 

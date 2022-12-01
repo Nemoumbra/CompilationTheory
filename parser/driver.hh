@@ -32,4 +32,4 @@ public:
 
     void scan_begin();
     void scan_end();
-}
+};

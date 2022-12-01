@@ -15,7 +15,7 @@ Driver::Driver() :
     variables["two"] = 2;
 }
 
-Driver::scan_begin() {
+void Driver::scan_begin() {
     scanner.set_debug(trace_scanning);
     if (file.empty () || file == "-") {
         std::cerr << "file.empty() or file == \"-\"";
@@ -28,11 +28,11 @@ Driver::scan_begin() {
     }
 }
 
-Driver::scan_end() {
+void Driver::scan_end() {
     stream.close();
 }
 
-int Driver::parse() {
+int Driver::parse(const std::string& f) {
     file = f;
     // initialize location positions
     location.initialize(&file);
