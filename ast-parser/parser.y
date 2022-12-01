@@ -49,12 +49,16 @@ string
     /* Forward declaration of classes in order to disable cyclic dependencies */
     class Scanner;
     class Driver;
+    // Here we write forward declarations for all of our grammar rules classes
+    class Expression;
 }
 
 // This code is inserted in the parser.cpp file at the start
 %code {
     #include "driver.hh"
     #include "location.hh"
+
+    // Here we include all of our grammar rules files (including Program.hh)
 
     /* Redefine parser to use our function from scanner */
     static yy::parser::symbol_type yylex(Scanner &scanner) {
@@ -64,7 +68,8 @@ string
 
 // Specify additional yylex argument declarations
 %lex-param { Scanner &scanner }
-// we get 'yy::parser::symbol_type yylex(Scanner &scanner)'
+%lex-param { Driver &driver }
+// We get 'yy::parser::symbol_type yylex(Scanner &scanner, Driver &driver)'
 
 // In parser.hh and parser.cpp these are added as fields to class 'yy::parser'
 // (and to the constructor as well)
@@ -113,7 +118,9 @@ string
 
 
 // To declare exclusively nonterminal symbols
-%nterm <int> expression
+%nterm <Program*> unit
+%nterm <BaseExpression*> expression
+
 
 
 // OLD COMMENT: "Prints output in parsing option for debugging location terminal"
@@ -122,7 +129,8 @@ string
 // After the braces we list symbol names which we write these logs for
 // In this case it's for every symbol that has a semantic tag
 
-%printer { yyo << $$; } <*>;
+//%printer { yyo << $$; } <*>;
+// We disable the printer for some reason
 
 // 'yyo' is an alias name for the output - in our case (C++) that's 'std::ostream&'
 // $$ is a semantic value assiciated with the symbol
@@ -139,7 +147,7 @@ string
 // Associativity and relative precedence rules for operators in the language
 // (These strings are semantic type tags)
 
-// %doesn't matter "=="
+
 %left "+" "-";
 %left "*" "/";
 // This means that 
@@ -168,13 +176,12 @@ string
 // $N refers to the semantic value of the semantic value of the Nth component of the rule
 // Note: here we start counting from 1
 
-unit: "main" "{" statements "}" { /* code */ }
+unit: "main" "{" statements "}" { 
+    $$ = new Program($3);
+    driver.program = $$;
+ }
 
 // The %empty directive allows to make explicit that a rule is empty on purpose instead of writing nothing
-// assignments:
-//    %empty {}
-//    | assignments assignment {};
-
 
 statements:
     %empty { /* code */ }
