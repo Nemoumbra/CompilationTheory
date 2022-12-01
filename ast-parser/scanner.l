@@ -47,6 +47,7 @@ int   [0-9]+
 blank [ \t\r]
 assign =(?!=)
 
+
 /* This starts the token definition section */
 %%
 
@@ -72,16 +73,16 @@ assign =(?!=)
   /* we want to run whenever it is matched by our scanner */
 
 {blank}+   {
-    if (driver.location_debug) {
-        std::cerr << "Blank matched" << std::endl;
-    }
+    //if (driver.location_debug) {
+    //    std::cerr << "Blank matched" << std::endl;
+    //}
     loc.step();
 }
 
 \n+ {
-    if (driver.location_debug) {
-        std::cerr << "EOL called" << std::endl;
-    }
+    //if (driver.location_debug) {
+    //    std::cerr << "EOL called" << std::endl;
+    //}
     loc.lines(yyleng);
     loc.step();
 }
