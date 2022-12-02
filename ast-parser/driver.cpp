@@ -2,7 +2,7 @@
 #include "driver.hh"
 // again, why do we request it?
 
-
+#include "visitors/PrintVisitor.hh"
 
 Driver::Driver() :
     trace_parsing(false),
@@ -54,4 +54,9 @@ int Driver::parse(const std::string& f) {
 
     scan_end();
     return res;
+}
+
+void Driver::printTree(const std::string& filename) {
+    PrintVisitor visitor(filename);
+    visitor.Visit(program);
 }

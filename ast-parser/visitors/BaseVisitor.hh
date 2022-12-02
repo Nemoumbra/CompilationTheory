@@ -17,11 +17,11 @@ public:
     virtual void Visit(IntDivExpression* int_div_expr) = 0;
     virtual void Visit(NestedExpr* nested_expr) = 0;
     virtual void Visit(EQExpression* eq_expr) = 0;
-    virtual void Visit(NEExpression* eq_expr) = 0;
-    virtual void Visit(LTExpression* eq_expr) = 0;
-    virtual void Visit(GTExpression* eq_expr) = 0;
-    virtual void Visit(LEQExpression* eq_expr) = 0;
-    virtual void Visit(GEQExpression* eq_expr) = 0;
+    virtual void Visit(NEExpression* ne_expr) = 0;
+    virtual void Visit(LTExpression* lt_expr) = 0;
+    virtual void Visit(GTExpression* gt_expr) = 0;
+    virtual void Visit(LEQExpression* leq_expr) = 0;
+    virtual void Visit(GEQExpression* geq_expr) = 0;
 
     virtual void Visit(Conditional* conditional) = 0;
 

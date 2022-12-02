@@ -6,9 +6,10 @@
 class CallToPrint : public Statement {
     // Grammar rule:
     // "print" "(" expression ")" ";" { /* code */ }
-private:
-    BaseExpression* expression_;
+// private:
+
 public:
+    BaseExpression* expression_;
     CallToPrint(BaseExpression* expression);
     void Accept(BaseVisitor* visitor);
 };

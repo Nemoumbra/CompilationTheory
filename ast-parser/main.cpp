@@ -18,6 +18,7 @@ int main(int argc, char** argv) {
 
         // result = -1;
     }
+    int max_args_count = 4;
     for (int i = 1; i < argc; ++i) {
         if (argv[i] == std::string("-p")) {
             driver.trace_parsing = true;
@@ -28,12 +29,18 @@ int main(int argc, char** argv) {
         // else if (argv[i] == std::string("-l")) {
         //     driver.location_debug = true;
         // }
-        else if (!driver.parse(argv[i])) {
-            std::cout << driver.result << "\n";
-        }
+        // else if (!driver.parse(argv[i])) {
+        //     std::cout << driver.result << "\n";
+        // }
+        // else {;
+        //     std::cout << "driver.parse(" << argv[i] << ") returned true";
+        //     result = 1;
+        // }
         else {
-            std::cout << "driver.parse(" << argv[i] << ") returned true";
-            result = 1;
+            auto res = driver.parse(argv[i]);
+            if (i + 1 < argc) {
+                driver.printTree(argv[i+1]);
+            }
         }
     }
 

@@ -56,15 +56,13 @@ add_executable(
     grammar-entities/expressions/GEQExpression.cpp
     grammar-entities/expressions/LEQExpression.cpp
 
+    visitors/PrintVisitor.cpp
 
     Program.cpp
 )
 
 target_include_directories(ASTParserModule PRIVATE ${AST_PARSER_SOURCE_DIR})
 
-# execute_process(
-#     COMMAND dot -Tpng ../ast-parser/parser.gv -o ../ast-parser/ast-parser.png
-# )
 
 add_custom_target(
     VisitorTree
