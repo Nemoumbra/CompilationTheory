@@ -177,6 +177,6 @@ void PrintVisitor::Visit(Program* program) {
     PrintTabs();
     stream_ << "Program: \n";
     ++num_tabs_;
-    program->Accept(this);
+    program->statements_->Accept(this);
     --num_tabs_;
 }

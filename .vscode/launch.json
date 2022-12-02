@@ -8,10 +8,13 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/ParserModule",
-            "args": ["test.lang"],
+            "program": "${workspaceFolder}/bin/ASTParserModule",
+            "args": [
+                "ast-test.lang",
+                "ast-print-tree.txt"
+            ],
             "stopAtEntry": false,
-            "cwd": "${fileDirname}",
+            "cwd": "${workspaceFolder}/bin",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",

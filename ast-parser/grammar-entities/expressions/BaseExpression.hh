@@ -2,7 +2,7 @@
 
 #include "../base-elements/BaseComponent.hh"
 
-class BaseExpression : BaseComponent {
+class BaseExpression : public BaseComponent {
 public:
-    //void Accept(BaseVisitor* visitor);
+    // void Accept(BaseVisitor* visitor);
 };

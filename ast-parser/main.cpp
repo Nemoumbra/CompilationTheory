@@ -2,11 +2,19 @@
 
 #include "driver.hh"
 
+#include <unistd.h>
+// for getcwd
+
+
 int main(int argc, char** argv) {
     int result = 0; // decompilation flashbacks
     Driver driver;
     std::cout << "Program started!\n";
     // std::cout << argc << "\n";
+    std::cout << "argv[0] == " << argv[0] << "\n";
+    char buff[FILENAME_MAX];
+    getcwd(buff, FILENAME_MAX);
+    std::cout << "cwd        " << buff << "\n";
 
     if (argc == 1) {
         std::cout << "Usage: [options] filename\n";
@@ -40,6 +48,7 @@ int main(int argc, char** argv) {
             auto res = driver.parse(argv[i]);
             if (i + 1 < argc) {
                 driver.printTree(argv[i+1]);
+                ++i;
             }
         }
     }
