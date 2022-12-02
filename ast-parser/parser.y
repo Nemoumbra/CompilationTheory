@@ -99,6 +99,11 @@
     PRINT "print"
     INT_TYPE "int_type"
     EQ "=="
+    NE "!="
+    LT "<"
+    GT ">"
+    GEQ ">="
+    LEQ "<="
     <std::string> IDENTIFIER "identifier"
     <int> NUMBER "number"
 ;
@@ -223,6 +228,21 @@ expression:
     }
     | expression "==" expression {
         $$ = new EQExpression($1, $3);
+    }
+    | expression "!=" expression {
+        $$ = new NEExpression($1, $3);
+    }
+    | expression "<" expression {
+        $$ = new LTExpression($1, $3);
+    }
+    | expression ">" expression {
+        $$ = new GTExpression($1, $3);
+    }
+    | expression "<=" expression {
+        $$ = new LEQExpression($1, $3);
+    }
+    | expression ">=" expression {
+        $$ = new GEQExpression($1, $3);
     }
     | "(" expression ")" {
         $$ = new NestedExpr($2);

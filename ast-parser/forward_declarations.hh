@@ -23,3 +23,8 @@ class MultExpression;
 class IntDivExpression;
 class NestedExpr;
 class EQExpression;
+class NEExpression;
+class GTExpression;
+class LTExpression;
+class GEQExpression;
+class LEQExpression;

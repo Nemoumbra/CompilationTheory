@@ -107,6 +107,11 @@ assign =
 "print"    return yy::parser::make_PRINT(loc);
 "int"      return yy::parser::make_INT_TYPE(loc);
 "=="       return yy::parser::make_EQ(loc);
+"!="       return yy::parser::make_NE(loc);
+"<"       return yy::parser::make_LT(loc);
+">"       return yy::parser::make_GT(loc);
+"<="       return yy::parser::make_LEQ(loc);
+">="       return yy::parser::make_GEQ(loc);
 
 
   /* The next one is a little tricky: it's not the */

@@ -50,6 +50,11 @@ add_executable(
     grammar-entities/expressions/IdentifierExpr.cpp
     grammar-entities/expressions/NestedExpression.cpp
     grammar-entities/expressions/EQExpression.cpp
+    grammar-entities/expressions/NEExpression.cpp
+    grammar-entities/expressions/LTExpression.cpp
+    grammar-entities/expressions/GTExpression.cpp
+    grammar-entities/expressions/GEQExpression.cpp
+    grammar-entities/expressions/LEQExpression.cpp
 
 
     Program.cpp
@@ -57,6 +62,15 @@ add_executable(
 
 target_include_directories(ASTParserModule PRIVATE ${AST_PARSER_SOURCE_DIR})
 
-execute_process(
-    COMMAND dot -Tpng ../ast-parser/parser.gv -o ../ast-parser/ast-parser.png
+# execute_process(
+#     COMMAND dot -Tpng ../ast-parser/parser.gv -o ../ast-parser/ast-parser.png
+# )
+
+add_custom_target(
+    VisitorTree
+    COMMAND dot -Tpng ${AST_PARSER_SOURCE_DIR}/parser.gv -o ${AST_PARSER_SOURCE_DIR}/ast-parser.png
+
+    DEPENDS ${AST_PARSER_SOURCE_DIR}/parser.cpp
 )
+
+add_dependencies(ASTParserModule VisitorTree)

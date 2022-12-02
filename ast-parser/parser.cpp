@@ -780,7 +780,7 @@ namespace yy {
           switch (yyn)
             {
   case 2: // unit: "main" "{" statements "}"
-#line 188 "parser.y"
+#line 193 "parser.y"
                                 { 
     yylhs.value.as < Program* > () = new Program(yystack_[1].value.as < Statements* > ());
     driver.program = yylhs.value.as < Program* > ();
@@ -789,7 +789,7 @@ namespace yy {
     break;
 
   case 3: // statements: %empty
-#line 196 "parser.y"
+#line 201 "parser.y"
            { 
         yylhs.value.as < Statements* > () = new Statements();
     }
@@ -797,7 +797,7 @@ namespace yy {
     break;
 
   case 4: // statements: statements base_statement
-#line 199 "parser.y"
+#line 204 "parser.y"
                                 { 
         yystack_[1].value.as < Statements* > ()->AddStatement(yystack_[0].value.as < BaseStatement* > ());
         yylhs.value.as < Statements* > () = yystack_[1].value.as < Statements* > ();
@@ -806,7 +806,7 @@ namespace yy {
     break;
 
   case 5: // expression: "number"
-#line 206 "parser.y"
+#line 211 "parser.y"
              { 
         yylhs.value.as < BaseExpression* > () = new NumberExpression(yystack_[0].value.as < int > ());
     }
@@ -814,7 +814,7 @@ namespace yy {
     break;
 
   case 6: // expression: "identifier"
-#line 209 "parser.y"
+#line 214 "parser.y"
                    {
         yylhs.value.as < BaseExpression* > () = new IdentifierExpr(yystack_[0].value.as < std::string > ());
     }
@@ -822,7 +822,7 @@ namespace yy {
     break;
 
   case 7: // expression: expression "+" expression
-#line 212 "parser.y"
+#line 217 "parser.y"
                                 {
         yylhs.value.as < BaseExpression* > () = new AddExpression(yystack_[2].value.as < BaseExpression* > (), yystack_[0].value.as < BaseExpression* > ());
     }
@@ -830,7 +830,7 @@ namespace yy {
     break;
 
   case 8: // expression: expression "-" expression
-#line 215 "parser.y"
+#line 220 "parser.y"
                                 {
         yylhs.value.as < BaseExpression* > () = new SubExpression(yystack_[2].value.as < BaseExpression* > (), yystack_[0].value.as < BaseExpression* > ());
     }
@@ -838,7 +838,7 @@ namespace yy {
     break;
 
   case 9: // expression: expression "*" expression
-#line 218 "parser.y"
+#line 223 "parser.y"
                                 {
         yylhs.value.as < BaseExpression* > () = new MultExpression(yystack_[2].value.as < BaseExpression* > (), yystack_[0].value.as < BaseExpression* > ());
     }
@@ -846,7 +846,7 @@ namespace yy {
     break;
 
   case 10: // expression: expression "/" expression
-#line 221 "parser.y"
+#line 226 "parser.y"
                                 {
         yylhs.value.as < BaseExpression* > () = new IntDivExpression(yystack_[2].value.as < BaseExpression* > (), yystack_[0].value.as < BaseExpression* > ());
     }
@@ -854,113 +854,153 @@ namespace yy {
     break;
 
   case 11: // expression: expression "==" expression
-#line 224 "parser.y"
+#line 229 "parser.y"
                                  {
         yylhs.value.as < BaseExpression* > () = new EQExpression(yystack_[2].value.as < BaseExpression* > (), yystack_[0].value.as < BaseExpression* > ());
     }
 #line 862 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
     break;
 
-  case 12: // expression: "(" expression ")"
-#line 227 "parser.y"
-                         {
-        yylhs.value.as < BaseExpression* > () = new NestedExpr(yystack_[1].value.as < BaseExpression* > ());
+  case 12: // expression: expression "!=" expression
+#line 232 "parser.y"
+                                 {
+        yylhs.value.as < BaseExpression* > () = new NEExpression(yystack_[2].value.as < BaseExpression* > (), yystack_[0].value.as < BaseExpression* > ());
     }
 #line 870 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
     break;
 
-  case 13: // base_statement: statement
-#line 234 "parser.y"
-              { 
-        yylhs.value.as < BaseStatement* > () = yystack_[0].value.as < Statement* > ();
+  case 13: // expression: expression "<" expression
+#line 235 "parser.y"
+                                {
+        yylhs.value.as < BaseExpression* > () = new LTExpression(yystack_[2].value.as < BaseExpression* > (), yystack_[0].value.as < BaseExpression* > ());
     }
 #line 878 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
     break;
 
-  case 14: // base_statement: declaration
-#line 237 "parser.y"
-                  { 
-        yylhs.value.as < BaseStatement* > () = yystack_[0].value.as < Declaration* > ();
+  case 14: // expression: expression ">" expression
+#line 238 "parser.y"
+                                {
+        yylhs.value.as < BaseExpression* > () = new GTExpression(yystack_[2].value.as < BaseExpression* > (), yystack_[0].value.as < BaseExpression* > ());
     }
 #line 886 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
     break;
 
-  case 15: // declaration: "decl" "identifier" ":" "int_type" ";"
-#line 254 "parser.y"
-                                           {
-        yylhs.value.as < Declaration* > () = new Declaration(yystack_[3].value.as < std::string > ());
+  case 15: // expression: expression "<=" expression
+#line 241 "parser.y"
+                                 {
+        yylhs.value.as < BaseExpression* > () = new LEQExpression(yystack_[2].value.as < BaseExpression* > (), yystack_[0].value.as < BaseExpression* > ());
     }
 #line 894 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
     break;
 
-  case 16: // statement: assignment
-#line 259 "parser.y"
-               { 
-        yylhs.value.as < Statement* > () = yystack_[0].value.as < Assignment* > ();
+  case 16: // expression: expression ">=" expression
+#line 244 "parser.y"
+                                 {
+        yylhs.value.as < BaseExpression* > () = new GEQExpression(yystack_[2].value.as < BaseExpression* > (), yystack_[0].value.as < BaseExpression* > ());
     }
 #line 902 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
     break;
 
-  case 17: // statement: conditional
-#line 262 "parser.y"
-                  {
-        yylhs.value.as < Statement* > () = yystack_[0].value.as < Conditional* > ();
+  case 17: // expression: "(" expression ")"
+#line 247 "parser.y"
+                         {
+        yylhs.value.as < BaseExpression* > () = new NestedExpr(yystack_[1].value.as < BaseExpression* > ());
     }
 #line 910 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
     break;
 
-  case 18: // statement: call_to_print
-#line 265 "parser.y"
-                    {
-        yylhs.value.as < Statement* > () = yystack_[0].value.as < CallToPrint* > ();
+  case 18: // base_statement: statement
+#line 254 "parser.y"
+              { 
+        yylhs.value.as < BaseStatement* > () = yystack_[0].value.as < Statement* > ();
     }
 #line 918 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
     break;
 
-  case 19: // assignment: "identifier" "=" expression ";"
-#line 271 "parser.y"
+  case 19: // base_statement: declaration
+#line 257 "parser.y"
+                  { 
+        yylhs.value.as < BaseStatement* > () = yystack_[0].value.as < Declaration* > ();
+    }
+#line 926 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+    break;
+
+  case 20: // declaration: "decl" "identifier" ":" "int_type" ";"
+#line 274 "parser.y"
+                                           {
+        yylhs.value.as < Declaration* > () = new Declaration(yystack_[3].value.as < std::string > ());
+    }
+#line 934 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+    break;
+
+  case 21: // statement: assignment
+#line 279 "parser.y"
+               { 
+        yylhs.value.as < Statement* > () = yystack_[0].value.as < Assignment* > ();
+    }
+#line 942 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+    break;
+
+  case 22: // statement: conditional
+#line 282 "parser.y"
+                  {
+        yylhs.value.as < Statement* > () = yystack_[0].value.as < Conditional* > ();
+    }
+#line 950 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+    break;
+
+  case 23: // statement: call_to_print
+#line 285 "parser.y"
+                    {
+        yylhs.value.as < Statement* > () = yystack_[0].value.as < CallToPrint* > ();
+    }
+#line 958 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+    break;
+
+  case 24: // assignment: "identifier" "=" expression ";"
+#line 291 "parser.y"
                                     { 
         yylhs.value.as < Assignment* > () = new Assignment(yystack_[3].value.as < std::string > (), yystack_[1].value.as < BaseExpression* > ());
         // driver.variables[$1] = $3->eval(driver);
      }
-#line 927 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 967 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
     break;
 
-  case 20: // call_to_print: "print" "(" expression ")" ";"
-#line 277 "parser.y"
+  case 25: // call_to_print: "print" "(" expression ")" ";"
+#line 297 "parser.y"
                                    {
         yylhs.value.as < CallToPrint* > () = new CallToPrint(yystack_[2].value.as < BaseExpression* > ());
     }
-#line 935 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 975 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
     break;
 
-  case 21: // conditional: "if" "(" expression ")" "{" cond_clause "}" "else" "{" cond_clause "}"
-#line 283 "parser.y"
+  case 26: // conditional: "if" "(" expression ")" "{" cond_clause "}" "else" "{" cond_clause "}"
+#line 303 "parser.y"
                                                                            { 
         yylhs.value.as < Conditional* > () = new Conditional(yystack_[8].value.as < BaseExpression* > (), yystack_[5].value.as < CondClause* > (), yystack_[1].value.as < CondClause* > ());
      }
-#line 943 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 983 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
     break;
 
-  case 22: // cond_clause: %empty
-#line 288 "parser.y"
+  case 27: // cond_clause: %empty
+#line 308 "parser.y"
            {
         yylhs.value.as < CondClause* > () = new CondClause();
     }
-#line 951 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 991 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
     break;
 
-  case 23: // cond_clause: cond_clause statement
-#line 291 "parser.y"
+  case 28: // cond_clause: cond_clause statement
+#line 311 "parser.y"
                             {
         yystack_[1].value.as < CondClause* > ()->AddStatement(yystack_[0].value.as < Statement* > ());
         yylhs.value.as < CondClause* > () = yystack_[1].value.as < CondClause* > ();
     }
-#line 960 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 1000 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
     break;
 
 
-#line 964 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 1004 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
 
             default:
               break;
@@ -1319,90 +1359,103 @@ namespace yy {
   const signed char
   parser::yypact_[] =
   {
-       5,    -9,    10,   -20,   -20,    39,   -20,    -6,     8,     9,
-      20,   -20,   -20,   -20,   -20,   -20,   -20,    33,    27,    27,
-      27,    31,    27,   -20,   -20,    -1,    15,    21,    40,    32,
-      27,    27,    27,    27,    35,    27,    48,   -20,   -20,   -20,
-      36,    36,    49,    49,   -20,    25,   -20,    46,    53,   -20,
-      55,   -20,    47,   -20
+      -1,     4,    10,   -20,   -20,    88,   -20,     0,    25,    26,
+      28,   -20,   -20,   -20,   -20,   -20,   -20,    41,    27,    27,
+      27,    37,    27,   -20,   -20,    17,    23,    44,    49,    53,
+      27,    27,    27,    27,    61,    27,    27,    27,    27,    27,
+      27,    76,   -20,   -20,   -20,    63,    63,   -16,   -16,   -20,
+      74,    74,    74,    74,    74,    74,   -20,    89,    73,   -20,
+      80,   -20,   100,   -20
   };
 
   const signed char
   parser::yydefact_[] =
   {
        0,     0,     0,     3,     1,     0,     2,     0,     0,     0,
-       0,     4,    14,    13,    16,    18,    17,     0,     0,     0,
+       0,     4,    19,    18,    21,    23,    22,     0,     0,     0,
        0,     0,     0,     6,     5,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,    19,    15,    12,
-       8,     7,     9,    10,    22,    11,    20,     0,     0,    23,
-       0,    22,     0,    21
+       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,    24,    20,    17,     8,     7,     9,    10,    27,
+      11,    12,    13,    14,    16,    15,    25,     0,     0,    28,
+       0,    27,     0,    26
   };
 
   const signed char
   parser::yypgoto_[] =
   {
-     -20,   -20,   -20,   -19,   -20,   -20,    66,   -20,   -20,   -20,
-      22
+     -20,   -20,   -20,   -19,   -20,   -20,    87,   -20,   -20,   -20,
+      32
   };
 
   const signed char
   parser::yydefgoto_[] =
   {
-       0,     2,     5,    25,    11,    12,    49,    14,    15,    16,
-      47
+       0,     2,     5,    25,    11,    12,    59,    14,    15,    16,
+      57
   };
 
   const signed char
   parser::yytable_[] =
   {
-      26,    27,     3,    29,    30,    31,    32,    33,     1,    34,
-       4,    40,    41,    42,    43,    17,    45,    18,    19,    35,
-      30,    31,    32,    33,    20,    36,    30,    31,    32,    33,
-      30,    31,    32,    33,    37,    35,    22,    30,    31,    32,
-      33,    35,    39,    32,    33,    35,    44,    21,    23,    24,
-      28,     6,    35,    38,     7,     8,    35,     9,    48,    53,
-      10,    46,     8,     8,     9,     9,    51,    10,    10,    35,
-      50,    13,     0,    52
+      26,    27,     1,    29,    35,    36,    37,    38,    39,    40,
+       4,    45,    46,    47,    48,     3,    50,    51,    52,    53,
+      54,    55,    30,    31,    32,    33,    17,    34,    30,    31,
+      32,    33,    20,    41,    18,    19,    22,    35,    36,    37,
+      38,    39,    40,    35,    36,    37,    38,    39,    40,    30,
+      31,    32,    33,    23,    24,    21,    28,    42,    30,    31,
+      32,    33,    43,    44,    35,    36,    37,    38,    39,    40,
+      32,    33,    49,    35,    36,    37,    38,    39,    40,    30,
+      31,    32,    33,    35,    36,    37,    38,    39,    40,    56,
+      60,    61,    13,    62,    35,    36,    37,    38,    39,    40,
+       6,    58,     0,     7,     8,     8,     9,     9,     0,     0,
+       0,     0,    63,     0,    10,    10,     8,     0,     9,     0,
+       0,     0,     0,     0,     0,     0,    10
   };
 
   const signed char
   parser::yycheck_[] =
   {
-      19,    20,    11,    22,     5,     6,     7,     8,     3,    10,
-       0,    30,    31,    32,    33,    21,    35,     9,     9,    20,
-       5,     6,     7,     8,     4,    10,     5,     6,     7,     8,
-       5,     6,     7,     8,    13,    20,     9,     5,     6,     7,
-       8,    20,    10,     7,     8,    20,    11,    14,    21,    22,
-      19,    12,    20,    13,    15,    16,    20,    18,    12,    12,
-      21,    13,    16,    16,    18,    18,    11,    21,    21,    20,
-      17,     5,    -1,    51
+      19,    20,     3,    22,    20,    21,    22,    23,    24,    25,
+       0,    30,    31,    32,    33,    11,    35,    36,    37,    38,
+      39,    40,     5,     6,     7,     8,    26,    10,     5,     6,
+       7,     8,     4,    10,     9,     9,     9,    20,    21,    22,
+      23,    24,    25,    20,    21,    22,    23,    24,    25,     5,
+       6,     7,     8,    26,    27,    14,    19,    13,     5,     6,
+       7,     8,    13,    10,    20,    21,    22,    23,    24,    25,
+       7,     8,    11,    20,    21,    22,    23,    24,    25,     5,
+       6,     7,     8,    20,    21,    22,    23,    24,    25,    13,
+      17,    11,     5,    61,    20,    21,    22,    23,    24,    25,
+      12,    12,    -1,    15,    16,    16,    18,    18,    -1,    -1,
+      -1,    -1,    12,    -1,    26,    26,    16,    -1,    18,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    26
   };
 
   const signed char
   parser::yystos_[] =
   {
-       0,     3,    24,    11,     0,    25,    12,    15,    16,    18,
-      21,    27,    28,    29,    30,    31,    32,    21,     9,     9,
-       4,    14,     9,    21,    22,    26,    26,    26,    19,    26,
-       5,     6,     7,     8,    10,    20,    10,    13,    13,    10,
-      26,    26,    26,    26,    11,    26,    13,    33,    12,    29,
-      17,    11,    33,    12
+       0,     3,    29,    11,     0,    30,    12,    15,    16,    18,
+      26,    32,    33,    34,    35,    36,    37,    26,     9,     9,
+       4,    14,     9,    26,    27,    31,    31,    31,    19,    31,
+       5,     6,     7,     8,    10,    20,    21,    22,    23,    24,
+      25,    10,    13,    13,    10,    31,    31,    31,    31,    11,
+      31,    31,    31,    31,    31,    31,    13,    38,    12,    34,
+      17,    11,    38,    12
   };
 
   const signed char
   parser::yyr1_[] =
   {
-       0,    23,    24,    25,    25,    26,    26,    26,    26,    26,
-      26,    26,    26,    27,    27,    28,    29,    29,    29,    30,
-      31,    32,    33,    33
+       0,    28,    29,    30,    30,    31,    31,    31,    31,    31,
+      31,    31,    31,    31,    31,    31,    31,    31,    32,    32,
+      33,    34,    34,    34,    35,    36,    37,    38,    38
   };
 
   const signed char
   parser::yyr2_[] =
   {
        0,     2,     4,     0,     2,     1,     1,     3,     3,     3,
-       3,     3,     3,     1,     1,     5,     1,     1,     1,     4,
-       5,    11,     0,     2
+       3,     3,     3,     3,     3,     3,     3,     3,     1,     1,
+       5,     1,     1,     1,     4,     5,    11,     0,     2
   };
 
 
@@ -1415,9 +1468,10 @@ namespace yy {
   "\"end of file\"", "error", "\"invalid token\"", "\"main\"", "\"=\"",
   "\"-\"", "\"+\"", "\"*\"", "\"/\"", "\"(\"", "\")\"", "\"{\"", "\"}\"",
   "\";\"", "\":\"", "\"decl\"", "\"if\"", "\"else\"", "\"print\"",
-  "\"int_type\"", "\"==\"", "\"identifier\"", "\"number\"", "$accept",
-  "unit", "statements", "expression", "base_statement", "declaration",
-  "statement", "assignment", "call_to_print", "conditional", "cond_clause", YY_NULLPTR
+  "\"int_type\"", "\"==\"", "\"!=\"", "\"<\"", "\">\"", "\">=\"", "\"<=\"",
+  "\"identifier\"", "\"number\"", "$accept", "unit", "statements",
+  "expression", "base_statement", "declaration", "statement", "assignment",
+  "call_to_print", "conditional", "cond_clause", YY_NULLPTR
   };
 #endif
 
@@ -1426,9 +1480,9 @@ namespace yy {
   const short
   parser::yyrline_[] =
   {
-       0,   188,   188,   196,   199,   206,   209,   212,   215,   218,
-     221,   224,   227,   234,   237,   254,   259,   262,   265,   271,
-     277,   283,   288,   291
+       0,   193,   193,   201,   204,   211,   214,   217,   220,   223,
+     226,   229,   232,   235,   238,   241,   244,   247,   254,   257,
+     274,   279,   282,   285,   291,   297,   303,   308,   311
   };
 
   void
@@ -1460,9 +1514,9 @@ namespace yy {
 
 
 } // yy
-#line 1464 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 1518 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
 
-#line 299 "parser.y"
+#line 319 "parser.y"
 
 
 // This code is pasted in the end of the parser.cpp file

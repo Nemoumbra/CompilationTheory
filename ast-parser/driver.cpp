@@ -45,6 +45,7 @@ int Driver::parse(const std::string& f) {
 
     // New:
     std::cout << program << std::endl;
+    
     // result = program->eval(*this);
 
     // for (const auto& [name, value]: variables) {
