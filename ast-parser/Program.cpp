@@ -1,14 +1,8 @@
 #include "Program.h"
 
-Program::Program(
-    //StatementList* assignments,
-    //Expression* expression
-)//: assignments_(assignments),
-   //expression_(expression)
-{}
+Program::Program(Statements* statements) : statements_(statements) {}
 
 
-int Program::eval(Driver& driver) {
-  //return expression_->eval(driver);
-  return 0;
+void Program::Accept(BaseVisitor* visitor) {
+    visitor->Visit(this);
 }

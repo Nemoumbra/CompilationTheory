@@ -1,7 +1,7 @@
 #pragma once
 
-#include "base-elements/BaseComponent.hh"
+#include "BaseStatement.hh"
 
-class Statement : BaseComponent {
+class Statement : BaseStatement {
     
 };

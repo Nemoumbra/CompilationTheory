@@ -9,7 +9,7 @@
 
 // I don't know what '%defines' does
 %defines
-string
+
 // Next 2 directives are related to the fact that we use C++
 
 // Request that symbols be handled as a whole (type, value, and possibly location) in the scanner.
@@ -121,6 +121,13 @@ string
 %nterm <Program*> unit
 %nterm <BaseExpression*> expression
 %nterm <Assignment*> assignment
+%nterm <Declaration*> declaration
+%nterm <CondClause*> cond_clause
+%nterm <Conditional*> conditional
+%nterm <Statements*> statements
+%nterm <BaseStatement*> base_statement
+%nterm <Statement*> statement
+%nterm <CallToPrint*> call_to_print
 
 
 
@@ -185,10 +192,21 @@ unit: "main" "{" statements "}" {
 // The %empty directive allows to make explicit that a rule is empty on purpose instead of writing nothing
 
 statements:
-    %empty { /* code */ }
-    | statements statement { /* code */ }
-    | statements declaration { /* code */ }
+    %empty { 
+        $$ = new Statements();
+    }
+    | statements base_statement { 
+        $1->AddStatement($2);
+        $$ = $1;
+    }
 
+base_statement:
+    statement { 
+        $$ = $1;
+    }
+    | declaration { 
+        $$ = $1;
+    }
 
 //assignment:
 //   "identifier" ":=" expression ";" {
@@ -203,18 +221,26 @@ statements:
 //    };
 
 declaration:
-    "decl" "identifier" ":" "int_type" ";" { /* code */ }
+    "decl" "identifier" ":" "int_type" ";" {
+        $$ = new Declaration($2);
+    }
 
 statement:
-    assignment { /* code */ }
-    | conditional { /* code */ }
-    | call_to_print { /* code */ }
+    assignment { 
+        $$ = $1;
+    }
+    | conditional {
+        $$ = $1;
+    }
+    | call_to_print {
+        $$ = $1;
+    }
     
 
 assignment:
     "identifier" "=" expression ";" { 
         $$ = new Assignment($1, $3);
-        driver.variables[$1] = $3->eval(driver);
+        // driver.variables[$1] = $3->eval(driver);
      }
 
 call_to_print:
@@ -222,21 +248,47 @@ call_to_print:
         $$ = new CallToPrint($3);
     }
 
+// I would really like to distinguish ints and bools, but let's just use C/C++ conversions (maybe for now)
 conditional:
-    "if" "(" expression "==" expression ")" "{" cond_clause "}" "else" "{" cond_clause "}" { /* code */ }
+    "if" "(" expression ")" "{" cond_clause "}" "else" "{" cond_clause "}" { 
+        $$ = new Conditional($3, $6, $10);
+     }
 
 cond_clause:
-    %empty { /* code */ }
-    | cond_clause statement { /* code */ }
+    %empty {
+        $$ = new CondClause();
+    }
+    | cond_clause statement {
+        $1->AddStatement($2);
+        $$ = $1;
+    }
 
 expression:
-    "number" { /* code */ }
-    | "identifier" {$$ = driver.variables[$1];}
-    | expression "+" expression {$$ = $1 + $3; }
-    | expression "-" expression {$$ = $1 - $3; }
-    | expression "*" expression {$$ = $1 * $3; }
-    | expression "/" expression {$$ = $1 / $3; }
-    | "(" expression ")" {$$ = $2; };
+    "number" { 
+        $$ = new NumberExpression($1);
+    }
+    | "identifier" {
+        $$ = new IdentifierExpr($1);
+    }
+    | expression "+" expression {
+        $$ = new AddExpression($1, $3);
+    }
+    | expression "-" expression {
+        $$ = new SubExpression($1, $3);
+    }
+    | expression "*" expression {
+        $$ = new MultExpression($1, $3);
+    }
+    | expression "/" expression {
+        $$ = new IntDivExpression($1, $3);
+    }
+    | expression "==" expression {
+        $$ = new EQExpression($1, $3);
+    }
+    | "(" expression ")" {
+        $$ = new NestedExpr($2);
+    }
+    ;
 
 
 // Grammar info section is surrounded by %% from both sides

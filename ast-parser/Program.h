@@ -1,14 +1,15 @@
 #pragma once
 
 #include "driver.hh"
+
 //#include "assignments/AssignmentList.h"
 //#include "expressions/Expression.h"
 
+#include "grammar-entities/Statements.hh"
+
 class Program {
-private:
-    //StatementList* assignments_;
-    //Expression* expression_;
  public:
-    //Program(StatementList* assignments, Expression* expression);
-    int eval(Driver& driver);
+    Statements* statements_;
+    Program(Statements* statements);
+    void Accept(BaseVisitor* visitor);
 };
