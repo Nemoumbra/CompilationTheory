@@ -4,16 +4,7 @@
 
 class BaseVisitor {
 public:
-    virtual void Visit() = 0;
-    virtual void Visit() = 0;
-    virtual void Visit() = 0;
-    virtual void Visit() = 0;
-    virtual void Visit() = 0;
-    virtual void Visit() = 0;
-    virtual void Visit() = 0;
-    virtual void Visit() = 0;
-    virtual void Visit() = 0;
-    virtual void Visit() = 0;
-    virtual void Visit() = 0;
-    virtual void Visit() = 0;
+    virtual void Visit(Assignment* assignment) = 0;
+    virtual void Visit(CallToPrint* call_to_print) = 0;
+    virtual void Visit(Declaration* declaration) = 0;
 };

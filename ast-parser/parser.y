@@ -120,6 +120,7 @@ string
 // To declare exclusively nonterminal symbols
 %nterm <Program*> unit
 %nterm <BaseExpression*> expression
+%nterm <Assignment*> assignment
 
 
 
@@ -211,10 +212,15 @@ statement:
     
 
 assignment:
-    "identifier" "=" expression ";" { /* code */ }
+    "identifier" "=" expression ";" { 
+        $$ = new Assignment($1, $3);
+        driver.variables[$1] = $3->eval(driver);
+     }
 
 call_to_print:
-    "print" "(" expression ")" ";" { /* code */ }
+    "print" "(" expression ")" ";" {
+        $$ = new CallToPrint($3);
+    }
 
 conditional:
     "if" "(" expression "==" expression ")" "{" cond_clause "}" "else" "{" cond_clause "}" { /* code */ }
