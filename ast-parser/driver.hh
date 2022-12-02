@@ -37,4 +37,6 @@ private:
     void scan_end();
 
     void printTree(const std::string& fileaname);
+
+    void Evaluate();
 };

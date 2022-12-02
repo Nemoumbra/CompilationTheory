@@ -7,7 +7,7 @@ func main() {
     declare z: int;
     z = -2;
     declare res: int;
-    res = (one + y) * z;
+    res = (x + y) * z;
     if (res > z) {
         res = res + 1;
     } else {

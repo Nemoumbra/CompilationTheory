@@ -46,6 +46,23 @@ int main(int argc, char** argv) {
         // }
         else {
             auto res = driver.parse(argv[i]);
+            
+            // Now let's run the code!
+            if (!res) {
+                std::cout << "Starting interpreter...\n";
+                try {
+                    driver.Evaluate();
+                }
+                catch (const std::runtime_error& error) {
+                    std::cout << "Fatal error during program execution:\n";
+                    std::cout << error.what() << "\n";
+                }
+                std::cout << "Interpreter is done!\n";
+            }
+            else {
+                std::cout << "\"Compilation\" error!\n";
+            }
+
             if (i + 1 < argc) {
                 driver.printTree(argv[i+1]);
                 ++i;

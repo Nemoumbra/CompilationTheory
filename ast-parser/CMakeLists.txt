@@ -57,6 +57,7 @@ add_executable(
     grammar-entities/expressions/LEQExpression.cpp
 
     visitors/PrintVisitor.cpp
+    visitors/Interpreter.cpp
 
     Program.cpp
 )
@@ -67,8 +68,8 @@ target_include_directories(ASTParserModule PRIVATE ${AST_PARSER_SOURCE_DIR})
 add_custom_target(
     VisitorTree
     COMMAND dot -Tpng ${AST_PARSER_SOURCE_DIR}/parser.gv -o ${AST_PARSER_SOURCE_DIR}/ast-parser.png
-
+    # COMMENT Generate the PNG graph image
     DEPENDS ${AST_PARSER_SOURCE_DIR}/parser.cpp
 )
 
-add_dependencies(ASTParserModule VisitorTree)
+# add_dependencies(ASTParserModule VisitorTree)

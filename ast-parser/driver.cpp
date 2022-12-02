@@ -4,6 +4,9 @@
 
 #include "visitors/PrintVisitor.hh"
 
+#include "visitors/Interpreter.hh"
+
+
 Driver::Driver() :
     trace_parsing(false),
     trace_scanning(false),
@@ -59,4 +62,9 @@ int Driver::parse(const std::string& f) {
 void Driver::printTree(const std::string& filename) {
     PrintVisitor visitor(filename);
     visitor.Visit(program);
+}
+
+void Driver::Evaluate() {
+    Interpreter interpreter;
+    interpreter.GetResult(program);
 }

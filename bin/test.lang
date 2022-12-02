@@ -2,4 +2,5 @@ func main() {
     declare x : int;
     x = 1;
     print(x);
+    declare x : int;
 }
