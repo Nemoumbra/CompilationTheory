@@ -2,7 +2,7 @@
 
 #include "BaseExpression.hh"
 
-class NumberExpression {
+class NumberExpression : public BaseExpression {
 private:
     int value_;
 public:

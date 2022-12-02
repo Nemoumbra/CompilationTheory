@@ -45,11 +45,11 @@ int Driver::parse(const std::string& f) {
 
     // New:
     std::cout << program << std::endl;
-    result = program->eval(*this);
+    // result = program->eval(*this);
 
-    for (const auto& [name, value]: variables) {
-      std::cerr << name << " " << value << std::endl;
-    }
+    // for (const auto& [name, value]: variables) {
+    //   std::cerr << name << " " << value << std::endl;
+    // }
 
     scan_end();
     return res;

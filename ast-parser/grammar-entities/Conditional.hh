@@ -5,7 +5,7 @@
 #include "CondClause.hh"
 #include "expressions/BaseExpression.hh"
 
-class Conditional : Statement {
+class Conditional : public Statement {
     
 public:
     BaseExpression* expression_;

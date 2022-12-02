@@ -2,7 +2,7 @@
 
 #include "BaseExpression.hh"
 
-class AddExpression : BaseExpression {
+class AddExpression : public BaseExpression {
 public:
     BaseExpression* first;
     BaseExpression* second;

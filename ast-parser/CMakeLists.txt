@@ -33,13 +33,13 @@ add_executable(
     ${FLEX_LexerCodeGen_OUTPUTS}
     ${BISON_BisonCodeGen_OUTPUTS}
 
+    # grammar-entities/BaseStatement.cpp
     grammar-entities/Statements.cpp
     # grammar-entities/Statement.cpp
     grammar-entities/Declaration.cpp
     grammar-entities/Conditional.cpp
     grammar-entities/CondClause.cpp
     grammar-entities/CallToPrint.cpp
-    # grammar-entities/BaseStatement.cpp
     grammar-entities/Assignment.cpp
     
     grammar-entities/expressions/AddExpression.cpp
@@ -56,3 +56,7 @@ add_executable(
 )
 
 target_include_directories(ASTParserModule PRIVATE ${AST_PARSER_SOURCE_DIR})
+
+execute_process(
+    COMMAND dot -Tpng ../ast-parser/parser.gv -o ../ast-parser/ast-parser.png
+)

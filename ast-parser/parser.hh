@@ -52,7 +52,7 @@
     class Scanner;
     class Driver;
     // Here we write forward declarations for all of our grammar rules classes
-    class Expression;
+    #include "forward_declarations.hh"
 
 #line 58 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.hh"
 
@@ -564,14 +564,14 @@ namespace yy {
         S_YYACCEPT = 23,                         // $accept
         S_unit = 24,                             // unit
         S_statements = 25,                       // statements
-        S_base_statement = 26,                   // base_statement
-        S_declaration = 27,                      // declaration
-        S_statement = 28,                        // statement
-        S_assignment = 29,                       // assignment
-        S_call_to_print = 30,                    // call_to_print
-        S_conditional = 31,                      // conditional
-        S_cond_clause = 32,                      // cond_clause
-        S_expression = 33                        // expression
+        S_expression = 26,                       // expression
+        S_base_statement = 27,                   // base_statement
+        S_declaration = 28,                      // declaration
+        S_statement = 29,                        // statement
+        S_assignment = 30,                       // assignment
+        S_call_to_print = 31,                    // call_to_print
+        S_conditional = 32,                      // conditional
+        S_cond_clause = 33                       // cond_clause
       };
     };
 

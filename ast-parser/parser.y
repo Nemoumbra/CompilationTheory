@@ -50,7 +50,7 @@
     class Scanner;
     class Driver;
     // Here we write forward declarations for all of our grammar rules classes
-    class Expression;
+    #include "forward_declarations.hh"
 }
 
 // This code is inserted in the parser.cpp file at the start
@@ -59,9 +59,10 @@
     #include "location.hh"
 
     // Here we include all of our grammar rules files (including Program.hh)
+    #include "includes_for_parser.hh"
 
     /* Redefine parser to use our function from scanner */
-    static yy::parser::symbol_type yylex(Scanner &scanner) {
+    static yy::parser::symbol_type yylex(Scanner& scanner, Driver& driver) {
         return scanner.ScanToken();
     }
 }
@@ -200,6 +201,35 @@ statements:
         $$ = $1;
     }
 
+
+expression:
+    "number" { 
+        $$ = new NumberExpression($1);
+    }
+    | "identifier" {
+        $$ = new IdentifierExpr($1);
+    }
+    | expression "+" expression {
+        $$ = new AddExpression($1, $3);
+    }
+    | expression "-" expression {
+        $$ = new SubExpression($1, $3);
+    }
+    | expression "*" expression {
+        $$ = new MultExpression($1, $3);
+    }
+    | expression "/" expression {
+        $$ = new IntDivExpression($1, $3);
+    }
+    | expression "==" expression {
+        $$ = new EQExpression($1, $3);
+    }
+    | "(" expression ")" {
+        $$ = new NestedExpr($2);
+    }
+    ;
+
+
 base_statement:
     statement { 
         $$ = $1;
@@ -263,32 +293,6 @@ cond_clause:
         $$ = $1;
     }
 
-expression:
-    "number" { 
-        $$ = new NumberExpression($1);
-    }
-    | "identifier" {
-        $$ = new IdentifierExpr($1);
-    }
-    | expression "+" expression {
-        $$ = new AddExpression($1, $3);
-    }
-    | expression "-" expression {
-        $$ = new SubExpression($1, $3);
-    }
-    | expression "*" expression {
-        $$ = new MultExpression($1, $3);
-    }
-    | expression "/" expression {
-        $$ = new IntDivExpression($1, $3);
-    }
-    | expression "==" expression {
-        $$ = new EQExpression($1, $3);
-    }
-    | "(" expression ")" {
-        $$ = new NestedExpr($2);
-    }
-    ;
 
 
 // Grammar info section is surrounded by %% from both sides

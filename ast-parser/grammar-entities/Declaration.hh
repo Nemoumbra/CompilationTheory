@@ -5,7 +5,7 @@
 #include "BaseStatement.hh"
 #include "expressions/BaseExpression.hh"
 
-class Declaration : BaseStatement {
+class Declaration : public BaseStatement {
     // Grammar rule:
     // "decl" "identifier" ":" "int_type" ";" { /* code */ }
 

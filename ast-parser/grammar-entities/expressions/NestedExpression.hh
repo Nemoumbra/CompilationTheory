@@ -4,7 +4,7 @@
 
 #include "BaseExpression.hh"
 
-class NestedExpr : BaseExpression {
+class NestedExpr : public BaseExpression {
 public:
     BaseExpression* expression_;
 

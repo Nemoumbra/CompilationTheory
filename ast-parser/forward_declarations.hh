@@ -2,7 +2,7 @@
 
 // Here we put forward declarations of our grammar classes
 
-//class BaseStatement;
+class BaseStatement;
 class Statements;
 class CondClause;
 class Statement;
@@ -13,7 +13,8 @@ class Conditional;
 
 class Program;
 
-// class Expression;
+class BaseExpression;
+class Expression;
 class NumberExpression;
 class IdentifierExpr;
 class AddExpression;

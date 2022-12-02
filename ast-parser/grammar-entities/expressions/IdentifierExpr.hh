@@ -4,7 +4,7 @@
 
 #include "BaseExpression.hh"
 
-class IdentifierExpr : BaseExpression {
+class IdentifierExpr : public BaseExpression {
 public:
     std::string identifier_;
 

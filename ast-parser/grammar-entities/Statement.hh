@@ -2,6 +2,6 @@
 
 #include "BaseStatement.hh"
 
-class Statement : BaseStatement {
+class Statement : public BaseStatement {
     
 };

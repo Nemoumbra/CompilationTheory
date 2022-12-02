@@ -3,7 +3,7 @@
 #include "Statement.hh"
 #include "expressions/BaseExpression.hh"
 
-class CallToPrint : Statement {
+class CallToPrint : public Statement {
     // Grammar rule:
     // "print" "(" expression ")" ";" { /* code */ }
 private:

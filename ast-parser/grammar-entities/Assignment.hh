@@ -4,7 +4,7 @@
 #include "Statement.hh"
 #include "expressions/BaseExpression.hh"
 
-class Assignment : Statement {
+class Assignment : public Statement {
     // Grammar rule:
     // assignment: "identifier" "=" expression ";" { /* code */ }
 private:
