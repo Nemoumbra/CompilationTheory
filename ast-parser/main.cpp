@@ -17,10 +17,10 @@ int main(int argc, char** argv) {
     std::cout << "cwd        " << buff << "\n";
 
     if (argc == 1) {
-        std::cout << "Usage: [options] filename\n";
+        std::cout << "Usage: [options] filename [output_tree_filename]\n";
         std::cout << "Options:\n";
-        std::cout << "-p : test\n";
-        std::cout << "-s : test\n";
+        std::cout << "-p : enable \"trace parcing\" debug mode\n";
+        std::cout << "-s : enable \"trace scanning\" debug mode\n";
         // std::cout << "-l : test\n";
         // Why do we remove location debugging?
 
@@ -37,13 +37,6 @@ int main(int argc, char** argv) {
         // else if (argv[i] == std::string("-l")) {
         //     driver.location_debug = true;
         // }
-        // else if (!driver.parse(argv[i])) {
-        //     std::cout << driver.result << "\n";
-        // }
-        // else {;
-        //     std::cout << "driver.parse(" << argv[i] << ") returned true";
-        //     result = 1;
-        // }
         else {
             auto res = driver.parse(argv[i]);
             
@@ -58,14 +51,14 @@ int main(int argc, char** argv) {
                     std::cout << error.what() << "\n";
                 }
                 std::cout << "Interpreter is done!\n";
+
+                if (i + 1 < argc) {
+                    driver.printTree(argv[i+1]);
+                    ++i;
+                }
             }
             else {
                 std::cout << "\"Compilation\" error!\n";
-            }
-
-            if (i + 1 < argc) {
-                driver.printTree(argv[i+1]);
-                ++i;
             }
         }
     }

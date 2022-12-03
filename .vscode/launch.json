@@ -10,8 +10,8 @@
             "request": "launch",
             "program": "${workspaceFolder}/bin/ASTParserModule",
             "args": [
-                "ast-test.lang",
-                "ast-print-tree.txt"
+                "interpreter-test.lang",
+                "interpreter-test.txt"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/bin",
