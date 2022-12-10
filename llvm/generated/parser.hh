@@ -32,7 +32,7 @@
 
 
 /**
- ** \file /home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.hh
+ ** \file /home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.hh
  ** Define the yy::parser class.
  */
 
@@ -42,10 +42,10 @@
 // especially those whose name start with YY_ or yy_.  They are
 // private implementation details that can be changed or removed.
 
-#ifndef YY_YY_HOME_NICKOLAY_MIPT_3_SEMESTER_COMPILE_THEORY_COMPILATIONTHEORY_AST_PARSER_PARSER_HH_INCLUDED
-# define YY_YY_HOME_NICKOLAY_MIPT_3_SEMESTER_COMPILE_THEORY_COMPILATIONTHEORY_AST_PARSER_PARSER_HH_INCLUDED
+#ifndef YY_YY_HOME_NICKOLAY_MIPT_3_SEMESTER_COMPILE_THEORY_COMPILATIONTHEORY_LLVM_GENERATED_PARSER_HH_INCLUDED
+# define YY_YY_HOME_NICKOLAY_MIPT_3_SEMESTER_COMPILE_THEORY_COMPILATIONTHEORY_LLVM_GENERATED_PARSER_HH_INCLUDED
 // "%code requires" blocks.
-#line 47 "parser.y"
+#line 47 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
 
     #include <string>
     /* Forward declaration of classes in order to disable cyclic dependencies */
@@ -54,7 +54,7 @@
     // Here we write forward declarations for all of our grammar rules classes
     #include "forward_declarations.hh"
 
-#line 58 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.hh"
+#line 58 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.hh"
 
 # include <cassert>
 # include <cstdlib> // std::abort
@@ -194,7 +194,7 @@
 #endif
 
 namespace yy {
-#line 198 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.hh"
+#line 198 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.hh"
 
 
 
@@ -2117,9 +2117,9 @@ switch (yykind)
 
 
 } // yy
-#line 2121 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.hh"
+#line 2121 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.hh"
 
 
 
 
-#endif // !YY_YY_HOME_NICKOLAY_MIPT_3_SEMESTER_COMPILE_THEORY_COMPILATIONTHEORY_AST_PARSER_PARSER_HH_INCLUDED
+#endif // !YY_YY_HOME_NICKOLAY_MIPT_3_SEMESTER_COMPILE_THEORY_COMPILATIONTHEORY_LLVM_GENERATED_PARSER_HH_INCLUDED

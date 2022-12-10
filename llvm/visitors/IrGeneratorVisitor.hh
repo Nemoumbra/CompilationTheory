@@ -2,11 +2,22 @@
 #include "BaseVisitor.hh"
 #include "../includes_for_parser.hh"
 
+#include <llvm/IR/Value.h>
+#include <llvm/IR/LLVMContext.h>
+#include <llvm/IR/IRBuilder.h>
+#include <llvm/IR/Module.h>
+#include <llvm/Support/raw_ostream.h>
+
+#include <unordered_map>
+
 class IrGeneratorVisitor : public BaseVisitor {
 private:
-    //
+    llvm::LLVMContext context_;
+    llvm::IRBuilder<> builder_;
+    llvm::Module module_;
+    llvm::Function* printFunc_;
 public:
-    // IrGeneratorVisitor();
+    IrGeneratorVisitor();
     // ~IrGeneratorVisitor();
 
     void Visit(Assignment* assignment) override;

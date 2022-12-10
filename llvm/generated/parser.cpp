@@ -42,7 +42,7 @@
 
 
 // Unqualified %code blocks.
-#line 57 "parser.y"
+#line 57 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
 
     #include "driver.hh"
     #include "location.hh"
@@ -55,7 +55,7 @@
         return scanner.ScanToken();
     }
 
-#line 59 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 59 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
 
 
 #ifndef YY_
@@ -147,7 +147,7 @@
 #define YYRECOVERING()  (!!yyerrstatus_)
 
 namespace yy {
-#line 151 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 151 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
 
   /// Build a parser object.
   parser::parser (Scanner &scanner_yyarg, Driver &driver_yyarg)
@@ -780,227 +780,227 @@ namespace yy {
           switch (yyn)
             {
   case 2: // unit: "main" "{" statements "}"
-#line 193 "parser.y"
+#line 193 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                                 { 
     yylhs.value.as < Program* > () = new Program(yystack_[1].value.as < Statements* > ());
     driver.program = yylhs.value.as < Program* > ();
  }
-#line 789 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 789 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 3: // statements: %empty
-#line 201 "parser.y"
+#line 201 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
            { 
         yylhs.value.as < Statements* > () = new Statements();
     }
-#line 797 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 797 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 4: // statements: statements base_statement
-#line 204 "parser.y"
+#line 204 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                                 { 
         yystack_[1].value.as < Statements* > ()->AddStatement(yystack_[0].value.as < BaseStatement* > ());
         yylhs.value.as < Statements* > () = yystack_[1].value.as < Statements* > ();
     }
-#line 806 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 806 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 5: // expression: "number"
-#line 211 "parser.y"
+#line 211 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
              { 
         yylhs.value.as < BaseExpression* > () = new NumberExpression(yystack_[0].value.as < int > ());
     }
-#line 814 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 814 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 6: // expression: "identifier"
-#line 214 "parser.y"
+#line 214 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                    {
         yylhs.value.as < BaseExpression* > () = new IdentifierExpr(yystack_[0].value.as < std::string > ());
     }
-#line 822 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 822 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 7: // expression: expression "+" expression
-#line 217 "parser.y"
+#line 217 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                                 {
         yylhs.value.as < BaseExpression* > () = new AddExpression(yystack_[2].value.as < BaseExpression* > (), yystack_[0].value.as < BaseExpression* > ());
     }
-#line 830 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 830 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 8: // expression: expression "-" expression
-#line 220 "parser.y"
+#line 220 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                                 {
         yylhs.value.as < BaseExpression* > () = new SubExpression(yystack_[2].value.as < BaseExpression* > (), yystack_[0].value.as < BaseExpression* > ());
     }
-#line 838 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 838 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 9: // expression: expression "*" expression
-#line 223 "parser.y"
+#line 223 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                                 {
         yylhs.value.as < BaseExpression* > () = new MultExpression(yystack_[2].value.as < BaseExpression* > (), yystack_[0].value.as < BaseExpression* > ());
     }
-#line 846 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 846 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 10: // expression: expression "/" expression
-#line 226 "parser.y"
+#line 226 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                                 {
         yylhs.value.as < BaseExpression* > () = new IntDivExpression(yystack_[2].value.as < BaseExpression* > (), yystack_[0].value.as < BaseExpression* > ());
     }
-#line 854 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 854 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 11: // expression: expression "==" expression
-#line 229 "parser.y"
+#line 229 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                                  {
         yylhs.value.as < BaseExpression* > () = new EQExpression(yystack_[2].value.as < BaseExpression* > (), yystack_[0].value.as < BaseExpression* > ());
     }
-#line 862 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 862 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 12: // expression: expression "!=" expression
-#line 232 "parser.y"
+#line 232 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                                  {
         yylhs.value.as < BaseExpression* > () = new NEExpression(yystack_[2].value.as < BaseExpression* > (), yystack_[0].value.as < BaseExpression* > ());
     }
-#line 870 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 870 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 13: // expression: expression "<" expression
-#line 235 "parser.y"
+#line 235 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                                 {
         yylhs.value.as < BaseExpression* > () = new LTExpression(yystack_[2].value.as < BaseExpression* > (), yystack_[0].value.as < BaseExpression* > ());
     }
-#line 878 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 878 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 14: // expression: expression ">" expression
-#line 238 "parser.y"
+#line 238 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                                 {
         yylhs.value.as < BaseExpression* > () = new GTExpression(yystack_[2].value.as < BaseExpression* > (), yystack_[0].value.as < BaseExpression* > ());
     }
-#line 886 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 886 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 15: // expression: expression "<=" expression
-#line 241 "parser.y"
+#line 241 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                                  {
         yylhs.value.as < BaseExpression* > () = new LEQExpression(yystack_[2].value.as < BaseExpression* > (), yystack_[0].value.as < BaseExpression* > ());
     }
-#line 894 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 894 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 16: // expression: expression ">=" expression
-#line 244 "parser.y"
+#line 244 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                                  {
         yylhs.value.as < BaseExpression* > () = new GEQExpression(yystack_[2].value.as < BaseExpression* > (), yystack_[0].value.as < BaseExpression* > ());
     }
-#line 902 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 902 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 17: // expression: "(" expression ")"
-#line 247 "parser.y"
+#line 247 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                          {
         yylhs.value.as < BaseExpression* > () = new NestedExpr(yystack_[1].value.as < BaseExpression* > ());
     }
-#line 910 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 910 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 18: // base_statement: statement
-#line 254 "parser.y"
+#line 254 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
               { 
         yylhs.value.as < BaseStatement* > () = yystack_[0].value.as < Statement* > ();
     }
-#line 918 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 918 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 19: // base_statement: declaration
-#line 257 "parser.y"
+#line 257 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                   { 
         yylhs.value.as < BaseStatement* > () = yystack_[0].value.as < Declaration* > ();
     }
-#line 926 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 926 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 20: // declaration: "decl" "identifier" ":" "int_type" ";"
-#line 274 "parser.y"
+#line 274 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                                            {
         yylhs.value.as < Declaration* > () = new Declaration(yystack_[3].value.as < std::string > ());
     }
-#line 934 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 934 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 21: // statement: assignment
-#line 279 "parser.y"
+#line 279 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                { 
         yylhs.value.as < Statement* > () = yystack_[0].value.as < Assignment* > ();
     }
-#line 942 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 942 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 22: // statement: conditional
-#line 282 "parser.y"
+#line 282 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                   {
         yylhs.value.as < Statement* > () = yystack_[0].value.as < Conditional* > ();
     }
-#line 950 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 950 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 23: // statement: call_to_print
-#line 285 "parser.y"
+#line 285 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                     {
         yylhs.value.as < Statement* > () = yystack_[0].value.as < CallToPrint* > ();
     }
-#line 958 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 958 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 24: // assignment: "identifier" "=" expression ";"
-#line 291 "parser.y"
+#line 291 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                                     { 
         yylhs.value.as < Assignment* > () = new Assignment(yystack_[3].value.as < std::string > (), yystack_[1].value.as < BaseExpression* > ());
         // driver.variables[$1] = $3->eval(driver);
      }
-#line 967 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 967 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 25: // call_to_print: "print" "(" expression ")" ";"
-#line 297 "parser.y"
+#line 297 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                                    {
         yylhs.value.as < CallToPrint* > () = new CallToPrint(yystack_[2].value.as < BaseExpression* > ());
     }
-#line 975 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 975 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 26: // conditional: "if" "(" expression ")" "{" cond_clause "}" "else" "{" cond_clause "}"
-#line 303 "parser.y"
+#line 303 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                                                                            { 
         yylhs.value.as < Conditional* > () = new Conditional(yystack_[8].value.as < BaseExpression* > (), yystack_[5].value.as < CondClause* > (), yystack_[1].value.as < CondClause* > ());
      }
-#line 983 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 983 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 27: // cond_clause: %empty
-#line 308 "parser.y"
+#line 308 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
            {
         yylhs.value.as < CondClause* > () = new CondClause();
     }
-#line 991 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 991 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
   case 28: // cond_clause: cond_clause statement
-#line 311 "parser.y"
+#line 311 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
                             {
         yystack_[1].value.as < CondClause* > ()->AddStatement(yystack_[0].value.as < Statement* > ());
         yylhs.value.as < CondClause* > () = yystack_[1].value.as < CondClause* > ();
     }
-#line 1000 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 1000 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
     break;
 
 
-#line 1004 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 1004 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
 
             default:
               break;
@@ -1514,9 +1514,9 @@ namespace yy {
 
 
 } // yy
-#line 1518 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/ast-parser/parser.cpp"
+#line 1518 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.cpp"
 
-#line 319 "parser.y"
+#line 319 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/inputs//parser.y"
 
 
 // This code is pasted in the end of the parser.cpp file

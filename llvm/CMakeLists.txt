@@ -4,26 +4,37 @@ project(LLVM_TEST)
 
 set(CMAKE_CXX_STANDARD 17)
 
+set(GENERATED_FOLDER ${PROJECT_SOURCE_DIR}/generated/)
+set(INPUT_FOLDER ${PROJECT_SOURCE_DIR}/inputs/)
+
 # generate *.cpp and *.hh files here for later use
 BISON_TARGET(
     BisonCodeGen
-    parser.y
-    ${AST_PARSER_SOURCE_DIR}/parser.cpp
-    COMPILE_FLAGS --graph
-    DEFINES_FILE ${AST_PARSER_SOURCE_DIR}/parser.hh
+    ${INPUT_FOLDER}/parser.y
+    ${GENERATED_FOLDER}/parser.cpp
+    COMPILE_FLAGS --graph=${LLVM_TEST_SOURCE_DIR}/parser-graph/parser.gv
+    DEFINES_FILE ${GENERATED_FOLDER}/parser.hh
 )
 
 # generate a *.cpp file here for later use
 FLEX_TARGET(
     LexerCodeGen
-    scanner.l
-    ${AST_PARSER_SOURCE_DIR}/scanner.cpp
+    ${INPUT_FOLDER}/scanner.l
+    ${GENERATED_FOLDER}/scanner.cpp
 )
 
 ADD_FLEX_BISON_DEPENDENCY(
     LexerCodeGen
     BisonCodeGen
 )
+
+include_directories(${GENERATED_FOLDER})
+
+# find_package(LLVM REQUIRED CONFIG)
+# include_directories(${LLVM_INCLUDE_DIRS})
+# add_definitions(${LLVM_DEFINITIONS})
+# llvm_map_components_to_libnames(llvm_libs support core irreader)
+
 
 add_executable(
     LLVM_Module
@@ -62,14 +73,18 @@ add_executable(
     Program.cpp
 )
 
-target_include_directories(LLVM_Module PRIVATE ${AST_PARSER_SOURCE_DIR})
+target_include_directories(LLVM_Module PRIVATE ${LLVM_TEST_SOURCE_DIR})
 
-
-# add_custom_target(
-#     VisitorTree
-#     COMMAND dot -Tpng ${AST_PARSER_SOURCE_DIR}/parser.gv -o ${AST_PARSER_SOURCE_DIR}/ast-parser.png
-#     # COMMENT Generate the PNG graph image
-#     DEPENDS ${AST_PARSER_SOURCE_DIR}/parser.cpp
+# target_link_libraries(
+#     LLVM_Module,
+#     ${llvm_libs}
 # )
+
+add_custom_target(
+    DrawAutomaton
+    COMMAND dot -Tpng ${LLVM_TEST_SOURCE_DIR}/parser-graph/parser.gv -o ${LLVM_TEST_SOURCE_DIR}/parser-graph/parser.png
+    COMMENT Generate the PNG graph image
+    DEPENDS ${LLVM_TEST_SOURCE_DIR}/parser.cpp
+)
 
 # add_dependencies(LLVM_Module VisitorTree)

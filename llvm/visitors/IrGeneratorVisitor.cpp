@@ -1,5 +1,14 @@
 #include "IrGeneratorVisitor.hh"
 
+#include <llvm/ADT/APInt.h>
+#include <llvm/IR/Constants.h>
+#include <llvm/IR/DerivedTypes.h>
+#include <llvm/IR/Function.h>
+
+
+IrGeneratorVisitor::IrGeneratorVisitor() : builder_(context_), module_("file", context_) {}
+
+
 void IrGeneratorVisitor::Visit(Assignment* assignment) {
     
 }
