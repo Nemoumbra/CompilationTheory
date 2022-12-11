@@ -8,9 +8,10 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/ASTParserModule",
+            "program": "${workspaceFolder}/bin/LLVM_Module",
             "args": [
                 "interpreter-test.lang",
+                "-tree",
                 "interpreter-test.txt"
             ],
             "stopAtEntry": false,

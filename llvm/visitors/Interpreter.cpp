@@ -79,6 +79,7 @@ void Interpreter::Visit(IdentifierExpr* ident_expr) {
 }
 
 void Interpreter::Visit(AddExpression* add_expr) {
+    // setTosValue(Accept(add_expr->first) + Accept(add_expr->second));
     // evaluate both operands, add them and store the result somewhere
     add_expr->first->Accept(this);
     int left = tos_value_;

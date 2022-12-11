@@ -46,8 +46,8 @@ int Driver::parse(const std::string& f) {
     parser.set_debug_level(trace_parsing);
     int res = parser();
 
-    // New:
-    std::cout << program << std::endl;
+    // Uncomment for debugging
+    // std::cout << program << std::endl;
     
     // result = program->eval(*this);
 

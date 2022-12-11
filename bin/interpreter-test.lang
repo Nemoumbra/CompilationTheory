@@ -11,7 +11,7 @@ func main() {
     print(y);
 
     if (y < y + 1) {
-
+        
     }
     else {
         y = x;

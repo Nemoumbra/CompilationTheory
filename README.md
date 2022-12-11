@@ -1,4 +1,4 @@
 # CompilationTheory
 That's my attempt at making a working compiler.
 
-Current state: playing around with scanner and parser.
+Current state: implemented the interpreter, now trying to make LLVM work
