@@ -52,7 +52,7 @@
     class Scanner;
     class Driver;
     // Here we write forward declarations for all of our grammar rules classes
-    #include "forward_declarations.hh"
+    #include "../forward_declarations.hh"
 
 #line 58 "/home/nickolay/MIPT/3_semester/compile_theory/CompilationTheory/llvm/generated//parser.hh"
 

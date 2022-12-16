@@ -5,7 +5,7 @@
 #include <fstream>
 
 #include "scanner.hh"
-#include "parser.hh"
+#include "generated/parser.hh"
 
 #include "Program.h"
 

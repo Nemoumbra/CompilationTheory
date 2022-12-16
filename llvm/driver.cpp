@@ -73,5 +73,5 @@ void Driver::Compile(const std::string& filename) {
     llvm::raw_fd_ostream ll(filename, code);
 
     module->print(ll, nullptr);
-    module->print(llvm::errs(), nullptr);
+    // module->print(llvm::errs(), nullptr);
 }

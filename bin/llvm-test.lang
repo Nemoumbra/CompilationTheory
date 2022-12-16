@@ -1,0 +1,9 @@
+func main() {
+    declare x: int;
+    declare y: int;
+    x = 7;
+    y = -30;
+    declare z: int;
+    z = 1 * x + y * (-1);
+    print(z);
+}

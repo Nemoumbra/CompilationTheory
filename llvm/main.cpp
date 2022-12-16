@@ -21,6 +21,7 @@ int main(int argc, char** argv) {
         std::cout << "Options:\n";
         std::cout << "-p : enable \"trace parcing\" debug mode\n";
         std::cout << "-s : enable \"trace scanning\" debug mode\n";
+        std::cout << "-c : create filename.ll\n";
         // std::cout << "-l : test\n";
         // Why do we remove location debugging?
 
@@ -28,13 +29,16 @@ int main(int argc, char** argv) {
     }
 
     // int max_args_count = 4;
-
+    bool compile = false;
     for (int i = 1; i < argc; ++i) {
         if (argv[i] == std::string("-p")) {
             driver.trace_parsing = true;
         }
         else if (argv[i] == std::string("-s")) {
             driver.trace_scanning = true;
+        }
+        else if (argv[i] == std::string("-c")) {
+            compile = true;
         }
         else if (argv[i] == std::string("-tree")) {
             std::cout << "Found positional argument \"-tree\" where it shouldn't be...\n";
@@ -52,13 +56,11 @@ int main(int argc, char** argv) {
                 try {
                     driver.Evaluate();
                     std::cout << "Interpreter is done!\n";
-
-
-                    // std::cout << "Starting IR generator...\n";
                 }
                 catch (const std::runtime_error& error) {
                     std::cout << "Fatal error during program execution:\n";
                     std::cout << error.what() << "\n";
+                    result = -1;
                 }
                 
                 if (i + 2 < argc) {
@@ -67,6 +69,12 @@ int main(int argc, char** argv) {
                         driver.printTree(argv[i+2]);
                         i += 2;
                     }
+                }
+
+                if (result != -1 && compile) {
+                    std::cout << "Starting IR generator...\n";
+                    driver.Compile(argv[i] + std::string(".ll"));
+                    std::cout << "Done!\n";
                 }
             }
             else {

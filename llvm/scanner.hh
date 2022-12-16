@@ -9,7 +9,7 @@
 // Here we use not int, but a different return type
 
 // BisonGodeGen file
-#include "parser.hh"
+#include "generated/parser.hh"
 
 class Driver; // forward declaration of the class declared in driver.hh and defined in driver.cpp
 

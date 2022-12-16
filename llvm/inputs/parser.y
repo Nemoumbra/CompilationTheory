@@ -50,7 +50,7 @@
     class Scanner;
     class Driver;
     // Here we write forward declarations for all of our grammar rules classes
-    #include "forward_declarations.hh"
+    #include "../forward_declarations.hh"
 }
 
 // This code is inserted in the parser.cpp file at the start
