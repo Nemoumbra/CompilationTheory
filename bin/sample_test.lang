@@ -1,0 +1,21 @@
+func main() {
+    declare a: int;
+    declare b: int;
+    a = 12;
+    b = 3;
+    print(a + b);
+    print(a - b);
+    print(a * b);
+    print(a / b);
+    print(a == b);
+    print(a != b);
+    print(a < b);
+    print(a <= b);
+    print(a > b);
+    print(a >= b);
+    if (a > b) {
+        print(a);
+    } else {
+        print(b);
+    }
+}

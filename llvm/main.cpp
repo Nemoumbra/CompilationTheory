@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
         std::cout << "Options:\n";
         std::cout << "-p : enable \"trace parcing\" debug mode\n";
         std::cout << "-s : enable \"trace scanning\" debug mode\n";
-        std::cout << "-c : create filename.ll\n";
+        std::cout << "-c : compile (create file \"{filename}.ll\")\n";
         // std::cout << "-l : test\n";
         // Why do we remove location debugging?
 
@@ -66,15 +66,17 @@ int main(int argc, char** argv) {
                 if (i + 2 < argc) {
                     // we only make the tree if it can be made AND the user explicitly requested that
                     if (argv[i+1] == std::string("-tree")) {
+                        std::cout << "Printing the tree to " << argv[i+2] << "...\n";
                         driver.printTree(argv[i+2]);
                         i += 2;
+                        std::cout << "Done!\n";
                     }
                 }
 
                 if (result != -1 && compile) {
                     std::cout << "Starting IR generator...\n";
                     driver.Compile(argv[i] + std::string(".ll"));
-                    std::cout << "Done!\n";
+                    std::cout << "Generation complete!\n";
                 }
             }
             else {

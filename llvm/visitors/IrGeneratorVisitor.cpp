@@ -124,7 +124,7 @@ void IrGeneratorVisitor::Visit(AddExpression* add_expr) {
         builder_.CreateLoad(int_ty, right)
     );  
     builder_.CreateStore(value, alloca);
-
+    SetValue(alloca);
 }
 
 void IrGeneratorVisitor::Visit(SubExpression* sub_expr) {
@@ -138,6 +138,7 @@ void IrGeneratorVisitor::Visit(SubExpression* sub_expr) {
         builder_.CreateLoad(int_ty, right)
     );  
     builder_.CreateStore(value, alloca);
+    SetValue(alloca);
 }
 
 void IrGeneratorVisitor::Visit(MultExpression* mult_expr) {
@@ -151,6 +152,7 @@ void IrGeneratorVisitor::Visit(MultExpression* mult_expr) {
         builder_.CreateLoad(int_ty, right)
     );  
     builder_.CreateStore(value, alloca);
+    SetValue(alloca);
 }
 
 void IrGeneratorVisitor::Visit(IntDivExpression* int_div_expr) {
@@ -164,6 +166,7 @@ void IrGeneratorVisitor::Visit(IntDivExpression* int_div_expr) {
         builder_.CreateLoad(int_ty, right)
     );  
     builder_.CreateStore(value, alloca);
+    SetValue(alloca);
 }
 
 void IrGeneratorVisitor::Visit(NestedExpr* nested_expr) {
@@ -187,6 +190,7 @@ void IrGeneratorVisitor::Visit(EQExpression* eq_expr) {
         false
     );
     builder_.CreateStore(value, alloca);
+    SetValue(alloca);
 }
 
 void IrGeneratorVisitor::Visit(NEExpression* ne_expr) {
@@ -206,6 +210,7 @@ void IrGeneratorVisitor::Visit(NEExpression* ne_expr) {
         false
     );
     builder_.CreateStore(value, alloca);
+    SetValue(alloca);
 }
 
 void IrGeneratorVisitor::Visit(LTExpression* lt_expr) {
@@ -225,6 +230,7 @@ void IrGeneratorVisitor::Visit(LTExpression* lt_expr) {
         false
     );
     builder_.CreateStore(value, alloca);
+    SetValue(alloca);
 }
 
 void IrGeneratorVisitor::Visit(GTExpression* gt_expr) {
@@ -244,6 +250,7 @@ void IrGeneratorVisitor::Visit(GTExpression* gt_expr) {
         false
     );
     builder_.CreateStore(value, alloca);
+    SetValue(alloca);
 }
 
 void IrGeneratorVisitor::Visit(LEQExpression* leq_expr) {
@@ -263,6 +270,7 @@ void IrGeneratorVisitor::Visit(LEQExpression* leq_expr) {
         false
     );
     builder_.CreateStore(value, alloca);
+    SetValue(alloca);
 }
 
 void IrGeneratorVisitor::Visit(GEQExpression* geq_expr) {
@@ -282,6 +290,7 @@ void IrGeneratorVisitor::Visit(GEQExpression* geq_expr) {
         false
     );
     builder_.CreateStore(value, alloca);
+    SetValue(alloca);
 }
 
 void IrGeneratorVisitor::Visit(Conditional* conditional) {
@@ -301,18 +310,19 @@ void IrGeneratorVisitor::Visit(Conditional* conditional) {
     );
 
     builder_.CreateCondBr(
-        builder_.CreateICmpSGT(cond, zero),
+        builder_.CreateICmpNE(
+            builder_.CreateLoad(int_ty, cond),
+            builder_.CreateLoad(int_ty, zero)
+        ),
         true_entry,
         false_entry
     );
 
     builder_.SetInsertPoint(true_entry);
-    // Accept(conditional->if_clause_);
     conditional->if_clause_->Accept(this);
     builder_.CreateBr(end_entry);
 
     builder_.SetInsertPoint(false_entry);
-    // Accept(conditional->else_clause_);
     conditional->else_clause_->Accept(this);
     builder_.CreateBr(end_entry);
 

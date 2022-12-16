@@ -88,7 +88,7 @@ add_custom_target(
     DrawAutomaton
     COMMAND dot -Tpng ${LLVM_TEST_SOURCE_DIR}/parser-graph/parser.gv -o ${LLVM_TEST_SOURCE_DIR}/parser-graph/parser.png
     COMMENT Generate the PNG graph image
-    DEPENDS ${LLVM_TEST_SOURCE_DIR}/parser.cpp
+    DEPENDS ${GENERATED_FOLDER}/parser.cpp
 )
 
 # add_dependencies(LLVM_Module VisitorTree)

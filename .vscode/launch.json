@@ -8,12 +8,13 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/llvm-test.o",
-            // "args": [
-            //     "interpreter-test.lang",
-            //     "-tree",
-            //     "interpreter-test.txt"
-            // ],
+            "program": "${workspaceFolder}/bin/LLVM_Module",
+            "args": [
+                "-c",
+                "interpreter-test.lang",
+                // "-tree",
+                // "interpreter-test.txt"
+            ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/bin",
             "environment": [],
