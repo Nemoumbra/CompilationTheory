@@ -21,7 +21,7 @@ After the program makes an LLVM IR file, it can be compiled with clang (check Ex
 ## Language
 Language examples can be found in the **bin** folder.
 
-Everything is located inside the main function. It's possible to declare varibles, make assignments, if-else statements and call the void "print" function, which accepts only one numerical argument.
+Everything is located inside the main function. It's possible to declare variables, make assignments, if-else statements and call the void "print" function, which accepts only one numerical argument.
 
 Else clauses can't be omitted. Variable declarations can't be located inside conditional clauses.
 
