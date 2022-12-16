@@ -30,10 +30,11 @@ ADD_FLEX_BISON_DEPENDENCY(
 
 include_directories(${GENERATED_FOLDER})
 
-# find_package(LLVM REQUIRED CONFIG)
-# include_directories(${LLVM_INCLUDE_DIRS})
-# add_definitions(${LLVM_DEFINITIONS})
-# llvm_map_components_to_libnames(llvm_libs support core irreader)
+find_package(LLVM REQUIRED CONFIG)
+include_directories(${LLVM_INCLUDE_DIRS})
+# message(INFO ${LLVM_INCLUDE_DIRS})
+add_definitions(${LLVM_DEFINITIONS})
+llvm_map_components_to_libnames(llvm_libs support core irreader)
 
 
 add_executable(
@@ -69,16 +70,19 @@ add_executable(
 
     visitors/PrintVisitor.cpp
     visitors/Interpreter.cpp
+    visitors/IrGeneratorVisitor.cpp
 
     Program.cpp
 )
 
-target_include_directories(LLVM_Module PRIVATE ${LLVM_TEST_SOURCE_DIR})
+target_include_directories(
+    LLVM_Module PRIVATE ${LLVM_TEST_SOURCE_DIR}
+)
 
-# target_link_libraries(
-#     LLVM_Module,
-#     ${llvm_libs}
-# )
+target_link_libraries(
+    LLVM_Module
+    ${llvm_libs}
+)
 
 add_custom_target(
     DrawAutomaton

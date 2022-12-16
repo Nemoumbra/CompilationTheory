@@ -2,6 +2,8 @@
 
 // Here we put forward declarations of our grammar classes
 
+class BaseComponent;
+
 class BaseStatement;
 class Statements;
 class CondClause;

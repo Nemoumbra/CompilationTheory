@@ -46,12 +46,15 @@ int main(int argc, char** argv) {
         else {
             auto res = driver.parse(argv[i]);
             
-            // Now let's run the code!
             if (!res) {
+                // Let's run the code!
                 std::cout << "Starting interpreter...\n";
                 try {
                     driver.Evaluate();
                     std::cout << "Interpreter is done!\n";
+
+
+                    // std::cout << "Starting IR generator...\n";
                 }
                 catch (const std::runtime_error& error) {
                     std::cout << "Fatal error during program execution:\n";
@@ -59,6 +62,7 @@ int main(int argc, char** argv) {
                 }
                 
                 if (i + 2 < argc) {
+                    // we only make the tree if it can be made AND the user explicitly requested that
                     if (argv[i+1] == std::string("-tree")) {
                         driver.printTree(argv[i+2]);
                         i += 2;

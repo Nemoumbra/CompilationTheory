@@ -1,10 +1,10 @@
 #include "parser.hh"
 #include "driver.hh"
-// again, why do we request it?
 
 #include "visitors/PrintVisitor.hh"
 
 #include "visitors/Interpreter.hh"
+#include "visitors/IrGeneratorVisitor.hh"
 
 
 Driver::Driver() :
@@ -49,11 +49,6 @@ int Driver::parse(const std::string& f) {
     // Uncomment for debugging
     // std::cout << program << std::endl;
     
-    // result = program->eval(*this);
-
-    // for (const auto& [name, value]: variables) {
-    //   std::cerr << name << " " << value << std::endl;
-    // }
 
     scan_end();
     return res;
@@ -67,4 +62,16 @@ void Driver::printTree(const std::string& filename) {
 void Driver::Evaluate() {
     Interpreter interpreter;
     interpreter.GetResult(program);
+}
+
+void Driver::Compile(const std::string& filename) {
+    IrGeneratorVisitor IR_generator;
+    IR_generator.Visit(program);
+
+    auto module = IR_generator.getModule();
+    std::error_code code;
+    llvm::raw_fd_ostream ll(filename, code);
+
+    module->print(ll, nullptr);
+    module->print(llvm::errs(), nullptr);
 }

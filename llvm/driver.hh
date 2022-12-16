@@ -39,4 +39,5 @@ private:
     void printTree(const std::string& fileaname);
 
     void Evaluate();
+    void Compile(const std::string& filename);
 };
