@@ -1,0 +1,17 @@
+func main() {
+    declare x: int;
+    x = 1;
+    declare y: int;
+    y = 5;
+    print(777);
+    declare z: int;
+    z = -2;
+    declare res: int;
+    res = (x + y) * z;
+    if (res > z) {
+        res = res + 1;
+    } else {
+        res = res - 1;
+    }
+    print(res);
+}
