@@ -1,6 +1,11 @@
 
-# The folder where Make does its job
+# The folders where Make does its job
 /build
 /build2
+
 *.out
-.vscode
+
+# The folders for the codegens' output
+generated/
+
+**/parser.png
