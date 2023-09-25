@@ -1,6 +1,5 @@
 #include "IrGeneratorVisitor.hh"
 
-// #include <iostream>
 
 #include <llvm/ADT/APInt.h>
 #include <llvm/IR/Constants.h>
@@ -12,9 +11,6 @@ IrGeneratorVisitor::IrGeneratorVisitor() :
     builder_(context_),
     module_("file", context_) {}
 
-// IrGeneratorVisitor::~IrGeneratorVisitor() {
-
-// }
 
 
 void IrGeneratorVisitor::SetValue(llvm::Value* val) {
@@ -65,7 +61,7 @@ void IrGeneratorVisitor::Visit(CallToPrint* call_to_print) {
     auto alloca = builder_.CreateAlloca(fmt->getType());
     builder_.CreateStore(fmt, alloca);
 
-    // cast to char*
+    // Cast to char*
     auto formatted_string = builder_.CreateBitCast(alloca, builder_.getInt8PtrTy());
 
     auto pointer = Accept(call_to_print->expression_);

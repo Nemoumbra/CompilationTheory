@@ -16,18 +16,12 @@ int main(int argc, char** argv) {
     //std::cout << "cwd        " << buff << "\n";
 
     if (argc == 1) {
-        std::cout << "Usage: [options] filename [-tree output_tree_filename]\n";
-        std::cout << "Options:\n";
-        std::cout << "-c : compile (create file \"{filename}.ll\")\n";
+        std::cout << "Usage: filename [-tree output_tree_filename]\n";
     }
 
 
-    bool compile = false;
     for (int i = 1; i < argc; ++i) {
-        if (argv[i] == std::string("-c")) {
-            compile = true;
-        }
-        else if (argv[i] == std::string("-tree")) {
+        if (argv[i] == std::string("-tree")) {
             std::cout << "Found positional argument \"-tree\" where it shouldn't be...\n";
             return result;
         }
@@ -60,12 +54,6 @@ int main(int argc, char** argv) {
                     i += 2;
                     std::cout << "Done!\n";
                 }
-            }
-
-            if (result != -1 && compile) {
-                std::cout << "Starting IR generator...\n";
-                driver.Compile(argv[i] + std::string(".ll"));
-                std::cout << "Generation complete!\n";
             }
         }
     }

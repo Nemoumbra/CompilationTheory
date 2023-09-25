@@ -12,11 +12,12 @@ PrintVisitor::~PrintVisitor() {
     stream_.close();
 }
 
-// Here it comes...
+
 
 void PrintVisitor::Visit(Assignment* assignment) {
     PrintTabs();
     stream_ << "Assignment: " << assignment->identifier_ << "\n";
+
     ++num_tabs_;
     assignment->expression_->Accept(this);
     --num_tabs_;
@@ -25,6 +26,7 @@ void PrintVisitor::Visit(Assignment* assignment) {
 void PrintVisitor::Visit(CallToPrint* call_to_print) {
     PrintTabs();
     stream_ << "CallToPrint: \n";
+
     ++num_tabs_;
     call_to_print->expression_->Accept(this);
     --num_tabs_;
@@ -38,6 +40,7 @@ void PrintVisitor::Visit(Declaration* declaration) {
 void PrintVisitor::Visit(Statements* statements) {
     PrintTabs();
     stream_ << "Statements: \n";
+
     ++num_tabs_;
     for (BaseStatement* base_statement : statements->statements_) {
         base_statement->Accept(this);
@@ -48,6 +51,7 @@ void PrintVisitor::Visit(Statements* statements) {
 void PrintVisitor::Visit(CondClause* cond_clause) {
     PrintTabs();
     stream_ << "CondClause: \n";
+
     ++num_tabs_;
     for (Statement* statement : cond_clause->statements_) {
         statement->Accept(this);
@@ -67,7 +71,8 @@ void PrintVisitor::Visit(IdentifierExpr* ident_expr) {
 
 void PrintVisitor::Visit(AddExpression* add_expr) {
     PrintTabs();
-    stream_ << "AddExpression: \n"; 
+    stream_ << "AddExpression: \n";
+
     ++num_tabs_;
     add_expr->first->Accept(this);
     add_expr->second->Accept(this);
@@ -76,7 +81,8 @@ void PrintVisitor::Visit(AddExpression* add_expr) {
 
 void PrintVisitor::Visit(SubExpression* sub_expr) {
     PrintTabs();
-    stream_ << "SubExpression: \n"; 
+    stream_ << "SubExpression: \n";
+
     ++num_tabs_;
     sub_expr->first->Accept(this);
     sub_expr->second->Accept(this);
@@ -85,7 +91,8 @@ void PrintVisitor::Visit(SubExpression* sub_expr) {
 
 void PrintVisitor::Visit(MultExpression* mult_expr) {
     PrintTabs();
-    stream_ << "MultExpression: \n"; 
+    stream_ << "MultExpression: \n";
+
     ++num_tabs_;
     mult_expr->first->Accept(this);
     mult_expr->second->Accept(this);
@@ -94,7 +101,8 @@ void PrintVisitor::Visit(MultExpression* mult_expr) {
 
 void PrintVisitor::Visit(IntDivExpression* int_div_expr) {
     PrintTabs();
-    stream_ << "IntDivExpression: \n"; 
+    stream_ << "IntDivExpression: \n";
+
     ++num_tabs_;
     int_div_expr->first->Accept(this);
     int_div_expr->second->Accept(this);
@@ -104,6 +112,7 @@ void PrintVisitor::Visit(IntDivExpression* int_div_expr) {
 void PrintVisitor::Visit(NestedExpr* nested_expr) {
     PrintTabs();
     stream_ << "NestedExpr: \n";
+
     ++num_tabs_;
     nested_expr->expression_->Accept(this);
     --num_tabs_;
@@ -111,7 +120,8 @@ void PrintVisitor::Visit(NestedExpr* nested_expr) {
 
 void PrintVisitor::Visit(EQExpression* eq_expr) {
     PrintTabs();
-    stream_ << "EQExpression: \n"; 
+    stream_ << "EQExpression: \n";
+
     ++num_tabs_;
     eq_expr->first->Accept(this);
     eq_expr->second->Accept(this);
@@ -120,7 +130,8 @@ void PrintVisitor::Visit(EQExpression* eq_expr) {
 
 void PrintVisitor::Visit(NEExpression* ne_expr) {
     PrintTabs();
-    stream_ << "NEExpression: \n"; 
+    stream_ << "NEExpression: \n";
+
     ++num_tabs_;
     ne_expr->first->Accept(this);
     ne_expr->second->Accept(this);
@@ -129,7 +140,8 @@ void PrintVisitor::Visit(NEExpression* ne_expr) {
 
 void PrintVisitor::Visit(LTExpression* lt_expr) {
     PrintTabs();
-    stream_ << "LTExpression: \n"; 
+    stream_ << "LTExpression: \n";
+
     ++num_tabs_;
     lt_expr->first->Accept(this);
     lt_expr->second->Accept(this);
@@ -138,7 +150,8 @@ void PrintVisitor::Visit(LTExpression* lt_expr) {
 
 void PrintVisitor::Visit(GTExpression* gt_expr) {
     PrintTabs();
-    stream_ << "GTExpression: \n"; 
+    stream_ << "GTExpression: \n";
+
     ++num_tabs_;
     gt_expr->first->Accept(this);
     gt_expr->second->Accept(this);
@@ -147,7 +160,8 @@ void PrintVisitor::Visit(GTExpression* gt_expr) {
 
 void PrintVisitor::Visit(LEQExpression* leq_expr) {
     PrintTabs();
-    stream_ << "LEQExpression: \n"; 
+    stream_ << "LEQExpression: \n";
+
     ++num_tabs_;
     leq_expr->first->Accept(this);
     leq_expr->second->Accept(this);
@@ -156,7 +170,8 @@ void PrintVisitor::Visit(LEQExpression* leq_expr) {
 
 void PrintVisitor::Visit(GEQExpression* geq_expr) {
     PrintTabs();
-    stream_ << "GEQExpression: \n"; 
+    stream_ << "GEQExpression: \n";
+
     ++num_tabs_;
     geq_expr->first->Accept(this);
     geq_expr->second->Accept(this);
@@ -166,6 +181,7 @@ void PrintVisitor::Visit(GEQExpression* geq_expr) {
 void PrintVisitor::Visit(Conditional* conditional) {
     PrintTabs();
     stream_ << "Conditional: \n";
+
     ++num_tabs_;
     conditional->expression_->Accept(this);
     conditional->if_clause_->Accept(this);
@@ -176,6 +192,7 @@ void PrintVisitor::Visit(Conditional* conditional) {
 void PrintVisitor::Visit(Program* program) {
     PrintTabs();
     stream_ << "Program: \n";
+
     ++num_tabs_;
     program->statements_->Accept(this);
     --num_tabs_;

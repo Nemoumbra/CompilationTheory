@@ -8,7 +8,6 @@
 
 class Interpreter : public BaseVisitor {
 private:
-    // Driver driver_;
     std::map <std::string, int> variables_;
     bool is_tos_expression_; // unused?
     int tos_value_; // Top Of Stack?
@@ -16,7 +15,6 @@ private:
     void setTosValue(int value);
     void unsetTosValue();
 public:
-    // Interpreter(const Driver& driver) : driver_(driver) {}
     Interpreter();
 
     void Visit(Assignment* assignment) override;

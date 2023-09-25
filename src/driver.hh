@@ -26,7 +26,6 @@ private:
     friend class Scanner;
     Scanner scanner;
     yy::parser parser;
-    // bool location_debug;
     Program* program;
 
     Driver();
@@ -39,5 +38,4 @@ private:
     void printTree(const std::string& fileaname);
 
     void Evaluate();
-    void Compile(const std::string& filename);
 };

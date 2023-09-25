@@ -4,7 +4,7 @@
 #include <string>
 
 #include "BaseVisitor.hh"
-// #include "../grammar-entities/expressions/NumberExpression.hh"
+
 #include "../includes_for_parser.hh"
 
 class PrintVisitor : public BaseVisitor {

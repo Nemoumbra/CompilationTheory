@@ -2,12 +2,6 @@
 #include "BaseVisitor.hh"
 #include "../includes_for_parser.hh"
 
-// test
-// #include <llvm/ADT/APInt.h>
-// #include <llvm/IR/Constants.h>
-// #include <llvm/IR/DerivedTypes.h>
-// #include <llvm/IR/Function.h>
-
 
 #include <llvm/IR/Value.h>
 #include <llvm/IR/LLVMContext.h>
@@ -32,7 +26,6 @@ private:
 
 public:
     IrGeneratorVisitor();
-    // ~IrGeneratorVisitor();
 
     void Visit(Assignment* assignment) override;
     void Visit(CallToPrint* call_to_print) override;
