@@ -30,9 +30,6 @@ ADD_FLEX_BISON_DEPENDENCY(
 
 include_directories(${GENERATED_FOLDER})
 
-find_package(LLVM REQUIRED CONFIG)
-include_directories(${LLVM_INCLUDE_DIRS})
-add_definitions(${LLVM_DEFINITIONS})
 
 add_executable(
     CustomCompiler
@@ -42,9 +39,7 @@ add_executable(
     ${FLEX_LexerCodeGen_OUTPUTS}
     ${BISON_BisonCodeGen_OUTPUTS}
 
-    # grammar-entities/BaseStatement.cpp
     grammar-entities/Statements.cpp
-    # grammar-entities/Statement.cpp
     grammar-entities/Declaration.cpp
     grammar-entities/Conditional.cpp
     grammar-entities/CondClause.cpp
@@ -67,7 +62,6 @@ add_executable(
 
     visitors/PrintVisitor.cpp
     visitors/Interpreter.cpp
-    visitors/IrGeneratorVisitor.cpp
 
     Program.cpp
 )
@@ -76,10 +70,6 @@ target_include_directories(
     CustomCompiler PRIVATE ${CUSTOM_COMPILER_SOURCE_DIR}
 )
 
-target_link_libraries(
-    CustomCompiler
-    LLVM-16
-)
 
 add_custom_target(
     DrawAutomaton
