@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 project(LLVM_TEST)
 
@@ -34,7 +34,7 @@ find_package(LLVM REQUIRED CONFIG)
 include_directories(${LLVM_INCLUDE_DIRS})
 # message(INFO ${LLVM_INCLUDE_DIRS})
 add_definitions(${LLVM_DEFINITIONS})
-llvm_map_components_to_libnames(llvm_libs support core irreader)
+# llvm_map_components_to_libnames(llvm_libs support core irreader)
 
 
 add_executable(
@@ -81,7 +81,7 @@ target_include_directories(
 
 target_link_libraries(
     LLVM_Module
-    ${llvm_libs}
+    LLVM-16
 )
 
 add_custom_target(
