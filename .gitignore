@@ -8,4 +8,6 @@
 # The folders for the codegens' output
 generated/
 
-**/parser.png
+# For the parser-graph outputs
+*.gv
+*.png

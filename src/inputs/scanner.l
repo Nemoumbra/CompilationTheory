@@ -55,7 +55,7 @@ assign =
   // To be honest, here I don't want to do anything
 
   // A handy shortcut to the location held by the driver.
-  //yy::location& loc = driver.location;
+  yy::location& loc = driver.location;
 
   //if (driver.location_debug) {
   //  // OLD COMMENT: Code run each time yylex is called.
