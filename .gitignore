@@ -2,3 +2,5 @@
 # The folder where Make does its job
 /build
 /build2
+*.out
+.vscode

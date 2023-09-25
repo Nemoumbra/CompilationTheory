@@ -12,7 +12,5 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CompilerTheory_SOURCE_DIR}/bin)
 
 # recursively run CMake on folders:
-# add_subdirectory(scanner-only)
-# add_subdirectory(parser)
 # add_subdirectory(ast-parser)
 add_subdirectory(llvm)
