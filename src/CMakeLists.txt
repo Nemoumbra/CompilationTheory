@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(LLVM_TEST)
+project(CUSTOM_COMPILER)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -12,7 +12,7 @@ BISON_TARGET(
     BisonCodeGen
     ${INPUT_FOLDER}/parser.y
     ${GENERATED_FOLDER}/parser.cpp
-    COMPILE_FLAGS --graph=${LLVM_TEST_SOURCE_DIR}/parser-graph/parser.gv
+    COMPILE_FLAGS --graph=${CUSTOM_COMPILER_SOURCE_DIR}/parser-graph/parser.gv
     DEFINES_FILE ${GENERATED_FOLDER}/parser.hh
 )
 
@@ -32,13 +32,10 @@ include_directories(${GENERATED_FOLDER})
 
 find_package(LLVM REQUIRED CONFIG)
 include_directories(${LLVM_INCLUDE_DIRS})
-# message(INFO ${LLVM_INCLUDE_DIRS})
 add_definitions(${LLVM_DEFINITIONS})
-# llvm_map_components_to_libnames(llvm_libs support core irreader)
-
 
 add_executable(
-    LLVM_Module
+    CustomCompiler
 
     main.cpp
     driver.cpp
@@ -76,19 +73,17 @@ add_executable(
 )
 
 target_include_directories(
-    LLVM_Module PRIVATE ${LLVM_TEST_SOURCE_DIR}
+    CustomCompiler PRIVATE ${CUSTOM_COMPILER_SOURCE_DIR}
 )
 
 target_link_libraries(
-    LLVM_Module
+    CustomCompiler
     LLVM-16
 )
 
 add_custom_target(
     DrawAutomaton
-    COMMAND dot -Tpng ${LLVM_TEST_SOURCE_DIR}/parser-graph/parser.gv -o ${LLVM_TEST_SOURCE_DIR}/parser-graph/parser.png
+    COMMAND dot -Tpng ${CUSTOM_COMPILER_SOURCE_DIR}/parser-graph/parser.gv -o ${CUSTOM_COMPILER_SOURCE_DIR}/parser-graph/parser.png
     COMMENT Generate the PNG graph image
     DEPENDS ${GENERATED_FOLDER}/parser.cpp
 )
-
-# add_dependencies(LLVM_Module VisitorTree)
