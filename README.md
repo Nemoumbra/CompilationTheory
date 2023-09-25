@@ -1,22 +1,14 @@
 # CompilationTheory
 That's my attempt at making a working compiler.
 
-Current state: first iteration done (LLVM implemented).
+Current state: I've dropped LLVM support to move onto making my own bytecode compiler.
 
 ## Brief project explanation
-* The final Cmake target is located in the llmv folder
-
-* scanner-only is the 0th step (pretty useless machine without the parser)
-
-* parser is still not even close to something that resembles a compiler
-
-* ast-parser can parse the code and iterate over it to print its structure or interpret it
+* The code is in the src dir
 
 * The folder "custom-codegens" contains a Python script for generating a pair of *.hh and *.cpp files for a new visitor class
 
 * The target "DrawAutomaton" can be used to generate an image of the parser's automaton with the help of Bison and Graphviz
-
-After the program makes an LLVM IR file, it can be compiled with clang (check ExamplesCompileLLVM)
 
 ## Language
 Language examples can be found in the **bin** folder.
