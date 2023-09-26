@@ -8,6 +8,8 @@ find_package(BISON REQUIRED)
 
 set(CMAKE_CXX_STANDARD 17)
 
+add_compile_options(-Wall -Wextra -Wpedantic)
+
 # This is where our executables will end up
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CompilerTheory_SOURCE_DIR}/bin)
 
