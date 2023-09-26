@@ -3,7 +3,7 @@ func main() {
     x = 1;
     print(x);
     if (1) {
-        declare y : int;
+        declare x : int;
         y = 2;
         print(y);
     }

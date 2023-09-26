@@ -3,6 +3,8 @@
 Interpreter::Interpreter() {
     is_tos_expression_ = false;
     tos_value_ = 0;
+
+    scope_cnt = 0;
 }
 
 void Interpreter::setTosValue(int value) {
@@ -39,6 +41,10 @@ void Interpreter::Visit(CallToPrint* call_to_print) {
 void Interpreter::Visit(Declaration* declaration) {
     // Make a new variable?
     // We allow redeclarations, but is there a default value?
+
+    if (scope_cnt && variables_.find(declaration->identifier_) != variables_.end()) {
+        throw std::runtime_error("Can't redeclare variables from the outer scopes: '" + declaration->identifier_ + "'!");
+    }
     variables_[declaration->identifier_] = 0;
 }
 
@@ -169,12 +175,14 @@ void Interpreter::Visit(Conditional* conditional) {
     // 3) else interpret the else-clause
     conditional->expression_->Accept(this);
 
+    ++scope_cnt;
     if (tos_value_) {
         conditional->if_clause_->Accept(this);
     }
     else {
         conditional->else_clause_->Accept(this);
     }
+    --scope_cnt;
 }
 
 void Interpreter::Visit(Program* program) {

@@ -12,6 +12,8 @@ private:
     bool is_tos_expression_; // unused?
     int tos_value_; // Top Of Stack?
 
+    int scope_cnt; // For now
+
     void setTosValue(int value);
     void unsetTosValue();
 public:

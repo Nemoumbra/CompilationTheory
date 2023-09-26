@@ -2,7 +2,6 @@ Assignment;assignment
 CallToPrint;call_to_print
 Declaration;declaration
 Statements;statements
-CondClause;cond_clause
 NumberExpression;number_expression
 IdentifierExpr;ident_expr
 AddExpression;add_expr
