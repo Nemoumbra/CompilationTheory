@@ -4,12 +4,9 @@
 #include "expressions/BaseExpression.hh"
 
 class CallToPrint : public Statement {
-    // Grammar rule:
-    // "print" "(" expression ")" ";" { /* code */ }
-// private:
 
 public:
-    BaseExpression* expression_;
-    CallToPrint(BaseExpression* expression);
+    std::shared_ptr<BaseExpression> expression_;
+    CallToPrint(std::shared_ptr<BaseExpression> expression);
     void Accept(BaseVisitor* visitor);
 };

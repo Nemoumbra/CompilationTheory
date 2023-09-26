@@ -7,11 +7,13 @@
 
 class Conditional : public Statement {
 public:
-    BaseExpression* expression_;
-    Statements* if_clause_;
-    Statements* else_clause_;
+    std::shared_ptr<BaseExpression> expression_;
+    std::shared_ptr<Statements> if_clause_;
+    std::shared_ptr<Statements> else_clause_;
 
-    Conditional(BaseExpression* expression, Statements* if_clause, Statements* else_clause);
+    Conditional(std::shared_ptr<BaseExpression> expression, 
+                std::shared_ptr<Statements> if_clause,
+                std::shared_ptr<Statements> else_clause);
 
     void Accept(BaseVisitor* visitor);
 };

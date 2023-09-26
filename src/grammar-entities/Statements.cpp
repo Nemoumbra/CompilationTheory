@@ -1,6 +1,6 @@
 #include "Statements.hh"
 
-void Statements::AddStatement(Statement* statement) {
+void Statements::AddStatement(std::shared_ptr<Statement> statement) {
     statements_.push_back(statement);
 }
 void Statements::Accept(BaseVisitor* visitor) {

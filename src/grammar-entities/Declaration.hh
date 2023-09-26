@@ -6,11 +6,6 @@
 #include "expressions/BaseExpression.hh"
 
 class Declaration : public Statement {
-    // Grammar rule:
-    // "decl" "identifier" ":" "int_type" ";" { /* code */ }
-
-private:
-
 public:
     std::string identifier_;
     Declaration(const std::string& identifier);

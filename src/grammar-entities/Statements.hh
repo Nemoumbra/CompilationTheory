@@ -6,8 +6,8 @@
 
 class Statements : BaseComponent {
 public:
-    std::vector <Statement*> statements_;
+    std::vector <std::shared_ptr<Statement>> statements_;
 
-    void AddStatement(Statement* statement);
+    void AddStatement(std::shared_ptr<Statement> statement);
     void Accept(BaseVisitor* visitor);
 };

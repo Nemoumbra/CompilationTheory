@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include "../../visitors/BaseVisitor.hh"
 
 class BaseComponent {
