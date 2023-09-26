@@ -7,7 +7,7 @@
 
 class Program {
  public:
-    Statements* statements_;
-    Program(Statements* statements);
+    std::shared_ptr<Statements> statements_;
+    Program(std::shared_ptr<Statements> statements);
     void Accept(BaseVisitor* visitor);
 };

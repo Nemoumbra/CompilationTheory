@@ -41,5 +41,5 @@ public:
     void Visit(Program* program) override;
 
 
-    void GetResult(Program* program);
+    void GetResult(std::shared_ptr<Program> program);
 };

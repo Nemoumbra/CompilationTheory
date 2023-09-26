@@ -6,9 +6,9 @@
 
 class NestedExpr : public BaseExpression {
 public:
-    BaseExpression* expression_;
+    std::shared_ptr<BaseExpression> expression_;
 
-    NestedExpr(BaseExpression* expression);
+    NestedExpr(std::shared_ptr<BaseExpression> expression);
 
     void Accept(BaseVisitor* visitor);
 };

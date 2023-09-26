@@ -46,6 +46,7 @@
 // This code is inserted in the parser.hh file at the start
 %code requires {
     #include <string>
+    #include <memory>
 
     /* Forward declaration of classes in order to disable cyclic dependencies */
     class Scanner;
@@ -131,14 +132,14 @@
 
 
 // %nterm is used to declare exclusively nonterminal symbols
-%nterm <Program*> unit
-%nterm <BaseExpression*> expression
-%nterm <Assignment*> assignment
-%nterm <Declaration*> declaration
-%nterm <Conditional*> conditional
-%nterm <Statements*> statements
-%nterm <Statement*> statement
-%nterm <CallToPrint*> call_to_print
+%nterm <std::shared_ptr<Program>> unit
+%nterm <std::shared_ptr<BaseExpression>> expression
+%nterm <std::shared_ptr<Assignment>> assignment
+%nterm <std::shared_ptr<Declaration>> declaration
+%nterm <std::shared_ptr<Conditional>> conditional
+%nterm <std::shared_ptr<Statements>> statements
+%nterm <std::shared_ptr<Statement>> statement
+%nterm <std::shared_ptr<CallToPrint>> call_to_print
 
 
 
@@ -210,7 +211,7 @@
 
 
 unit: "main" "{" statements "}" {
-    $$ = new Program($3);
+    $$ = std::make_shared<Program>($3);
     driver.program = $$;
  }
 
@@ -219,7 +220,7 @@ unit: "main" "{" statements "}" {
 
 statements:
     %empty { 
-        $$ = new Statements();
+        $$ = std::make_shared<Statements>();
     }
     | statements statement {
         $1->AddStatement($2);
@@ -233,43 +234,43 @@ statements:
 
 expression:
     "number" {
-        $$ = new NumberExpression($1);
+        $$ = std::make_shared<NumberExpression>($1);
     }
     | "identifier" {
-        $$ = new IdentifierExpr($1);
+        $$ = std::make_shared<IdentifierExpr>($1);
     }
     | expression "+" expression {
-        $$ = new AddExpression($1, $3);
+        $$ = std::make_shared<AddExpression>($1, $3);
     }
     | expression "-" expression {
-        $$ = new SubExpression($1, $3);
+        $$ = std::make_shared<SubExpression>($1, $3);
     }
     | expression "*" expression {
-        $$ = new MultExpression($1, $3);
+        $$ = std::make_shared<MultExpression>($1, $3);
     }
     | expression "/" expression {
-        $$ = new IntDivExpression($1, $3);
+        $$ = std::make_shared<IntDivExpression>($1, $3);
     }
     | expression "==" expression {
-        $$ = new EQExpression($1, $3);
+        $$ = std::make_shared<EQExpression>($1, $3);
     }
     | expression "!=" expression {
-        $$ = new NEExpression($1, $3);
+        $$ = std::make_shared<NEExpression>($1, $3);
     }
     | expression "<" expression {
-        $$ = new LTExpression($1, $3);
+        $$ = std::make_shared<LTExpression>($1, $3);
     }
     | expression ">" expression {
-        $$ = new GTExpression($1, $3);
+        $$ = std::make_shared<GTExpression>($1, $3);
     }
     | expression "<=" expression {
-        $$ = new LEQExpression($1, $3);
+        $$ = std::make_shared<LEQExpression>($1, $3);
     }
     | expression ">=" expression {
-        $$ = new GEQExpression($1, $3);
+        $$ = std::make_shared<GEQExpression>($1, $3);
     }
     | "(" expression ")" {
-        $$ = new NestedExpr($2);
+        $$ = std::make_shared<NestedExpr>($2);
     }
     ;
 
@@ -279,7 +280,7 @@ expression:
 
 declaration:
     "decl" "identifier" ":" "int_type" ";" {
-        $$ = new Declaration($2);
+        $$ = std::make_shared<Declaration>($2);
     }
 
 
@@ -301,20 +302,20 @@ statement:
 
 assignment:
     "identifier" "=" expression ";" {
-        $$ = new Assignment($1, $3);
+        $$ = std::make_shared<Assignment>($1, $3);
      }
 
 
 call_to_print:
     "print" "(" expression ")" ";" {
-        $$ = new CallToPrint($3);
+        $$ = std::make_shared<CallToPrint>($3);
     }
 
 
 // I would really like to distinguish ints and bools, but let's just use C/C++ conversions (maybe for now)
 conditional:
     "if" "(" expression ")" "{" statements "}" "else" "{" statements "}" {
-        $$ = new Conditional($3, $6, $10);
+        $$ = std::make_shared<Conditional>($3, $6, $10);
      }
 
 

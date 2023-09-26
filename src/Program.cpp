@@ -1,6 +1,6 @@
 #include "Program.h"
 
-Program::Program(Statements* statements) : statements_(statements) {}
+Program::Program(std::shared_ptr<Statements> statements) : statements_(statements) {}
 
 
 void Program::Accept(BaseVisitor* visitor) {

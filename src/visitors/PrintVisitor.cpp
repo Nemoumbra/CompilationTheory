@@ -42,7 +42,7 @@ void PrintVisitor::Visit(Statements* statements) {
     stream_ << "Statements: \n";
 
     ++num_tabs_;
-    for (Statement* statement : statements->statements_) {
+    for (std::shared_ptr<Statement> statement : statements->statements_) {
         statement->Accept(this);
     }
     --num_tabs_;

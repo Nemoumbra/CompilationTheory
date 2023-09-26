@@ -50,7 +50,7 @@ void Interpreter::Visit(Declaration* declaration) {
 
 void Interpreter::Visit(Statements* statements) {
     // Interpret every base statement
-    for (auto* statement : statements->statements_) {
+    for (std::shared_ptr<Statement> statement : statements->statements_) {
         statement->Accept(this);
     }
 
@@ -190,9 +190,9 @@ void Interpreter::Visit(Program* program) {
     program->statements_->Accept(this);
 }
 
-void Interpreter::GetResult(Program* program) {
+void Interpreter::GetResult(std::shared_ptr<Program> program) {
     // Why?
     unsetTosValue();
     
-    Visit(program);
+    this->Visit(program.get());
 }

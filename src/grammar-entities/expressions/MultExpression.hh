@@ -4,9 +4,9 @@
 
 class MultExpression : public BaseExpression {
 public:
-    BaseExpression* first;
-    BaseExpression* second;
+    std::shared_ptr<BaseExpression> first;
+    std::shared_ptr<BaseExpression> second;
 
-    MultExpression(BaseExpression* expr1, BaseExpression* expr2);
+    MultExpression(std::shared_ptr<BaseExpression> expr1, std::shared_ptr<BaseExpression> expr2);
     void Accept(BaseVisitor* visitor);
 };

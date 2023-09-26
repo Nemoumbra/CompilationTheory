@@ -26,7 +26,7 @@ private:
     friend class Scanner;
     Scanner scanner;
     yy::parser parser;
-    Program* program;
+    std::shared_ptr<Program> program;
 
     Driver();
     

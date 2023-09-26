@@ -48,7 +48,7 @@ int Driver::parse(const std::string& f) {
 
 void Driver::printTree(const std::string& filename) {
     PrintVisitor visitor(filename);
-    visitor.Visit(program);
+    visitor.Visit(program.get());
 }
 
 void Driver::Evaluate() {
