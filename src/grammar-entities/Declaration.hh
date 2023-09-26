@@ -2,10 +2,10 @@
 
 #include <string>
 
-#include "BaseStatement.hh"
+#include "grammar-entities/Statement.hh"
 #include "expressions/BaseExpression.hh"
 
-class Declaration : public BaseStatement {
+class Declaration : public Statement {
     // Grammar rule:
     // "decl" "identifier" ":" "int_type" ";" { /* code */ }
 

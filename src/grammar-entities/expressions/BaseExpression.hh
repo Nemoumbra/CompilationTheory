@@ -4,5 +4,4 @@
 
 class BaseExpression : public BaseComponent {
 public:
-    // void Accept(BaseVisitor* visitor);
 };

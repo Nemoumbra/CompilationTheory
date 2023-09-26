@@ -135,10 +135,8 @@
 %nterm <BaseExpression*> expression
 %nterm <Assignment*> assignment
 %nterm <Declaration*> declaration
-%nterm <CondClause*> cond_clause
 %nterm <Conditional*> conditional
 %nterm <Statements*> statements
-%nterm <BaseStatement*> base_statement
 %nterm <Statement*> statement
 %nterm <CallToPrint*> call_to_print
 
@@ -211,7 +209,7 @@
 
 
 
-unit: "main" "{" statements "}" { 
+unit: "main" "{" statements "}" {
     $$ = new Program($3);
     driver.program = $$;
  }
@@ -223,7 +221,7 @@ statements:
     %empty { 
         $$ = new Statements();
     }
-    | statements base_statement { 
+    | statements statement {
         $1->AddStatement($2);
         $$ = $1;
     }
@@ -234,7 +232,7 @@ statements:
 
 
 expression:
-    "number" { 
+    "number" {
         $$ = new NumberExpression($1);
     }
     | "identifier" {
@@ -277,14 +275,6 @@ expression:
 
 
 
-base_statement:
-    statement { 
-        $$ = $1;
-    }
-    | declaration { 
-        $$ = $1;
-    }
-
 
 
 declaration:
@@ -294,7 +284,7 @@ declaration:
 
 
 statement:
-    assignment { 
+    assignment {
         $$ = $1;
     }
     | conditional {
@@ -303,13 +293,15 @@ statement:
     | call_to_print {
         $$ = $1;
     }
+    | declaration {
+        $$ = $1;
+    }
     
 
 
 assignment:
-    "identifier" "=" expression ";" { 
+    "identifier" "=" expression ";" {
         $$ = new Assignment($1, $3);
-        // driver.variables[$1] = $3->eval(driver);
      }
 
 
@@ -321,19 +313,11 @@ call_to_print:
 
 // I would really like to distinguish ints and bools, but let's just use C/C++ conversions (maybe for now)
 conditional:
-    "if" "(" expression ")" "{" cond_clause "}" "else" "{" cond_clause "}" { 
+    "if" "(" expression ")" "{" statements "}" "else" "{" statements "}" {
         $$ = new Conditional($3, $6, $10);
      }
 
 
-cond_clause:
-    %empty {
-        $$ = new CondClause();
-    }
-    | cond_clause statement {
-        $1->AddStatement($2);
-        $$ = $1;
-    }
 
 
 

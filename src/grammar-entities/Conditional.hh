@@ -2,17 +2,16 @@
 #include <string>
 
 #include "Statement.hh"
-#include "CondClause.hh"
+#include "Statements.hh"
 #include "expressions/BaseExpression.hh"
 
 class Conditional : public Statement {
-    
 public:
     BaseExpression* expression_;
-    CondClause* if_clause_;
-    CondClause* else_clause_;
+    Statements* if_clause_;
+    Statements* else_clause_;
 
-    Conditional(BaseExpression* expression, CondClause* if_clause, CondClause* else_clause);
+    Conditional(BaseExpression* expression, Statements* if_clause, Statements* else_clause);
 
     void Accept(BaseVisitor* visitor);
 };

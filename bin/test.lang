@@ -2,5 +2,13 @@ func main() {
     declare x : int;
     x = 1;
     print(x);
+    if (1) {
+        declare y : int;
+        y = 2;
+        print(y);
+    }
+    else {
+
+    }
     declare x : int;
 }

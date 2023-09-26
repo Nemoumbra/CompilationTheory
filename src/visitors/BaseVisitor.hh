@@ -8,7 +8,6 @@ public:
     virtual void Visit(CallToPrint* call_to_print) = 0;
     virtual void Visit(Declaration* declaration) = 0;
     virtual void Visit(Statements* statements) = 0;
-    virtual void Visit(CondClause* cond_clause) = 0;
     virtual void Visit(NumberExpression* number_expression) = 0;
     virtual void Visit(IdentifierExpr* ident_expr) = 0;
     virtual void Visit(AddExpression* add_expr) = 0;

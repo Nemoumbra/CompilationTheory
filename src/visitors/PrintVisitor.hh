@@ -21,7 +21,6 @@ public:
     void Visit(CallToPrint* call_to_print) override;
     void Visit(Declaration* declaration) override;
     void Visit(Statements* statements) override;
-    void Visit(CondClause* cond_clause) override;
     void Visit(NumberExpression* number_expression) override;
     void Visit(IdentifierExpr* ident_expr) override;
     void Visit(AddExpression* add_expr) override;

@@ -42,18 +42,7 @@ void PrintVisitor::Visit(Statements* statements) {
     stream_ << "Statements: \n";
 
     ++num_tabs_;
-    for (BaseStatement* base_statement : statements->statements_) {
-        base_statement->Accept(this);
-    }
-    --num_tabs_;
-}
-
-void PrintVisitor::Visit(CondClause* cond_clause) {
-    PrintTabs();
-    stream_ << "CondClause: \n";
-
-    ++num_tabs_;
-    for (Statement* statement : cond_clause->statements_) {
+    for (Statement* statement : statements->statements_) {
         statement->Accept(this);
     }
     --num_tabs_;

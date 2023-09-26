@@ -44,17 +44,7 @@ void Interpreter::Visit(Declaration* declaration) {
 
 void Interpreter::Visit(Statements* statements) {
     // Interpret every base statement
-    for (auto* base_statement : statements->statements_) {
-        base_statement->Accept(this);
-    }
-
-    // Why?
-    unsetTosValue();
-}
-
-void Interpreter::Visit(CondClause* cond_clause) {
-    // Interpret every statement
-    for (auto* statement : cond_clause->statements_) {
+    for (auto* statement : statements->statements_) {
         statement->Accept(this);
     }
 

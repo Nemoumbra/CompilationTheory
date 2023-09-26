@@ -2,14 +2,12 @@
 
 #include <vector>
 
-#include "BaseStatement.hh"
-//#include "Declaration.hh"
+#include "Statement.hh"
 
 class Statements : BaseComponent {
-//private:
 public:
-    std::vector <BaseStatement*> statements_;
+    std::vector <Statement*> statements_;
 
-    void AddStatement(BaseStatement* statement);
+    void AddStatement(Statement* statement);
     void Accept(BaseVisitor* visitor);
 };

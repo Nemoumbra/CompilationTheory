@@ -4,9 +4,7 @@
 
 class BaseComponent;
 
-class BaseStatement;
 class Statements;
-class CondClause;
 class Statement;
 class Assignment;
 class CallToPrint;
