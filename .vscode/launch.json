@@ -8,12 +8,14 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/LLVM_Module",
+            //"program": "${workspaceFolder}/bin/LLVM_Module",
+            "program": "${workspaceFolder}/bin/CustomCompiler",
             "args": [
-                "-c",
-                "interpreter-test.lang",
+                //"-c",
+                //"interpreter-test.lang",
                 // "-tree",
                 // "interpreter-test.txt"
+                "test.lang"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/bin",

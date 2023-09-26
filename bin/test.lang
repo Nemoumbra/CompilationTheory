@@ -1,9 +1,18 @@
 func main() {
     declare x : int;
-    x = 1;
+    y = 1;
     print(x);
     if (1) {
         declare x : int;
+        if (x) {
+
+        }
+        else {
+            declare x: int;
+            x = 3;
+            print(x);
+        }
+        print(x);
         x = 2;
         print(x);
     }

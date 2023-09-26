@@ -1,6 +1,11 @@
 #include "SymbolTableVisitor.hh"
 
 void SymbolTableVisitor::Visit(Assignment* assignment) {
+    if (!checker.is_visible(assignment->identifier_)) {
+        throw std::runtime_error(
+            "Variable '" + assignment->identifier_ + "' used before declaration!"
+        );
+    }
     assignment->expression_->Accept(this);
 }
 
