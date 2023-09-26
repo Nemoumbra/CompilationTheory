@@ -3,8 +3,6 @@
 Interpreter::Interpreter() {
     is_tos_expression_ = false;
     tos_value_ = 0;
-
-    scope_cnt = 0;
 }
 
 void Interpreter::setTosValue(int value) {
@@ -21,12 +19,7 @@ void Interpreter::Visit(Assignment* assignment) {
     // Compute the value and assign
     assignment->expression_->Accept(this);
 
-    auto it = variables_.find(assignment->identifier_);
-    if (it == variables_.end()) {
-        throw std::runtime_error("Can't assign to undefined variable '" + assignment->identifier_ + "'!");
-    }
-
-    it->second = tos_value_;
+    variables_[assignment->identifier_] = tos_value_;
     
     // Why?
     unsetTosValue();
@@ -42,10 +35,7 @@ void Interpreter::Visit(Declaration* declaration) {
     // Make a new variable?
     // We allow redeclarations, but is there a default value?
 
-    if (scope_cnt && variables_.find(declaration->identifier_) != variables_.end()) {
-        throw std::runtime_error("Can't redeclare variables from the outer scopes: '" + declaration->identifier_ + "'!");
-    }
-    variables_[declaration->identifier_] = 0;
+    variables_.declare_var(declaration->identifier_);
 }
 
 void Interpreter::Visit(Statements* statements) {
@@ -65,12 +55,7 @@ void Interpreter::Visit(NumberExpression* number_expression) {
 
 void Interpreter::Visit(IdentifierExpr* ident_expr) {
     // Extract the value from the variable and store it somewhere
-    auto it = variables_.find(ident_expr->identifier_);
-    if (it == variables_.end()) {
-        throw std::runtime_error("Can't get the value of undefined variable '" + ident_expr->identifier_ + "'!");
-    }
-
-    setTosValue(it->second);
+    setTosValue(variables_[ident_expr->identifier_]);
 }
 
 void Interpreter::Visit(AddExpression* add_expr) {
@@ -175,14 +160,14 @@ void Interpreter::Visit(Conditional* conditional) {
     // 3) else interpret the else-clause
     conditional->expression_->Accept(this);
 
-    ++scope_cnt;
+    variables_.push_scope();
     if (tos_value_) {
         conditional->if_clause_->Accept(this);
     }
     else {
         conditional->else_clause_->Accept(this);
     }
-    --scope_cnt;
+    variables_.pop_scope();
 }
 
 void Interpreter::Visit(Program* program) {

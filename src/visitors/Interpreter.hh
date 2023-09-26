@@ -5,14 +5,13 @@
 #include "BaseVisitor.hh"
 #include "../driver.hh"
 #include "../includes_for_parser.hh"
+#include "../symbol-table/symbol_table.hh"
 
 class Interpreter : public BaseVisitor {
 private:
-    std::map <std::string, int> variables_;
     bool is_tos_expression_; // unused?
     int tos_value_; // Top Of Stack?
-
-    int scope_cnt; // For now
+    SymbolTable variables_;
 
     void setTosValue(int value);
     void unsetTosValue();

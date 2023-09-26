@@ -4,11 +4,13 @@ func main() {
     print(x);
     if (1) {
         declare x : int;
-        y = 2;
-        print(y);
+        x = 2;
+        print(x);
     }
     else {
-
+        declare y: int;
+        declare x: int;
+        x = 10;
     }
-    declare x : int;
+    print(x);
 }

@@ -63,7 +63,7 @@ add_executable(
     grammar-entities/expressions/GEQExpression.cpp
     grammar-entities/expressions/LEQExpression.cpp
 
-    # symbol-table/symbol_table.cpp
+    symbol-table/symbol_table.cpp
     symbol-table/visibility_checker.cpp
 
     visitors/PrintVisitor.cpp

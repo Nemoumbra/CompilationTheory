@@ -11,7 +11,7 @@ private:
     // For the interpreter
     std::unordered_map<std::string, std::stack<int>> values;
 
-    std::stack<std::string> symbol_stack;
+    std::stack<std::string> symbols_stack;
 
 public:
     int& operator[](std::string name);
