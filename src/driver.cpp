@@ -5,6 +5,8 @@
 
 #include "visitors/Interpreter.hh"
 
+#include "visitors/SymbolTableVisitor.hh"
+
 
 Driver::Driver() :
     trace_parsing(false),
@@ -51,7 +53,12 @@ void Driver::printTree(const std::string& filename) {
     visitor.Visit(program.get());
 }
 
-void Driver::Evaluate() {
+
+void Driver::TestVariableScopes() {
+    SymbolTableVisitor visitor;
+    visitor.Visit(program.get());
+}
+void Driver::Interpret() {
     Interpreter interpreter;
     interpreter.GetResult(program);
 }
