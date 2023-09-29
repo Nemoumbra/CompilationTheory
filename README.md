@@ -15,6 +15,6 @@ Language examples can be found in the **bin** folder.
 
 Everything is located inside the main function. It's possible to declare variables, make assignments, if-else statements and call the void "print" function, which accepts only one numerical argument.
 
-Else clauses can't be omitted. Variable declarations can't be located inside conditional clauses.
+Else clauses can't be omitted.
 
 Note: in the interpreter mode the program intitializes variables with a default value of 0

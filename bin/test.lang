@@ -1,6 +1,6 @@
 func main() {
     declare x : int;
-    y = 1;
+    x = 1;
     print(x);
     if (1) {
         declare x : int;
@@ -19,7 +19,7 @@ func main() {
     else {
         declare y: int;
         declare x: int;
-        x = 10;
+        z = 10;
     }
     print(x);
 }
