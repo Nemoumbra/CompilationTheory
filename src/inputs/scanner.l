@@ -45,6 +45,7 @@ id    [a-zA-Z][a-zA-Z_0-9]*
 int   -?[0-9]+
 blank [ \t\r]
 assign =
+comment \/\/.*?\n
 
 
 /* This starts the token definition section */
@@ -77,6 +78,11 @@ assign =
     // => we adjust the height of the location
 
     loc.step();
+}
+
+{comment}  {
+    loc.step();
+    loc.lines(1);
 }
 
 

@@ -43,6 +43,7 @@ add_executable(
     ${FLEX_LexerCodeGen_OUTPUTS}
     ${BISON_BisonCodeGen_OUTPUTS}
     utils/utils.cpp
+    utils/location_manager.cpp
 
     grammar-entities/Statements.cpp
     grammar-entities/Declaration.cpp
