@@ -170,6 +170,26 @@ void Interpreter::Visit(Conditional* conditional) {
     variables_.pop_scope();
 }
 
+void Interpreter::Visit(PreLoop* loop) {
+    int iterations_count = 0;
+
+    loop->expression_->Accept(this);
+    while (tos_value_ && iterations_count < max_loop_iterations) {
+        variables_.push_scope();
+        loop->loop_body_->Accept(this);
+        variables_.pop_scope();
+
+        loop->expression_->Accept(this);
+        ++iterations_count;
+    }
+
+    if (iterations_count == max_loop_iterations) {
+        throw std::runtime_error(
+            "Number of loop iterations reached max allowed value of " + std::to_string(max_loop_iterations)
+        );
+    }
+}
+
 void Interpreter::Visit(Program* program) {
     // Interpret its statements
     program->statements_->Accept(this);

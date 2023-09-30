@@ -48,6 +48,7 @@ add_executable(
     grammar-entities/Statements.cpp
     grammar-entities/Declaration.cpp
     grammar-entities/Conditional.cpp
+    grammar-entities/PreLoop.cpp
     grammar-entities/CallToPrint.cpp
     grammar-entities/Assignment.cpp
     

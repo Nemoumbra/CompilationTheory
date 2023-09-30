@@ -105,6 +105,7 @@ comment \/\/.*?\n
 "declare"     return yy::parser::make_DECLARE(loc);
 "if"          return yy::parser::make_IF(loc);
 "else"        return yy::parser::make_ELSE(loc);
+"while"       return yy::parser::make_WHILE(loc);
 "print"       return yy::parser::make_PRINT(loc);
 "int"         return yy::parser::make_INT_TYPE(loc);
 "=="          return yy::parser::make_EQ(loc);

@@ -10,6 +10,7 @@ class Assignment;
 class CallToPrint;
 class Declaration;
 class Conditional;
+class PreLoop;
 
 class Program;
 

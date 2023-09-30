@@ -23,6 +23,7 @@ public:
     virtual void Visit(GEQExpression* geq_expr) = 0;
 
     virtual void Visit(Conditional* conditional) = 0;
+    virtual void Visit(PreLoop* loop) = 0;
 
     virtual void Visit(Program* program) = 0;
 };

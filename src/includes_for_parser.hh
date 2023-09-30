@@ -6,6 +6,7 @@
 #include "grammar-entities/CallToPrint.hh"
 #include "grammar-entities/Assignment.hh"
 #include "grammar-entities/Conditional.hh"
+#include "grammar-entities/PreLoop.hh"
     
 #include "grammar-entities/expressions/AddExpression.hh"
 #include "grammar-entities/expressions/SubExpression.hh"

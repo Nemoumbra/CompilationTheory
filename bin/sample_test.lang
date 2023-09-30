@@ -18,4 +18,40 @@ func main() {
     } else {
         print(b);
     }
+
+    declare i: int;
+    while (i < 4) {
+        print(i + 500);
+        i = i + 1;
+    }
+    while (i < 6) {
+        declare a: int;
+        a = -1;
+        print(a);
+        i = i + 1;
+    }
+    print(a);
+
+    // The following code triggers a runtime error (too many iterations)
+    declare j: int;
+    while (1) {
+        j = 0;
+    }
+
+    // This prints an infinite series of alternating zeroes and ones in C++:
+    // int i{};
+    // while (i == 0) {
+    //     std::cout << i << "\n";
+    //     int i = 1;
+    //     std::cout << i << "\n";
+    // }
+
+    // And this does the same thing for my language:
+    // i = 0;
+    // while (i == 0) {
+    //     print(i);
+    //     declare i: int;
+    //     i = 1;
+    //     print(i);
+    // }
 }

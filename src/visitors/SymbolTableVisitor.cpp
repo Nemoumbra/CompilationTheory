@@ -106,6 +106,14 @@ void SymbolTableVisitor::Visit(Conditional* conditional) {
     checker.pop_scope();
 }
 
+void SymbolTableVisitor::Visit(PreLoop* loop) {
+    loop->expression_->Accept(this);
+
+    checker.push_scope();
+    loop->loop_body_->Accept(this);
+    checker.pop_scope();
+}
+
 void SymbolTableVisitor::Visit(Program* program) {
     program->statements_->Accept(this);
 }

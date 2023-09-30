@@ -36,6 +36,7 @@ public:
     void Visit(GEQExpression* eq_expr) override;
     
     void Visit(Conditional* conditional) override;
+    void Visit(PreLoop* loop) override;
 
     void Visit(Program* program) override;
 };

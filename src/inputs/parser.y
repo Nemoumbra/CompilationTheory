@@ -101,6 +101,7 @@
     DECLARE "decl"
     IF "if"
     ELSE "else"
+    WHILE "while"
     PRINT "print"
     INT_TYPE "int_type"
     EQ "=="
@@ -140,6 +141,7 @@
 %nterm <std::shared_ptr<Statements>> statements
 %nterm <std::shared_ptr<Statement>> statement
 %nterm <std::shared_ptr<CallToPrint>> call_to_print
+%nterm <std::shared_ptr<PreLoop>> pre_loop
 
 
 
@@ -292,6 +294,9 @@ statement:
     | conditional {
         $$ = $1;
     }
+    | pre_loop {
+        $$ = $1;
+    }
     | call_to_print {
         $$ = $1;
     }
@@ -320,7 +325,10 @@ conditional:
         $$ = std::make_shared<Conditional>($3, $6, $10);
      }
 
-
+pre_loop:
+    "while" "(" expression ")" "{" statements "}" {
+        $$ = std::make_shared<PreLoop>($3, $6);
+    }
 
 
 

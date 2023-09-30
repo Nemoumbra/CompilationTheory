@@ -178,6 +178,16 @@ void PrintVisitor::Visit(Conditional* conditional) {
     --num_tabs_;
 }
 
+void PrintVisitor::Visit(PreLoop* loop) {
+    PrintTabs();
+    stream_ << "PreLoop: \n";
+
+    ++num_tabs_;
+    loop->expression_->Accept(this);
+    loop->loop_body_->Accept(this);
+    --num_tabs_;
+}
+
 void PrintVisitor::Visit(Program* program) {
     PrintTabs();
     stream_ << "Program: \n";

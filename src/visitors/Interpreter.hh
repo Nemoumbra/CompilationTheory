@@ -9,9 +9,11 @@
 
 class Interpreter : public BaseVisitor {
 private:
-    bool is_tos_expression_; // unused?
-    int tos_value_; // Top Of Stack?
+    bool is_tos_expression_;
+    int tos_value_;
     SymbolTable variables_;
+
+    const int max_loop_iterations = 1000;
 
     void setTosValue(int value);
     void unsetTosValue();
@@ -36,6 +38,7 @@ public:
     void Visit(LEQExpression* leq_expr) override;
     void Visit(GEQExpression* geq_expr) override;
     void Visit(Conditional* conditional) override;
+    void Visit(PreLoop* loop) override;
 
     void Visit(Program* program) override;
 
