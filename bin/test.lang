@@ -20,6 +20,7 @@ func main() {
         declare y: int;
         declare x: int;
         z = 10;
+        print(z);
     }
     print(x);
 }

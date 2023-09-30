@@ -9,7 +9,10 @@ public:
     std::string identifier_;
     std::shared_ptr<BaseExpression> expression_;
     
-    Assignment(const std::string& identifier, std::shared_ptr<BaseExpression> expression);
+    Assignment(const std::string& identifier,
+               std::shared_ptr<BaseExpression> expression,
+               yy::location loc
+    );
 
     void Accept(BaseVisitor* visitor);
 };

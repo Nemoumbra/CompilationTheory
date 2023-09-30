@@ -2,9 +2,12 @@
 
 void SymbolTableVisitor::Visit(Assignment* assignment) {
     if (!checker.is_visible(assignment->identifier_)) {
+        const auto loc = loc_to_str(assignment->location);
         throw std::runtime_error(
-            "Variable '" + assignment->identifier_ + "' used before declaration!"
+            "Variable '" + assignment->identifier_ +
+            "' used before declaration (" + loc + ")!"
         );
+        
     }
     assignment->expression_->Accept(this);
 }
@@ -29,8 +32,10 @@ void SymbolTableVisitor::Visit(NumberExpression* number_expression) {
 
 void SymbolTableVisitor::Visit(IdentifierExpr* ident_expr) {
     if (!checker.is_visible(ident_expr->identifier_)) {
+        const auto loc = loc_to_str(ident_expr->location);
         throw std::runtime_error(
-            "Variable '" + ident_expr->identifier_ + "' used before declaration!"
+            "Variable '" + ident_expr->identifier_ +
+            "' used before declaration (" + loc + ")!"
         );
     }
 }

@@ -42,6 +42,7 @@ add_executable(
     driver.cpp
     ${FLEX_LexerCodeGen_OUTPUTS}
     ${BISON_BisonCodeGen_OUTPUTS}
+    utils/utils.cpp
 
     grammar-entities/Statements.cpp
     grammar-entities/Declaration.cpp

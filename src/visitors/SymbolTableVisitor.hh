@@ -1,6 +1,7 @@
 #pragma once
 #include "BaseVisitor.hh"
 #include "../includes_for_parser.hh"
+#include "../utils/utils.hh"
 
 #include "../symbol-table/visibility_checker.hh"
 
