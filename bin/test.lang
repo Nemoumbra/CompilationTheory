@@ -19,6 +19,7 @@ func main() {
     else {
         declare y: int;
         declare x: int;
+        x = x + y/ (x + z + y);
         z = 10;
         print(z);
     }

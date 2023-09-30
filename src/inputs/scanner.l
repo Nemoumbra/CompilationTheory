@@ -30,7 +30,7 @@
 
   // This function is called to get the correct error (and, maybe, debug) messages 
   void Scanner::UpdateLocation() {
-    driver.location.columns(yyleng);
+    driver.locman.move_forward(yyleng);
 
     // We basically move the location 'yyleng' chars forward
     // ('yyleng' is something like 'yytext.size()')
@@ -57,8 +57,9 @@ assign =
   // To be honest, here I don't want to do anything
 
   // A handy shortcut to the location held by the driver.
-  yy::location& loc = driver.location;
+  yy::location& loc = driver.locman.current;
 
+  loc.step();
 %}
 
   /* Note: comments here should be preceded by whitespace chars (I chose tabulation) */
@@ -89,7 +90,10 @@ assign =
 ")"           return yy::parser::make_RPAREN(loc);
 "{"           return yy::parser::make_LCURLY(loc);
 "}"           return yy::parser::make_RCURLY(loc);
-{assign}      return yy::parser::make_ASSIGN(loc);
+{assign}      {
+                driver.locman.matched_assign();
+                return yy::parser::make_ASSIGN(loc);
+              }
 ";"           return yy::parser::make_SEMICOLON(loc);
 ":"           return yy::parser::make_COLON(loc);
 "declare"     return yy::parser::make_DECLARE(loc);
@@ -118,17 +122,15 @@ assign =
 
   /* Here we create identifiers */
 {id}       {
-                //if (driver.location_debug) {
-                //    std::cerr << "ID found " << yytext << std::endl;
-                //}
+              driver.locman.matched_id();
+              return yy::parser::make_IDENTIFIER(yytext, loc);
 
-                return yy::parser::make_IDENTIFIER(yytext, loc);
+              // When we pass yytext here, a copy std::string is made from it.
+              // Note: 'yytext' is the temporary storage that holds the matched string
 
-                // When we pass yytext here, a copy std::string is made from all characters up until \0
-                // In the yy::parser::make_IDENTIFIER function we return the result of symbol_type's constructor
+              // In the yy::parser::make_IDENTIFIER function we return the result of symbol_type's constructor
 
-                // 'symbol_type' is derived from 'basic_symbol<by_kind>' which is typedefed as 'super_type'
-                // This makes me wonder why we don't assign the whole file suffix to our identifier
+              // 'symbol_type' is derived from 'basic_symbol<by_kind>' which is typedefed as 'super_type'
            }
 
   /* This is how you can throw a syntax error (in this case we for some reason hate dots) */

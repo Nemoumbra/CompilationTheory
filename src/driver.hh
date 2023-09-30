@@ -9,6 +9,7 @@
 
 #include "Program.h"
 
+#include "utils/utils.hh"
 
 
 class Driver {
@@ -21,7 +22,7 @@ private:
     std::string file;
     bool trace_parsing;
     bool trace_scanning;
-    yy::location location;
+    LocationManager locman;
 
     friend class Scanner;
     Scanner scanner;

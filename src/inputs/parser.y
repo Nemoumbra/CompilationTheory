@@ -237,7 +237,7 @@ expression:
         $$ = std::make_shared<NumberExpression>($1);
     }
     | "identifier" {
-        const yy::location loc = driver.location;
+        const auto loc = driver.locman.last_id;
         $$ = std::make_shared<IdentifierExpr>($1, loc);
     }
     | expression "+" expression {
@@ -303,7 +303,7 @@ statement:
 
 assignment:
     "identifier" "=" expression ";" {
-        const auto loc = driver.location;
+        const auto loc = driver.locman.last_assign_id;
         $$ = std::make_shared<Assignment>($1, $3, loc);
      }
 

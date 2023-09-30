@@ -38,7 +38,7 @@ int Driver::parse(const std::string& f) {
     file = f;
 
     // Initialize location positions
-    location.initialize(&file);
+    locman.initialize(&file);
     scan_begin();
     parser.set_debug_level(trace_parsing);
 
