@@ -33,10 +33,10 @@ func main() {
     print(a);
 
     // The following code triggers a runtime error (too many iterations)
-    declare j: int;
-    while (1) {
-        j = 0;
-    }
+    // declare j: int;
+    // while (1) {
+    //     j = 0;
+    // }
 
     // This prints an infinite series of alternating zeroes and ones in C++:
     // int i{};
@@ -54,4 +54,14 @@ func main() {
     //     i = 1;
     //     print(i);
     // }
+
+    i = 0;
+    while (i < 100) {
+        if (i == 5) {
+            break;
+        } else {}
+        print(100-i);
+        i = i + 1;
+    }
+    print(i);
 }

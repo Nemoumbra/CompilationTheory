@@ -6,12 +6,14 @@
 #include "../driver.hh"
 #include "../includes_for_parser.hh"
 #include "../symbol-table/symbol_table.hh"
+#include "../utils/utils.hh"
 
 class Interpreter : public BaseVisitor {
 private:
     bool is_tos_expression_;
     int tos_value_;
     SymbolTable variables_;
+    ControlFlowType current_flow;
 
     const int max_loop_iterations = 1000;
 
@@ -39,6 +41,8 @@ public:
     void Visit(GEQExpression* geq_expr) override;
     void Visit(Conditional* conditional) override;
     void Visit(PreLoop* loop) override;
+    void Visit(BreakStatement* loop_break) override;
+    void Visit(ContinueStatement* loop_continue) override;
 
     void Visit(Program* program) override;
 

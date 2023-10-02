@@ -188,6 +188,16 @@ void PrintVisitor::Visit(PreLoop* loop) {
     --num_tabs_;
 }
 
+void PrintVisitor::Visit(BreakStatement*) {
+    PrintTabs();
+    stream_ << "BreakStatement\n";
+}
+
+void PrintVisitor::Visit(ContinueStatement*) {
+    PrintTabs();
+    stream_ << "ContinueStatement\n";
+}
+
 void PrintVisitor::Visit(Program* program) {
     PrintTabs();
     stream_ << "Program: \n";

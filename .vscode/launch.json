@@ -12,10 +12,10 @@
             "program": "${workspaceFolder}/bin/CustomCompiler",
             "args": [
                 //"-c",
-                //"interpreter-test.lang",
+                "interpreter-test.lang",
                 // "-tree",
                 // "interpreter-test.txt"
-                "test.lang"
+                // "test.lang"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/bin",

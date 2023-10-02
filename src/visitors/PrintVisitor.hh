@@ -37,6 +37,8 @@ public:
     
     void Visit(Conditional* conditional) override;
     void Visit(PreLoop* loop) override;
+    void Visit(BreakStatement* loop_break) override;
+    void Visit(ContinueStatement* loop_continue) override;
 
     void Visit(Program* program) override;
 };

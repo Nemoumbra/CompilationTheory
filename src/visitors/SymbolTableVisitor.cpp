@@ -26,7 +26,7 @@ void SymbolTableVisitor::Visit(Statements* statements) {
     }
 }
 
-void SymbolTableVisitor::Visit(NumberExpression* number_expression) {
+void SymbolTableVisitor::Visit(NumberExpression*) {
     // No code
 }
 
@@ -112,6 +112,14 @@ void SymbolTableVisitor::Visit(PreLoop* loop) {
     checker.push_scope();
     loop->loop_body_->Accept(this);
     checker.pop_scope();
+}
+
+void SymbolTableVisitor::Visit(BreakStatement*) {
+    // No code
+}
+
+void SymbolTableVisitor::Visit(ContinueStatement*) {
+    // No code
 }
 
 void SymbolTableVisitor::Visit(Program* program) {

@@ -3,6 +3,7 @@
 Interpreter::Interpreter() {
     is_tos_expression_ = false;
     tos_value_ = 0;
+    current_flow = ControlFlowType::Standard;
 }
 
 void Interpreter::setTosValue(int value) {
@@ -42,6 +43,11 @@ void Interpreter::Visit(Statements* statements) {
     // Interpret every base statement
     for (std::shared_ptr<Statement> statement : statements->statements_) {
         statement->Accept(this);
+
+        // But sometimes we don't want to move onto the next statement
+        if (current_flow != ControlFlowType::Standard) {
+            break;
+        }
     }
 
     // Why?
@@ -179,6 +185,13 @@ void Interpreter::Visit(PreLoop* loop) {
         loop->loop_body_->Accept(this);
         variables_.pop_scope();
 
+        if (current_flow == ControlFlowType::Break) {
+            break;
+        }
+        if (current_flow == ControlFlowType::Continue) {
+            current_flow = ControlFlowType::Standard;
+        }
+
         loop->expression_->Accept(this);
         ++iterations_count;
     }
@@ -188,6 +201,15 @@ void Interpreter::Visit(PreLoop* loop) {
             "Number of loop iterations reached max allowed value of " + std::to_string(max_loop_iterations)
         );
     }
+    current_flow = ControlFlowType::Standard;
+}
+
+void Interpreter::Visit(BreakStatement*) {
+    current_flow = ControlFlowType::Break;
+}
+
+void Interpreter::Visit(ContinueStatement*) {
+    current_flow = ControlFlowType::Continue;
 }
 
 void Interpreter::Visit(Program* program) {

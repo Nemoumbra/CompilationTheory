@@ -11,6 +11,8 @@ class CallToPrint;
 class Declaration;
 class Conditional;
 class PreLoop;
+class BreakStatement;
+class ContinueStatement;
 
 class Program;
 

@@ -102,6 +102,8 @@
     IF "if"
     ELSE "else"
     WHILE "while"
+    BREAK "break"
+    CONTINUE "continue"
     PRINT "print"
     INT_TYPE "int_type"
     EQ "=="
@@ -142,6 +144,8 @@
 %nterm <std::shared_ptr<Statement>> statement
 %nterm <std::shared_ptr<CallToPrint>> call_to_print
 %nterm <std::shared_ptr<PreLoop>> pre_loop
+%nterm <std::shared_ptr<BreakStatement>> loop_break
+%nterm <std::shared_ptr<ContinueStatement>> loop_continue
 
 
 
@@ -303,6 +307,12 @@ statement:
     | declaration {
         $$ = $1;
     }
+    | loop_break {
+        $$ = $1;
+    }
+    | loop_continue {
+        $$ = $1;
+    }
     
 
 
@@ -330,6 +340,15 @@ pre_loop:
         $$ = std::make_shared<PreLoop>($3, $6);
     }
 
+loop_break:
+    "break" ";" {
+        $$ = std::make_shared<BreakStatement>();
+    }
+
+loop_continue:
+    "continue" ";" {
+        $$ = std::make_shared<ContinueStatement>();
+    }
 
 
 // Grammar info section is surrounded by %% from both sides

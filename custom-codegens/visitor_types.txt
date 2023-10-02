@@ -17,4 +17,6 @@ LEQExpression;leq_expr
 GEQExpression;geq_expr
 Conditional;conditional
 PreLoop;pre_loop
+BreakStatement;loop_break
+ContinueStatement;loop_continue
 Program;program
