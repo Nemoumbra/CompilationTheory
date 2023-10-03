@@ -21,3 +21,6 @@ void LocationManager::matched_assign() {
 void LocationManager::matched_id() {
     last_id = current;
 }
+void LocationManager::matched_break_continue() {
+    last_break_continue = current;
+}

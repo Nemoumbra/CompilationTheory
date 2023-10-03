@@ -106,8 +106,14 @@ comment \/\/.*?\n
 "if"          return yy::parser::make_IF(loc);
 "else"        return yy::parser::make_ELSE(loc);
 "while"       return yy::parser::make_WHILE(loc);
-"break"       return yy::parser::make_BREAK(loc);
-"continue"    return yy::parser::make_CONTINUE(loc);
+"break"       {
+                driver.locman.matched_break_continue();
+                return yy::parser::make_BREAK(loc);
+              }
+"continue"    {
+                driver.locman.matched_break_continue();
+                return yy::parser::make_CONTINUE(loc);
+              }
 "print"       return yy::parser::make_PRINT(loc);
 "int"         return yy::parser::make_INT_TYPE(loc);
 "=="          return yy::parser::make_EQ(loc);

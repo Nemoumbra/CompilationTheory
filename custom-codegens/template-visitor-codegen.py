@@ -1,9 +1,12 @@
 from typing import List
+from pathlib import Path
 
 
 output_filename = input("Please enter the name for *.hh and *.cpp files\n")
 
 methods_filename = input("Now enter the path to the file with the tree nodes description\n")
+
+save_to = Path(input("Finally, please enter the path to the dir where to put the files\n"))
 
 try:
     print("Making files...")
@@ -39,9 +42,9 @@ try:
 
     hh_lines.append("};")
 
-    with open(output_filename + ".hh", "w") as output:
+    with open((save_to / output_filename).with_suffix(".hh"), "w") as output:
         output.writelines(hh_lines)
-    with open(output_filename + ".cpp", "w") as output:
+    with open((save_to / output_filename).with_suffix(".cpp"), "w") as output:
         output.writelines(cpp_lines)
     
     print("Done!")

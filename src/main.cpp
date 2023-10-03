@@ -36,6 +36,7 @@ int main(int argc, char** argv) {
         // Let's make some more checks...
         try {
             driver.TestVariableScopes();
+            driver.TestBreakContinue();
         }
         catch(const std::runtime_error& error) {
             std::cout << "Compilation error!\n";

@@ -64,4 +64,18 @@ func main() {
         i = i + 1;
     }
     print(i);
+
+    i = 0;
+    while (i < 100) {
+        i = i + 1;
+        if (i < 98) { continue; } else { print(200+i); }
+    }
+
+    // Uncomment to get a CE:
+    // break;
+    // continue;
+    // if (0) { break; } else {}
+    // if (0) { continue; } else {}
+    // if (0) { break; } else { continue; }
+    // if (0) { continue; } else { break; }
 }

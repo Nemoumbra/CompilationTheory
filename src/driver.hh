@@ -39,5 +39,6 @@ private:
     void printTree(const std::string& fileaname);
 
     void TestVariableScopes();
+    void TestBreakContinue();
     void Interpret();
 };

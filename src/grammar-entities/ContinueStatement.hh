@@ -4,7 +4,7 @@
 
 class ContinueStatement : public Statement {
 public:
-    ContinueStatement() = default;
+    ContinueStatement(yy::location loc);
 
     void Accept(BaseVisitor* visitor);
 };

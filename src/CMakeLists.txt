@@ -74,6 +74,7 @@ add_executable(
     visitors/PrintVisitor.cpp
     visitors/Interpreter.cpp
     visitors/SymbolTableVisitor.cpp
+    visitors/BreakContinueVisitor.cpp
 
     Program.cpp
 )

@@ -4,7 +4,7 @@
 
 class BreakStatement : public Statement {
 public:
-    BreakStatement() = default;
+    BreakStatement(yy::location loc);
 
     void Accept(BaseVisitor* visitor);
 };

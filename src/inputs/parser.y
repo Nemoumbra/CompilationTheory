@@ -342,12 +342,14 @@ pre_loop:
 
 loop_break:
     "break" ";" {
-        $$ = std::make_shared<BreakStatement>();
+        const auto loc = driver.locman.last_break_continue;
+        $$ = std::make_shared<BreakStatement>(loc);
     }
 
 loop_continue:
     "continue" ";" {
-        $$ = std::make_shared<ContinueStatement>();
+        const auto loc = driver.locman.last_break_continue;
+        $$ = std::make_shared<ContinueStatement>(loc);
     }
 
 

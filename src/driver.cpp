@@ -7,6 +7,8 @@
 
 #include "visitors/SymbolTableVisitor.hh"
 
+#include "visitors/BreakContinueVisitor.hh"
+
 
 Driver::Driver() :
     trace_parsing(false),
@@ -58,6 +60,12 @@ void Driver::TestVariableScopes() {
     SymbolTableVisitor visitor;
     visitor.Visit(program.get());
 }
+
+void Driver::TestBreakContinue() {
+    BreakContinueVisitor visitor;
+    visitor.Visit(program.get());
+}
+
 void Driver::Interpret() {
     Interpreter interpreter;
     interpreter.GetResult(program);
