@@ -98,6 +98,16 @@ void PrintVisitor::Visit(IntDivExpression* int_div_expr) {
     --num_tabs_;
 }
 
+void PrintVisitor::Visit(RemainderExpression* rem_expr) {
+    PrintTabs();
+    stream_ << "IntDivExpression: \n";
+
+    ++num_tabs_;
+    rem_expr->first->Accept(this);
+    rem_expr->second->Accept(this);
+    --num_tabs_;
+}
+
 void PrintVisitor::Visit(NestedExpr* nested_expr) {
     PrintTabs();
     stream_ << "NestedExpr: \n";

@@ -14,6 +14,7 @@
 #include "grammar-entities/expressions/SubExpression.hh"
 #include "grammar-entities/expressions/MultExpression.hh"
 #include "grammar-entities/expressions/IntDivExpression.hh"
+#include "grammar-entities/expressions/RemainderExpression.hh"
 #include "grammar-entities/expressions/NumberExpression.hh"
 #include "grammar-entities/expressions/IdentifierExpr.hh"
 #include "grammar-entities/expressions/NestedExpression.hh"

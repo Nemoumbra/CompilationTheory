@@ -60,6 +60,11 @@ void SymbolTableVisitor::Visit(IntDivExpression* int_div_expr) {
     int_div_expr->second->Accept(this);
 }
 
+void SymbolTableVisitor::Visit(RemainderExpression* rem_expr) {
+    rem_expr->first->Accept(this);
+    rem_expr->second->Accept(this);
+}
+
 void SymbolTableVisitor::Visit(NestedExpr* nested_expr) {
     nested_expr->expression_->Accept(this);
 }

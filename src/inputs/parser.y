@@ -92,6 +92,7 @@
     PLUS "+"
     STAR "*"
     SLASH "/"
+    PERCENT "%"
     LPAREN "("
     RPAREN ")"
     LCURLY "{" 
@@ -175,7 +176,7 @@
 
 
 %left "+" "-";
-%left "*" "/";
+%left "*" "/" "%";
 // This means that 
 // 1) '+', '-', '*' and '/' are left associative
 // 2) '+' and '-' have equal precedence which is less than
@@ -257,6 +258,9 @@ expression:
     }
     | expression "/" expression {
         $$ = std::make_shared<IntDivExpression>($1, $3);
+    }
+    | expression "%" expression {
+        $$ = std::make_shared<RemainderExpression>($1, $3);
     }
     | expression "==" expression {
         $$ = std::make_shared<EQExpression>($1, $3);

@@ -92,6 +92,7 @@ comment \/\/.*?\n
 "+"           return yy::parser::make_PLUS(loc);
 "*"           return yy::parser::make_STAR(loc);
 "/"           return yy::parser::make_SLASH(loc);
+"%"           return yy::parser::make_PERCENT(loc);
 "("           return yy::parser::make_LPAREN(loc);
 ")"           return yy::parser::make_RPAREN(loc);
 "{"           return yy::parser::make_LCURLY(loc);

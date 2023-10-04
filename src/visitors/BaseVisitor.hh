@@ -14,6 +14,7 @@ public:
     virtual void Visit(SubExpression* sub_expr) = 0;
     virtual void Visit(MultExpression* mult_expr) = 0;
     virtual void Visit(IntDivExpression* int_div_expr) = 0;
+    virtual void Visit(RemainderExpression* rem_expr) = 0;
     virtual void Visit(NestedExpr* nested_expr) = 0;
     virtual void Visit(EQExpression* eq_expr) = 0;
     virtual void Visit(NEExpression* ne_expr) = 0;

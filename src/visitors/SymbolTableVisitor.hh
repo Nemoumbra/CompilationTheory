@@ -22,6 +22,7 @@ public:
     void Visit(SubExpression* sub_expr) override;
     void Visit(MultExpression* mult_expr) override;
     void Visit(IntDivExpression* int_div_expr) override;
+    void Visit(RemainderExpression* rem_expr) override;
     void Visit(NestedExpr* nested_expr) override;
     void Visit(EQExpression* eq_expr) override;
     void Visit(NEExpression* ne_expr) override;

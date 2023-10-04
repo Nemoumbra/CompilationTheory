@@ -58,6 +58,7 @@ add_executable(
     grammar-entities/expressions/SubExpression.cpp
     grammar-entities/expressions/MultExpression.cpp
     grammar-entities/expressions/IntDivExpression.cpp
+    grammar-entities/expressions/RemainderExpression.cpp
     grammar-entities/expressions/NumberExpression.cpp
     grammar-entities/expressions/IdentifierExpr.cpp
     grammar-entities/expressions/NestedExpression.cpp

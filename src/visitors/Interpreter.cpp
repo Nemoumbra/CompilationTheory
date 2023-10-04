@@ -98,6 +98,17 @@ void Interpreter::Visit(IntDivExpression* int_div_expr) {
 
     int_div_expr->second->Accept(this);
     setTosValue(left / tos_value_);
+    // TODO: runtime error instead of crashing in case of division by 0
+}
+
+void Interpreter::Visit(RemainderExpression* rem_expr) {
+    // Evaluate both operands, compute the remainder and store the result somewhere
+    rem_expr->first->Accept(this);
+    int left = tos_value_;
+
+    rem_expr->second->Accept(this);
+    setTosValue(left % tos_value_);
+    // TODO: runtime error instead of crashing in case of division by 0
 }
 
 void Interpreter::Visit(NestedExpr* nested_expr) {

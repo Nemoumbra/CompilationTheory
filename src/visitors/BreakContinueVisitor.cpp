@@ -42,6 +42,10 @@ void BreakContinueVisitor::Visit(IntDivExpression*) {
     
 }
 
+void BreakContinueVisitor::Visit(RemainderExpression*) {
+    
+}
+
 void BreakContinueVisitor::Visit(NestedExpr*) {
     
 }

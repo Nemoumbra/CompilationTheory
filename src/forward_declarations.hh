@@ -24,6 +24,7 @@ class AddExpression;
 class SubExpression;
 class MultExpression;
 class IntDivExpression;
+class RemainderExpression;
 class NestedExpr;
 class EQExpression;
 class NEExpression;

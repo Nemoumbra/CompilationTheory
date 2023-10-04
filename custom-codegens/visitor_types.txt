@@ -8,6 +8,7 @@ AddExpression;add_expr
 SubExpression;sub_expr
 MultExpression;mult_expr
 IntDivExpression;int_div_expr
+RemainderExpression;rem_expr
 NestedExpr;nested_expr
 EQExpression;eq_expr
 NEExpression;ne_expr
