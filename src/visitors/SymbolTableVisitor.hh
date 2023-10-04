@@ -2,11 +2,15 @@
 #include "BaseVisitor.hh"
 #include "../includes_for_parser.hh"
 
+#include "../symbol-table/tree/ScopeLayer.hh"
+#include "../utils/utils.hh"
+
+
 class SymbolTableVisitor : public BaseVisitor {
 private:
-    //
+    std::shared_ptr<ScopeLayer> current;    
 public:
-    // SymbolTableVisitor();
+    SymbolTableVisitor();
     // ~SymbolTableVisitor();
 
     void Visit(Assignment* assignment) override;
@@ -32,4 +36,6 @@ public:
     void Visit(BreakStatement* loop_break) override;
     void Visit(ContinueStatement* loop_continue) override;
     void Visit(Program* program) override;
+
+    std::shared_ptr<ScopeLayer> get_root() const;
 };

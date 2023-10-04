@@ -11,6 +11,8 @@
 
 #include "utils/location_manager.hh"
 
+#include "symbol-table/tree/ScopeLayer.hh"
+
 
 class Driver {
 private:
@@ -27,7 +29,9 @@ private:
     friend class Scanner;
     Scanner scanner;
     yy::parser parser;
+
     std::shared_ptr<Program> program;
+    std::shared_ptr<ScopeLayer> symbol_tree;
 
     Driver();
     
@@ -39,6 +43,7 @@ private:
     void printTree(const std::string& fileaname);
 
     void TestVariableScopes();
+    void BuildSymbolTable();
     void TestBreakContinue();
     void Interpret();
 };
