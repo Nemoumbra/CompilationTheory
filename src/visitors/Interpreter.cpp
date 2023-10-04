@@ -97,8 +97,12 @@ void Interpreter::Visit(IntDivExpression* int_div_expr) {
     int left = tos_value_;
 
     int_div_expr->second->Accept(this);
+    if (!tos_value_) {
+        throw std::runtime_error(
+            "Zero division error"
+        );
+    }
     setTosValue(left / tos_value_);
-    // TODO: runtime error instead of crashing in case of division by 0
 }
 
 void Interpreter::Visit(RemainderExpression* rem_expr) {
@@ -107,8 +111,12 @@ void Interpreter::Visit(RemainderExpression* rem_expr) {
     int left = tos_value_;
 
     rem_expr->second->Accept(this);
+    if (!tos_value_) {
+        throw std::runtime_error(
+            "Zero division error"
+        );
+    }
     setTosValue(left % tos_value_);
-    // TODO: runtime error instead of crashing in case of division by 0
 }
 
 void Interpreter::Visit(NestedExpr* nested_expr) {
