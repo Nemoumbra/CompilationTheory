@@ -11,7 +11,6 @@ func main() {
     print(y);
 
     if (y < y + 1) {
-        
     }
     else {
         y = x;
@@ -53,8 +52,8 @@ func main() {
     x = 0;
     while (x < 5) {
         x = x + 1;
-        if (x < 3) { continue; } 
-        else { print(x); }
+        if (x % 2 == 1) { continue; } else {}
+        print(x);
     }
     
     // print(1 / 0);

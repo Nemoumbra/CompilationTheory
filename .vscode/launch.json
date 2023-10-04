@@ -15,7 +15,7 @@
                 "interpreter-test.lang",
                 // "-tree",
                 // "interpreter-test.txt"
-                // "test.lang"
+                // "ast-test.lang"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/bin",

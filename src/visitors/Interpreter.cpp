@@ -186,19 +186,22 @@ void Interpreter::Visit(Conditional* conditional) {
     // 3) else interpret the else-clause
     conditional->expression_->Accept(this);
 
-    current_scope_ = current_scope_->get_child(scope_indexes.top());
+    
+    auto index = scope_indexes.top() + (tos_value_ ? 0: 1);
+
+    current_scope_ = current_scope_->get_child(index);
     scope_indexes.push(0);
 
     if (tos_value_) {
         conditional->if_clause_->Accept(this);
         scope_indexes.pop();
-        scope_indexes.top() += 2;
+        scope_indexes.top() = index + 2;
         // Here we also have to skip the 'else' clause
     }
     else {
         conditional->else_clause_->Accept(this);
         scope_indexes.pop();
-        ++scope_indexes.top();
+        scope_indexes.top() = index + 1;
     }
     current_scope_ = current_scope_->get_parent();
 }

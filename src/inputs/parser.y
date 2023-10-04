@@ -175,12 +175,14 @@
 // (These strings are semantic type tags)
 
 
+%left "==" "!=";
+%left "<" "<=" ">" ">=";
 %left "+" "-";
 %left "*" "/" "%";
 // This means that 
-// 1) '+', '-', '*' and '/' are left associative
+// 1) All the operators listed here are left associative
 // 2) '+' and '-' have equal precedence which is less than
-// the precedence of '*' and '/' (their precedence is also equal)
+// the precedence of '*', '/' and '%' (their precedence is also equal), etc.
 
 
 // Specify the grammar’s start symbol
