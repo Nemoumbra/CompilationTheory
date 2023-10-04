@@ -1,26 +1,13 @@
 #pragma once
-
-#include <map>
-
 #include "BaseVisitor.hh"
-#include "../driver.hh"
 #include "../includes_for_parser.hh"
-#include "../symbol-table/stack/symbol_table.hh"
-#include "../utils/utils.hh"
 
-class Interpreter : public BaseVisitor {
+class SymbolTableVisitor : public BaseVisitor {
 private:
-    bool is_tos_expression_;
-    int tos_value_;
-    SymbolTable variables_;
-    ControlFlowType current_flow;
-
-    const int max_loop_iterations = 1000;
-
-    void setTosValue(int value);
-    void unsetTosValue();
+    //
 public:
-    Interpreter();
+    // SymbolTableVisitor();
+    // ~SymbolTableVisitor();
 
     void Visit(Assignment* assignment) override;
     void Visit(CallToPrint* call_to_print) override;
@@ -41,12 +28,8 @@ public:
     void Visit(LEQExpression* leq_expr) override;
     void Visit(GEQExpression* geq_expr) override;
     void Visit(Conditional* conditional) override;
-    void Visit(PreLoop* loop) override;
+    void Visit(PreLoop* pre_loop) override;
     void Visit(BreakStatement* loop_break) override;
     void Visit(ContinueStatement* loop_continue) override;
-
     void Visit(Program* program) override;
-
-
-    void GetResult(std::shared_ptr<Program> program);
 };

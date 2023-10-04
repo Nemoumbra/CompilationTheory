@@ -3,7 +3,7 @@
 #include "../includes_for_parser.hh"
 #include "../utils/utils.hh"
 
-#include "../symbol-table/visibility_checker.hh"
+#include "../symbol-table/stack/visibility_checker.hh"
 
 class VisibilityCheckVisitor : public BaseVisitor {
 private:

@@ -19,7 +19,7 @@ func main() {
     else {
         declare y: int;
         declare x: int;
-        //print(z); lalalalala! \n \r   tab
+        // print(z); // lalalalala! \n \r   tab
     }
     print(x);
 }
