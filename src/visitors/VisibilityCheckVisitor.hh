@@ -5,12 +5,12 @@
 
 #include "../symbol-table/visibility_checker.hh"
 
-class SymbolTableVisitor : public BaseVisitor {
+class VisibilityCheckVisitor : public BaseVisitor {
 private:
     VisibilityChecker checker;
 public:
-    // SymbolTableVisitor();
-    // ~SymbolTableVisitor();
+    // VisibilityCheckVisitor();
+    // ~VisibilityCheckVisitor();
 
     void Visit(Assignment* assignment) override;
     void Visit(CallToPrint* call_to_print) override;

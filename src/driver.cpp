@@ -5,7 +5,7 @@
 
 #include "visitors/Interpreter.hh"
 
-#include "visitors/SymbolTableVisitor.hh"
+#include "visitors/VisibilityCheckVisitor.hh"
 
 #include "visitors/BreakContinueVisitor.hh"
 
@@ -57,7 +57,7 @@ void Driver::printTree(const std::string& filename) {
 
 
 void Driver::TestVariableScopes() {
-    SymbolTableVisitor visitor;
+    VisibilityCheckVisitor visitor;
     visitor.Visit(program.get());
 }
 

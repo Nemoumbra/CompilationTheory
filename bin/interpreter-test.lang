@@ -56,5 +56,6 @@ func main() {
         if (x < 3) { continue; } 
         else { print(x); }
     }
-    print(1 / 0);
+    
+    // print(1 / 0);
 }
