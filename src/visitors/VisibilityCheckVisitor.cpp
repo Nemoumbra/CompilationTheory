@@ -127,6 +127,10 @@ void VisibilityCheckVisitor::Visit(ContinueStatement*) {
     // No code
 }
 
+void VisibilityCheckVisitor::Visit(AssertStatement* assertion) {
+    assertion->expression_->Accept(this);
+}
+
 void VisibilityCheckVisitor::Visit(Program* program) {
     program->statements_->Accept(this);
 }

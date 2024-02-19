@@ -208,6 +208,15 @@ void PrintVisitor::Visit(ContinueStatement*) {
     stream_ << "ContinueStatement\n";
 }
 
+void PrintVisitor::Visit(AssertStatement* assertion) {
+    PrintTabs();
+    stream_ << "AssertStatement\n";
+
+    ++num_tabs_;
+    assertion->expression_->Accept(this);
+    --num_tabs_;
+}
+
 void PrintVisitor::Visit(Program* program) {
     PrintTabs();
     stream_ << "Program: \n";

@@ -27,6 +27,7 @@ public:
     virtual void Visit(PreLoop* loop) = 0;
     virtual void Visit(BreakStatement* loop_break) = 0;
     virtual void Visit(ContinueStatement* loop_continue) = 0;
+    virtual void Visit(AssertStatement* assertion) = 0;
 
     virtual void Visit(Program* program) = 0;
 };

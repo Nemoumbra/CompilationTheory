@@ -116,6 +116,10 @@ comment \/\/.*?\n
                 return yy::parser::make_CONTINUE(loc);
               }
 "print"       return yy::parser::make_PRINT(loc);
+"assert"      {
+                driver.locman.matched_assert();
+                return yy::parser::make_ASSERT(loc);
+              }
 "int"         return yy::parser::make_INT_TYPE(loc);
 "=="          return yy::parser::make_EQ(loc);
 "!="          return yy::parser::make_NE(loc);

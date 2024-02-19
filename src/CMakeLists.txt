@@ -53,6 +53,7 @@ add_executable(
     grammar-entities/Assignment.cpp
     grammar-entities/BreakStatement.cpp
     grammar-entities/ContinueStatement.cpp
+    grammar-entities/AssertStatement
     
     grammar-entities/expressions/AddExpression.cpp
     grammar-entities/expressions/SubExpression.cpp

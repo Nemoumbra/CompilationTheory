@@ -13,6 +13,7 @@ class Conditional;
 class PreLoop;
 class BreakStatement;
 class ContinueStatement;
+class AssertStatement;
 
 class Program;
 

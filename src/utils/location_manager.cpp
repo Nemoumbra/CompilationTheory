@@ -15,6 +15,7 @@ void LocationManager::move_down(int lines_cnt) {
 void LocationManager::move_forward(int token_length) {
     current.columns(token_length);
 }
+
 void LocationManager::matched_assign() {
     last_assign_id = last_id;
 }
@@ -23,4 +24,7 @@ void LocationManager::matched_id() {
 }
 void LocationManager::matched_break_continue() {
     last_break_continue = current;
+}
+void LocationManager::matched_assert() {
+    last_assert = current;
 }
