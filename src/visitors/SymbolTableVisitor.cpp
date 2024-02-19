@@ -24,7 +24,7 @@ void SymbolTableVisitor::Visit(CallToPrint* call_to_print) {
 
 void SymbolTableVisitor::Visit(Declaration* declaration) {
     if (!current->declare_var(declaration->identifier_)) {
-        const auto loc = loc_to_str(declaration->location);       
+        const auto loc = loc_to_str(declaration->location);
         throw std::runtime_error(
             "Variable '" + declaration->identifier_ +
             "' can't be redeclared in the same scope (" + loc + ")"
@@ -54,27 +54,27 @@ void SymbolTableVisitor::Visit(IdentifierExpr* ident_expr) {
 
 void SymbolTableVisitor::Visit(AddExpression* add_expr) {
     add_expr->first->Accept(this);
-    add_expr->second->Accept(this);    
+    add_expr->second->Accept(this);
 }
 
 void SymbolTableVisitor::Visit(SubExpression* sub_expr) {
     sub_expr->first->Accept(this);
-    sub_expr->second->Accept(this);    
+    sub_expr->second->Accept(this);
 }
 
 void SymbolTableVisitor::Visit(MultExpression* mult_expr) {
     mult_expr->first->Accept(this);
-    mult_expr->second->Accept(this);    
+    mult_expr->second->Accept(this);
 }
 
 void SymbolTableVisitor::Visit(IntDivExpression* int_div_expr) {
     int_div_expr->first->Accept(this);
-    int_div_expr->second->Accept(this);    
+    int_div_expr->second->Accept(this);
 }
 
 void SymbolTableVisitor::Visit(RemainderExpression* rem_expr) {
     rem_expr->first->Accept(this);
-    rem_expr->second->Accept(this);    
+    rem_expr->second->Accept(this);
 }
 
 void SymbolTableVisitor::Visit(NestedExpr* nested_expr) {

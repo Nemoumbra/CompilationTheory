@@ -1,22 +1,18 @@
 #pragma once
 
 #include <map>
-#include <stack>
 
 #include "BaseVisitor.hh"
 #include "../driver.hh"
 #include "../includes_for_parser.hh"
 #include "../symbol-table/stack/symbol_table.hh"
-#include "../symbol-table/tree/ScopeLayer.hh"
 #include "../utils/utils.hh"
 
 class Interpreter : public BaseVisitor {
 private:
     bool is_tos_expression_;
     int tos_value_;
-    // SymbolTable variables_;
-    ScopeLayer* current_scope_;
-    std::stack <int> scope_indexes;
+    SymbolTable variables_;
 
     ControlFlowType current_flow;
 
@@ -54,5 +50,4 @@ public:
 
 
     void GetResult(std::shared_ptr<Program> program);
-    void SetSymbolTree(std::shared_ptr<ScopeLayer> symbol_tree);
 };

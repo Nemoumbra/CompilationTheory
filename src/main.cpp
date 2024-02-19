@@ -35,8 +35,7 @@ int main(int argc, char** argv) {
 
         // Let's make some more checks...
         try {
-            driver.TestVariableScopes(); // will be removed later
-            driver.BuildSymbolTable();
+            driver.TestVariableScopes();
             driver.TestBreakContinue();
         }
         catch(const std::runtime_error& error) {

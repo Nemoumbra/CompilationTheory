@@ -8,7 +8,7 @@
 
 class SymbolTableVisitor : public BaseVisitor {
 private:
-    std::shared_ptr<ScopeLayer> current;    
+    std::shared_ptr<ScopeLayer> current;
 public:
     SymbolTableVisitor();
     // ~SymbolTableVisitor();
