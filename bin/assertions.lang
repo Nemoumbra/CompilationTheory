@@ -15,6 +15,6 @@ func main() {
         assert(0);
     }
 
-    // Needs to fail
-    assert(x*x == -1);
+    // Here goes the failing assertion:
+    assert(x == x); assert(x*x == -1);
 }

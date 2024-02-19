@@ -238,8 +238,9 @@ void Interpreter::Visit(AssertStatement* assertion) {
 
     if (!tos_value_) {
         // Assertion failed
+        const auto loc = loc_to_str(assertion->location);
         throw std::runtime_error(
-            "Assertion failed!"
+            "Assertion failed! (" + loc + ")"
         );
     }
 }

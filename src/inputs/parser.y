@@ -365,7 +365,8 @@ loop_continue:
 
 assertion:
    "assert" "(" expression ")" ";" {
-        $$ = std::make_shared<AssertStatement>($3);
+        const auto loc = driver.locman.last_assert;
+        $$ = std::make_shared<AssertStatement>($3, loc);
    }
 
 
