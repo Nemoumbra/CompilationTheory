@@ -1,0 +1,8 @@
+func main() {
+    declare x: int;
+    x = 1;
+    if (x) {
+        print(x);
+        declare x: int;
+    } else {}
+}

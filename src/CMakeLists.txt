@@ -73,6 +73,8 @@ add_executable(
     symbol-table/stack/visibility_checker.cpp
     symbol-table/tree/ScopeLayer.cpp
 
+    symbols/variable.cpp
+
     visitors/PrintVisitor.cpp
     visitors/Interpreter.cpp
     visitors/VisibilityCheckVisitor.cpp

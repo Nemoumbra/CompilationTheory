@@ -115,13 +115,14 @@ void SymbolTableVisitor::Visit(Conditional* conditional) {
     conditional->expression_->Accept(this);
 
     auto copy = current;
+    const auto& index = conditional->index_in_list;
 
-    current = current->make_child();
+    current = copy->make_child(index);
     conditional->if_clause_->Accept(this);
-    current = copy;
 
-    current = current->make_child();
+    current = copy->make_child(index);
     conditional->else_clause_->Accept(this);
+
     current = copy;
 }
 
@@ -129,8 +130,9 @@ void SymbolTableVisitor::Visit(PreLoop* pre_loop) {
     pre_loop->expression_->Accept(this);
 
     auto copy = current;
+    const auto& index = pre_loop->index_in_list;
 
-    current = current->make_child();
+    current = copy->make_child(index);
     pre_loop->loop_body_->Accept(this);
     current = copy;
 }

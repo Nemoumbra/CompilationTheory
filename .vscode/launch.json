@@ -12,7 +12,8 @@
             "program": "${workspaceFolder}/bin/CustomCompiler",
             "args": [
                 //"-c",
-                "interpreter-test.lang",
+                // "interpreter-test.lang",
+                "sample_test.lang",
                 // "-tree",
                 // "interpreter-test.txt"
                 // "ast-test.lang"
