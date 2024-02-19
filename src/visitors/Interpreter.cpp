@@ -4,7 +4,6 @@ Interpreter::Interpreter() {
     is_tos_expression_ = false;
     tos_value_ = 0;
     current_flow = ControlFlowType::Standard;
-    scope_indexes.push(0);
 }
 
 void Interpreter::setTosValue(int value) {
@@ -21,7 +20,7 @@ void Interpreter::Visit(Assignment* assignment) {
     // Compute the value and assign
     assignment->expression_->Accept(this);
 
-    (*current_scope_)[assignment->identifier_] = tos_value_;
+    variables_[assignment->identifier_] = tos_value_;
     
     // Why?
     unsetTosValue();
@@ -34,8 +33,7 @@ void Interpreter::Visit(CallToPrint* call_to_print) {
 }
 
 void Interpreter::Visit(Declaration* declaration) {
-    (*current_scope_)[declaration->identifier_] = 0;
-    // If we don't do that, the loops will retain values from the previous iterations
+    variables_.declare_var(declaration->identifier_);
 }
 
 void Interpreter::Visit(Statements* statements) {
@@ -60,8 +58,7 @@ void Interpreter::Visit(NumberExpression* number_expression) {
 
 void Interpreter::Visit(IdentifierExpr* ident_expr) {
     // Extract the value from the variable and store it somewhere
-
-    setTosValue((*current_scope_)[ident_expr->identifier_]);
+    setTosValue(variables_[ident_expr->identifier_]);
 }
 
 void Interpreter::Visit(AddExpression* add_expr) {
@@ -187,23 +184,15 @@ void Interpreter::Visit(Conditional* conditional) {
     conditional->expression_->Accept(this);
 
     
-    auto index = scope_indexes.top() + (tos_value_ ? 0: 1);
-
-    current_scope_ = current_scope_->get_child(index);
-    scope_indexes.push(0);
+    variables_.push_scope();
 
     if (tos_value_) {
         conditional->if_clause_->Accept(this);
-        scope_indexes.pop();
-        scope_indexes.top() = index + 2;
-        // Here we also have to skip the 'else' clause
     }
     else {
         conditional->else_clause_->Accept(this);
-        scope_indexes.pop();
-        scope_indexes.top() = index + 1;
     }
-    current_scope_ = current_scope_->get_parent();
+    variables_.pop_scope();
 }
 
 void Interpreter::Visit(PreLoop* loop) {
@@ -211,12 +200,10 @@ void Interpreter::Visit(PreLoop* loop) {
 
     loop->expression_->Accept(this);
     while (tos_value_ && iterations_count < max_loop_iterations) {
-        current_scope_ = current_scope_->get_child(scope_indexes.top());
-        scope_indexes.push(0);
 
+        variables_.push_scope();
         loop->loop_body_->Accept(this);
-        scope_indexes.pop();
-        current_scope_ = current_scope_->get_parent();
+        variables_.pop_scope();
 
         if (current_flow == ControlFlowType::Break) {
             break;
@@ -228,8 +215,6 @@ void Interpreter::Visit(PreLoop* loop) {
         loop->expression_->Accept(this);
         ++iterations_count;
     }
-
-    ++scope_indexes.top();
 
     if (iterations_count == max_loop_iterations) {
         throw std::runtime_error(
@@ -257,8 +242,4 @@ void Interpreter::GetResult(std::shared_ptr<Program> program) {
     unsetTosValue();
     
     this->Visit(program.get());
-}
-
-void Interpreter::SetSymbolTree(std::shared_ptr<ScopeLayer> symbol_tree) {
-    current_scope_ = symbol_tree.get();
 }

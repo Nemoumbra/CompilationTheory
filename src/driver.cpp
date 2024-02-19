@@ -6,7 +6,6 @@
 #include "visitors/Interpreter.hh"
 
 #include "visitors/VisibilityCheckVisitor.hh"
-#include "visitors/SymbolTableVisitor.hh"
 
 #include "visitors/BreakContinueVisitor.hh"
 
@@ -62,12 +61,6 @@ void Driver::TestVariableScopes() {
     visitor.Visit(program.get());
 }
 
-void Driver::BuildSymbolTable() {
-    SymbolTableVisitor visitor;
-    visitor.Visit(program.get());
-    symbol_tree = visitor.get_root();
-}
-
 void Driver::TestBreakContinue() {
     BreakContinueVisitor visitor;
     visitor.Visit(program.get());
@@ -75,7 +68,6 @@ void Driver::TestBreakContinue() {
 
 void Driver::Interpret() {
     Interpreter interpreter;
-    interpreter.SetSymbolTree(symbol_tree);
     interpreter.GetResult(program);
 }
 
