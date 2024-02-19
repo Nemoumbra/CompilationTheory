@@ -79,4 +79,20 @@ func main() {
     // if (0) { continue; } else {}
     // if (0) { break; } else { continue; }
     // if (0) { continue; } else { break; }
+
+    // Flow propagation test
+    // (the internal loop must not affect the external loop)
+    i = 0;
+    while (i < 3) {
+        declare j: int;
+        while (j < 3) {
+            break;
+        }
+        while (j < 3) {
+            j = j + 1;
+            continue;
+        }
+        print(-100 + i);
+        i = i + 1;
+    }
 }

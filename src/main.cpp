@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
             driver.TestVariableScopes();
             driver.TestBreakContinue();
         }
-        catch(const std::runtime_error& error) {
+        catch (const std::runtime_error& error) {
             std::cout << "Compilation error!\n";
             std::cout << error.what() << "\n";
             continue;
