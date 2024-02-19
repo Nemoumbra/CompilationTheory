@@ -9,6 +9,7 @@
 #include "grammar-entities/PreLoop.hh"
 #include "grammar-entities/BreakStatement.hh"
 #include "grammar-entities/ContinueStatement.hh"
+#include "grammar-entities/AssertStatement.hh"
     
 #include "grammar-entities/expressions/AddExpression.hh"
 #include "grammar-entities/expressions/SubExpression.hh"

@@ -33,5 +33,6 @@ public:
     void Visit(PreLoop* pre_loop) override;
     void Visit(BreakStatement* loop_break) override;
     void Visit(ContinueStatement* loop_continue) override;
+    void Visit(AssertStatement* assertion) override;
     void Visit(Program* program) override;
 };

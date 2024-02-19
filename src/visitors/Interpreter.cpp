@@ -232,6 +232,18 @@ void Interpreter::Visit(ContinueStatement*) {
     current_flow = ControlFlowType::Continue;
 }
 
+void Interpreter::Visit(AssertStatement* assertion) {
+    // Compute the expression
+    assertion->expression_->Accept(this);
+
+    if (!tos_value_) {
+        // Assertion failed
+        throw std::runtime_error(
+            "Assertion failed!"
+        );
+    }
+}
+
 void Interpreter::Visit(Program* program) {
     // Interpret its statements
     program->statements_->Accept(this);

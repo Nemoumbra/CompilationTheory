@@ -106,6 +106,7 @@
     BREAK "break"
     CONTINUE "continue"
     PRINT "print"
+    ASSERT "assert"
     INT_TYPE "int_type"
     EQ "=="
     NE "!="
@@ -147,6 +148,7 @@
 %nterm <std::shared_ptr<PreLoop>> pre_loop
 %nterm <std::shared_ptr<BreakStatement>> loop_break
 %nterm <std::shared_ptr<ContinueStatement>> loop_continue
+%nterm <std::shared_ptr<AssertStatement>> assertion
 
 
 
@@ -319,6 +321,9 @@ statement:
     | loop_continue {
         $$ = $1;
     }
+    | assertion {
+        $$ = $1;
+    }
     
 
 
@@ -357,6 +362,11 @@ loop_continue:
         const auto loc = driver.locman.last_break_continue;
         $$ = std::make_shared<ContinueStatement>(loc);
     }
+
+assertion:
+   "assert" "(" expression ")" ";" {
+        $$ = std::make_shared<AssertStatement>($3);
+   }
 
 
 // Grammar info section is surrounded by %% from both sides

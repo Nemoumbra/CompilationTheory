@@ -103,6 +103,10 @@ void BreakContinueVisitor::Visit(ContinueStatement* loop_continue) {
     }
 }
 
+void BreakContinueVisitor::Visit(AssertStatement*) {
+    
+}
+
 void BreakContinueVisitor::Visit(Program* program) {
     program->statements_->Accept(this);
 }

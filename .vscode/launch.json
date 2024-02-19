@@ -13,7 +13,8 @@
             "args": [
                 //"-c",
                 // "interpreter-test.lang",
-                "sample_test.lang",
+                // "sample_test.lang",
+                "assertions.lang",
                 // "-tree",
                 // "interpreter-test.txt"
                 // "ast-test.lang"

@@ -20,4 +20,5 @@ Conditional;conditional
 PreLoop;pre_loop
 BreakStatement;loop_break
 ContinueStatement;loop_continue
+AssertStatement;assertion
 Program;program
