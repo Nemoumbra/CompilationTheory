@@ -248,8 +248,7 @@ expression:
         $$ = std::make_shared<NumberExpression>($1);
     }
     | "identifier" {
-        const auto loc = driver.locman.last_id;
-        $$ = std::make_shared<IdentifierExpr>($1, loc);
+        $$ = std::make_shared<IdentifierExpr>($1, @1);
     }
     | expression "+" expression {
         $$ = std::make_shared<AddExpression>($1, $3);
@@ -329,8 +328,7 @@ statement:
 
 assignment:
     "identifier" "=" expression ";" {
-        const auto loc = driver.locman.last_assign_id;
-        $$ = std::make_shared<Assignment>($1, $3, loc);
+        $$ = std::make_shared<Assignment>($1, $3, @1);
      }
 
 
@@ -353,20 +351,17 @@ pre_loop:
 
 loop_break:
     "break" ";" {
-        const auto loc = driver.locman.last_break_continue;
-        $$ = std::make_shared<BreakStatement>(loc);
+        $$ = std::make_shared<BreakStatement>(@1);
     }
 
 loop_continue:
     "continue" ";" {
-        const auto loc = driver.locman.last_break_continue;
-        $$ = std::make_shared<ContinueStatement>(loc);
+        $$ = std::make_shared<ContinueStatement>(@1);
     }
 
 assertion:
    "assert" "(" expression ")" ";" {
-        const auto loc = driver.locman.last_assert;
-        $$ = std::make_shared<AssertStatement>($3, loc);
+        $$ = std::make_shared<AssertStatement>($3, @1);
    }
 
 

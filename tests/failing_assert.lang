@@ -1,0 +1,5 @@
+func main() {
+    declare x: int;
+    // Here goes the failing assertion:
+    assert(x == x); assert(x*x == -1);
+}
