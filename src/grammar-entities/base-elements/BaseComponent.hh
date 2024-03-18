@@ -9,6 +9,7 @@ class BaseComponent {
 public:
     yy::location location;
     
+    BaseComponent(yy::location loc): location(loc) {}
     virtual void Accept(BaseVisitor* visitor) = 0;
     virtual ~BaseComponent() = default;
 };

@@ -231,7 +231,7 @@ unit: "main" "{" statements "}" {
 
 statements:
     %empty { 
-        $$ = std::make_shared<Statements>();
+        $$ = std::make_shared<Statements>(@$);
     }
     | statements statement {
         $1->AddStatement($2);
@@ -245,46 +245,46 @@ statements:
 
 expression:
     "number" {
-        $$ = std::make_shared<NumberExpression>($1);
+        $$ = std::make_shared<NumberExpression>($1, @$);
     }
     | "identifier" {
-        $$ = std::make_shared<IdentifierExpr>($1, @1);
+        $$ = std::make_shared<IdentifierExpr>($1, @$);
     }
     | expression "+" expression {
-        $$ = std::make_shared<AddExpression>($1, $3);
+        $$ = std::make_shared<AddExpression>($1, $3, @$);
     }
     | expression "-" expression {
-        $$ = std::make_shared<SubExpression>($1, $3);
+        $$ = std::make_shared<SubExpression>($1, $3, @$);
     }
     | expression "*" expression {
-        $$ = std::make_shared<MultExpression>($1, $3);
+        $$ = std::make_shared<MultExpression>($1, $3, @$);
     }
     | expression "/" expression {
-        $$ = std::make_shared<IntDivExpression>($1, $3);
+        $$ = std::make_shared<IntDivExpression>($1, $3, @$);
     }
     | expression "%" expression {
-        $$ = std::make_shared<RemainderExpression>($1, $3);
+        $$ = std::make_shared<RemainderExpression>($1, $3, @$);
     }
     | expression "==" expression {
-        $$ = std::make_shared<EQExpression>($1, $3);
+        $$ = std::make_shared<EQExpression>($1, $3, @$);
     }
     | expression "!=" expression {
-        $$ = std::make_shared<NEExpression>($1, $3);
+        $$ = std::make_shared<NEExpression>($1, $3, @$);
     }
     | expression "<" expression {
-        $$ = std::make_shared<LTExpression>($1, $3);
+        $$ = std::make_shared<LTExpression>($1, $3, @$);
     }
     | expression ">" expression {
-        $$ = std::make_shared<GTExpression>($1, $3);
+        $$ = std::make_shared<GTExpression>($1, $3, @$);
     }
     | expression "<=" expression {
-        $$ = std::make_shared<LEQExpression>($1, $3);
+        $$ = std::make_shared<LEQExpression>($1, $3, @$);
     }
     | expression ">=" expression {
-        $$ = std::make_shared<GEQExpression>($1, $3);
+        $$ = std::make_shared<GEQExpression>($1, $3, @$);
     }
     | "(" expression ")" {
-        $$ = std::make_shared<NestedExpr>($2);
+        $$ = std::make_shared<NestedExpr>($2, @$);
     }
     ;
 
@@ -294,7 +294,7 @@ expression:
 
 declaration:
     "decl" "identifier" ":" "int_type" ";" {
-        $$ = std::make_shared<Declaration>($2);
+        $$ = std::make_shared<Declaration>($2, @$);
     }
 
 
@@ -328,40 +328,40 @@ statement:
 
 assignment:
     "identifier" "=" expression ";" {
-        $$ = std::make_shared<Assignment>($1, $3, @1);
+        $$ = std::make_shared<Assignment>($1, $3, @$);
      }
 
 
 call_to_print:
     "print" "(" expression ")" ";" {
-        $$ = std::make_shared<CallToPrint>($3);
+        $$ = std::make_shared<CallToPrint>($3, @$);
     }
 
 
 // I would really like to distinguish ints and bools, but let's just use C/C++ conversions (maybe for now)
 conditional:
     "if" "(" expression ")" "{" statements "}" "else" "{" statements "}" {
-        $$ = std::make_shared<Conditional>($3, $6, $10);
+        $$ = std::make_shared<Conditional>($3, $6, $10, @$);
      }
 
 pre_loop:
     "while" "(" expression ")" "{" statements "}" {
-        $$ = std::make_shared<PreLoop>($3, $6);
+        $$ = std::make_shared<PreLoop>($3, $6, @$);
     }
 
 loop_break:
     "break" ";" {
-        $$ = std::make_shared<BreakStatement>(@1);
+        $$ = std::make_shared<BreakStatement>(@$);
     }
 
 loop_continue:
     "continue" ";" {
-        $$ = std::make_shared<ContinueStatement>(@1);
+        $$ = std::make_shared<ContinueStatement>(@$);
     }
 
 assertion:
    "assert" "(" expression ")" ";" {
-        $$ = std::make_shared<AssertStatement>($3, @1);
+        $$ = std::make_shared<AssertStatement>($3, @$);
    }
 
 

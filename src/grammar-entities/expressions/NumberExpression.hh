@@ -3,11 +3,9 @@
 #include "BaseExpression.hh"
 
 class NumberExpression : public BaseExpression {
-// private:
-//     int value_;
 public:
     int value_;
-    explicit NumberExpression(int value);
+    explicit NumberExpression(int value, yy::location loc);
 
     void Accept(BaseVisitor* visitor);
 };

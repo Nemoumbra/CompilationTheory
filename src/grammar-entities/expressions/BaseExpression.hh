@@ -4,4 +4,5 @@
 
 class BaseExpression : public BaseComponent {
 public:
+    BaseExpression(yy::location loc): BaseComponent(loc) {}
 };
