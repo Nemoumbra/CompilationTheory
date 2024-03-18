@@ -50,8 +50,10 @@ int Driver::parse(const std::string& f) {
     return res;
 }
 
-void Driver::printTree(const std::string& filename) {
+void Driver::printTree(const std::string& filename, bool print_locations) {
     PrintVisitor visitor(filename);
+    visitor.setPrintLocations(print_locations);
+
     visitor.Visit(program.get());
 }
 

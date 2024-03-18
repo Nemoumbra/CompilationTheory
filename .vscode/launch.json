@@ -12,12 +12,13 @@
             "program": "${workspaceFolder}/bin/CustomCompiler",
             "args": [
                 //"-c",
+                "ast-test.lang",
                 // "interpreter-test.lang",
                 // "sample_test.lang",
-                "assertions.lang",
-                // "-tree",
+                // "assertions.lang",
+                "-tree",
+                "new-ast-test.txt",
                 // "interpreter-test.txt"
-                // "ast-test.lang"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/bin",

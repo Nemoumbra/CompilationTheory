@@ -60,7 +60,7 @@ int main(int argc, char** argv) {
             // We only make the tree if it can be made AND the user explicitly requested that
             if (argv[i+1] == std::string("-tree")) {
                 std::cout << "Printing the tree to " << argv[i+2] << "...\n";
-                driver.printTree(argv[i+2]);
+                driver.printTree(argv[i+2], true);
                 i += 2;
                 std::cout << "Done!\n";
             }

@@ -4,7 +4,7 @@
 
 #include "Statement.hh"
 
-class Statements : BaseComponent {
+class Statements : public BaseComponent {
 public:
     std::vector <std::shared_ptr<Statement>> statements_;
 
