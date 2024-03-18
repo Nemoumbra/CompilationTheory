@@ -7,6 +7,11 @@ public:
     std::shared_ptr<BaseExpression> first;
     std::shared_ptr<BaseExpression> second;
 
-    LEQExpression(std::shared_ptr<BaseExpression> expr1, std::shared_ptr<BaseExpression> expr2);
+    LEQExpression(
+        std::shared_ptr<BaseExpression> expr1,
+        std::shared_ptr<BaseExpression> expr2,
+        yy::location loc
+        );
+    
     void Accept(BaseVisitor* visitor);
 };

@@ -11,10 +11,14 @@ class PrintVisitor : public BaseVisitor {
 private:
     std::ofstream stream_;
     int num_tabs_ = 0;
+    bool print_locations = false;
 
     void PrintTabs();
+    void PrintLocation(BaseComponent* component);
 public:
     PrintVisitor(const std::string& filename);
+    void setPrintLocations(bool value);
+    bool getPrintLocations() const;
     ~PrintVisitor();
 
     void Visit(Assignment* assignment) override;

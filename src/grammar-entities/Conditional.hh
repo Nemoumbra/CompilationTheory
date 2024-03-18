@@ -13,7 +13,8 @@ public:
 
     Conditional(std::shared_ptr<BaseExpression> expression, 
                 std::shared_ptr<Statements> if_clause,
-                std::shared_ptr<Statements> else_clause);
+                std::shared_ptr<Statements> else_clause,
+                yy::location loc);
 
     void Accept(BaseVisitor* visitor);
 };

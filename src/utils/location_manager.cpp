@@ -16,6 +16,10 @@ void LocationManager::move_forward(int token_length) {
     current.columns(token_length);
 }
 
+
+
+// The following functions are deprecated
+
 void LocationManager::matched_assign() {
     last_assign_id = last_id;
 }

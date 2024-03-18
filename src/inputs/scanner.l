@@ -97,29 +97,17 @@ comment \/\/.*?\n
 ")"           return yy::parser::make_RPAREN(loc);
 "{"           return yy::parser::make_LCURLY(loc);
 "}"           return yy::parser::make_RCURLY(loc);
-{assign}      {
-                driver.locman.matched_assign();
-                return yy::parser::make_ASSIGN(loc);
-              }
+{assign}      return yy::parser::make_ASSIGN(loc);
 ";"           return yy::parser::make_SEMICOLON(loc);
 ":"           return yy::parser::make_COLON(loc);
 "declare"     return yy::parser::make_DECLARE(loc);
 "if"          return yy::parser::make_IF(loc);
 "else"        return yy::parser::make_ELSE(loc);
 "while"       return yy::parser::make_WHILE(loc);
-"break"       {
-                driver.locman.matched_break_continue();
-                return yy::parser::make_BREAK(loc);
-              }
-"continue"    {
-                driver.locman.matched_break_continue();
-                return yy::parser::make_CONTINUE(loc);
-              }
+"break"       return yy::parser::make_BREAK(loc);
+"continue"    return yy::parser::make_CONTINUE(loc);
 "print"       return yy::parser::make_PRINT(loc);
-"assert"      {
-                driver.locman.matched_assert();
-                return yy::parser::make_ASSERT(loc);
-              }
+"assert"      return yy::parser::make_ASSERT(loc);
 "int"         return yy::parser::make_INT_TYPE(loc);
 "=="          return yy::parser::make_EQ(loc);
 "!="          return yy::parser::make_NE(loc);
@@ -142,7 +130,6 @@ comment \/\/.*?\n
 
   /* Here we create identifiers */
 {id}       {
-              driver.locman.matched_id();
               return yy::parser::make_IDENTIFIER(yytext, loc);
 
               // When we pass yytext here, a copy std::string is made from it.

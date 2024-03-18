@@ -16,6 +16,8 @@ struct LocationManager {
     void move_down(int lines_cnt);
     void move_forward(int token_length);
 
+    // The following functions are deprecated
+
     void matched_assign();
     void matched_id();
     void matched_break_continue();

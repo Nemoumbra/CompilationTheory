@@ -7,6 +7,10 @@ public:
     std::shared_ptr<BaseExpression> first;
     std::shared_ptr<BaseExpression> second;
 
-    LTExpression(std::shared_ptr<BaseExpression> expr1, std::shared_ptr<BaseExpression> expr2);
+    LTExpression(
+        std::shared_ptr<BaseExpression> expr1,
+        std::shared_ptr<BaseExpression> expr2,
+        yy::location loc);
+        
     void Accept(BaseVisitor* visitor);
 };

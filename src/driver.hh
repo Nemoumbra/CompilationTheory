@@ -37,7 +37,7 @@ private:
     void scan_begin();
     void scan_end();
 
-    void printTree(const std::string& fileaname);
+    void printTree(const std::string& fileaname, bool print_locations = false);
 
     void TestVariableScopes();
     void TestBreakContinue();
