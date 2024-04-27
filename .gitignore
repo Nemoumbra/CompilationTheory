@@ -1,8 +1,11 @@
+.vscode/
+.idea/
 
-# The folders where Make does its job
-/build
-/build2
+cmake-build-*/
+build*/
+venv/
 
+# Executables
 *.out
 
 # The folders for the codegens' output
@@ -11,3 +14,4 @@ generated/
 # For the parser-graph outputs
 *.gv
 *.png
+
