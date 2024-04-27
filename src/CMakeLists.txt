@@ -5,14 +5,19 @@ project(CUSTOM_COMPILER)
 set(CMAKE_CXX_STANDARD 17)
 
 set(GENERATED_FOLDER ${PROJECT_SOURCE_DIR}/generated/)
+set(GRAPH_FOLDER ${PROJECT_SOURCE_DIR}/parser-graph/)
 set(INPUT_FOLDER ${PROJECT_SOURCE_DIR}/inputs/)
+
+# I don't think Flex and Bison can create parent directories...
+file(MAKE_DIRECTORY ${GENERATED_FOLDER})
+file(MAKE_DIRECTORY ${GRAPH_FOLDER})
 
 # generate *.cpp and *.hh files here for later use
 BISON_TARGET(
     BisonCodeGen
     ${INPUT_FOLDER}/parser.y
     ${GENERATED_FOLDER}/parser.cpp
-    COMPILE_FLAGS --graph=${CUSTOM_COMPILER_SOURCE_DIR}/parser-graph/parser.gv
+    COMPILE_FLAGS --graph=${GRAPH_FOLDER}/parser.gv
     DEFINES_FILE ${GENERATED_FOLDER}/parser.hh
 )
 
@@ -53,7 +58,7 @@ add_executable(
     grammar-entities/Assignment.cpp
     grammar-entities/BreakStatement.cpp
     grammar-entities/ContinueStatement.cpp
-    grammar-entities/AssertStatement
+    grammar-entities/AssertStatement.cpp
     
     grammar-entities/expressions/AddExpression.cpp
     grammar-entities/expressions/SubExpression.cpp
